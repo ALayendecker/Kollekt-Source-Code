@@ -12,12 +12,21 @@ const collectionController = require("../../controllers/collectionController");
 // // .put(collectionController.update)
 // router.route("/saved/:id").delete(collectionController.remove);
 
+//a few of them will probably go in the same route
+
 router
   .route("/routeToGetAllFromUserNotPopulate")
-  .get(collectionController.findAll);
+  .get(collectionController.findAllInUser);
+
 router
   .route("/routeToGetAllFromUserAndPopulate")
   .get(collectionController.findById);
+
+router
+  .route("/routeToGetAllPublicWithQuery")
+  .get(collectionController.findAllPublicWithQuery);
+
+router.route("/routeToUpdateOne").get(collectionController.update);
 
 router.route(".../addCollectionToUser").post(collectionController.create);
 

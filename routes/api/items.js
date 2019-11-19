@@ -12,6 +12,10 @@ const itemController = require("../../controllers/itemController");
 // // .put(itemController.update)
 // router.route("/saved/:id").delete(itemController.remove);
 
+//a few of them will probably go in the same route
+
+router.route("/routeToUpdateOne").get(itemController.update);
+
 router.route(".../addItemToCollection").post(itemController.create);
 
 module.exports = router;

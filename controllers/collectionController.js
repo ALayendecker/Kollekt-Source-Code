@@ -1,8 +1,13 @@
 const db = require("../models");
 //edit the functions as we go
 module.exports = {
-  findAll: function(req, res) {
+  findAllInUser: function(req, res) {
     db.Collection.find(req.query) //req.query would be the filter for the user. get all collections from the user and don't fill them
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findAllPublicWithQuery: function(req, res) {
+    db.Collection.find(req.query) //req.query would have { isPrivate : false, [key] : [value]}, where [key] : [value] are the search parameters
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -28,12 +33,12 @@ module.exports = {
       .catch(function(err) {
         res.json(err);
       });
+  },
+  update: function(req, res) {
+    db.Collection.findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-  // update: function(req, res) {
-  //   db.Collection.findOneAndUpdate({ _id: req.params.id }, req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
   // remove: function(req, res) {
   //   db.Collection.findById({ _id: req.params.id })
   //     .then(dbModel => dbModel.remove())
