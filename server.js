@@ -1,7 +1,8 @@
 const express = require("express");
-const path = require("path");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 const connectDB = require("./config/db");
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -11,6 +12,7 @@ connectDB();
 // initialize middleware
 app.use(express.json({ extended: false }));
 
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,6 +20,8 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+app.use(routes);
+
 
 // Define API routes here
 app.use(routes);
@@ -33,6 +37,7 @@ app.get("*", (req, res) => {
   console.log("hit 3001");
   res.send("API Running");
 });
+
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}!`);

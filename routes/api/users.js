@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
@@ -46,5 +47,6 @@ router.post(
     res.send("users route");
   }
 );
+
 
 module.exports = router;
