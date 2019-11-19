@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "server": "nodemon server",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -19,7 +20,16 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.4",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
-    "if-env": "^1.0.4"
+    "express-validator": "^6.2.0",
+    "gravatar": "^1.8.0",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.11",
+    "request": "^2.88.0"
   }
 }
