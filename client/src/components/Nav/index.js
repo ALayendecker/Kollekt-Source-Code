@@ -16,7 +16,7 @@ function Nav() {
       <a className="navbar" href="/saved">
         Dashboard
       </a>
-      <a className="navbar" href="">
+      <a className="navbar" href="/dashboard">
         Collections
       </a>
     </nav>
