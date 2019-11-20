@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-export function Input(props) {
+function AddForm(props) {
   return (
     <div className="dropdown">
       <button
@@ -12,22 +12,15 @@ export function Input(props) {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Search Collection Type
+        {props.text}
       </button>
-      <div className="dropdown-menu" aria-labelledby="dropdownMenu">
-        <button className="dropdown-item" type="button">
-          Music
-        </button>
-        <button className="dropdown-item" type="button">
-          Comics
-        </button>
-        <button className="dropdown-item" type="button">
-          Currency
-        </button>
-        <button className="dropdown-item" type="button">
-          Cards
-        </button>
-      </div>
+      <div
+        {...props}
+        className="dropdown-menu"
+        aria-labelledby="dropdownMenu"
+      ></div>
     </div>
   );
 }
+export default AddForm;
+

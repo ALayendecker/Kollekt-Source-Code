@@ -14,20 +14,23 @@ const collectionController = require("../../controllers/collectionController");
 
 //a few of them will probably go in the same route
 
-router
-  .route("/routeToGetAllFromUserNotPopulate")
-  .get(collectionController.findAllInUser);
+// router
+//   .route("/routeToGetAllFromUserNotPopulate")
+//   .get(collectionController.findAllInUser);
 
-router
-  .route("/routeToGetAllFromUserAndPopulate")
-  .get(collectionController.findById);
+// router
+//   .route("/routeToGetAllFromUserAndPopulate")
+//   .get(collectionController.findById);
 
-router
-  .route("/routeToGetAllPublicWithQuery")
-  .get(collectionController.findAllPublicWithQuery);
+// router
+//   .route("/routeToGetAllPublicWithQuery")
+//   .get(collectionController.findAllPublicWithQuery);
 
-router.route("/routeToUpdateOne").get(collectionController.update);
+// router.route("/routeToUpdateOne").get(collectionController.update);
 
-router.route(".../addCollectionToUser").post(collectionController.create);
+// router.route(".../addCollectionToUser").post(collectionController.create);
+
+router.route("/bytype/:query").get(collectionController.findByType);
+router.route("/create").post(collectionController.create);
 
 module.exports = router;

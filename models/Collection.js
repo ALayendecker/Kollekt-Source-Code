@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CollectionSchema = new Schema({
-  name: {
-    type: String,
-    unique: true
-  },
+  name: String,
   type: String, //coins, cds, cards, etc....
   isPrivate: {
     type: Boolean,
