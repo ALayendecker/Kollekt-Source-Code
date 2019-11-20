@@ -1,3 +1,5 @@
+//this is the page that will render if there is an error
+
 import React from "react";
 
 function NoMatch() {

@@ -1,6 +1,8 @@
+//this is the page that will render as soon as someone opens the website
+
 import React, { Component } from "react";
 // import Nav from "../components/Nav";
-import { Input, FormBtn } from "../components/AddForm";
+import { Input } from "../components/AddForm";
 
 
 
@@ -23,24 +25,24 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <h1>At least we have something</h1>
+        <h1>Search for a collection below</h1>
         <form>
-            <Input
+            {/* <Input
             value={this.state.name}
             onChange={this.handleInputChange}
             name="name"
-            placeholder="Name"/>
+            placeholder="Name"/> */}
             <Input
             value={this.state.type}
             onChange={this.handleInputChange}
             name="type"
             placeholder="Type"/>
-            <FormBtn
+            {/* <FormBtn
                 onClick={this.handleFormSubmit}
               >
                 
                 Button
-            </FormBtn>
+            </FormBtn> */}
         </form>
       </div>
     );
