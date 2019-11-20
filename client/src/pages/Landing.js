@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Nav from "../components/Nav";
+// import Nav from "../components/Nav";
 
 class Landing extends Component {
     
     render() {
         return (
-<Nav>
-  
-</Nav>
+<div>
+  <h1>875r6ryu</h1>
+</div>
         );
     }
 }
