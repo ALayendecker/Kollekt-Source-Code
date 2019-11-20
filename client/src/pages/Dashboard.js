@@ -6,6 +6,7 @@ class Dashboard extends Component {
     render() {
         return (
 <Nav>
+    HEY PLEASE SHOW ME SOMETHING
 </Nav>
         );
     }
