@@ -23,12 +23,12 @@ class Landing extends Component {
       <div>
         <h1>Search for a collection below</h1>
         <form>
-          <Input
+          {/* <Input
             value={this.state.name}
             onChange={this.handleInputChange}
             name="name"
             placeholder="Name"
-          />
+          /> */}
           <Input
             value={this.state.type}
             onChange={this.handleInputChange}

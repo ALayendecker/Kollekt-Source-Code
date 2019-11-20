@@ -2,7 +2,7 @@ import React from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import Landing from "./pages/Landing";
-import Home from "./pages/Login";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MyCollections from "./pages/MyCollections";
 import PublicCollection from "./pages/PublicCollection";
@@ -16,9 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />;
           <Route exact path="/PublicCollection" component={PublicCollection} />;
-
           <Route exact path="/Login" component={Login} />;
-
           <Route exact path="/Dashboard" component={Dashboard} />;
           <Route exact path="/MyCollections" component={MyCollections} />;
           <Route component={NoMatch} />
