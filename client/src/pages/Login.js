@@ -45,7 +45,7 @@ class Login extends Component {
 
               <br></br>
 
-              <p>Create an account!</p>
+              <a href="/signup">Create an account!</a>
             </form>
           </div>
         </div>
