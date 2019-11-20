@@ -1,13 +1,18 @@
+//this is the page that will render as soon as someone opens the website
 import React, { Component } from "react";
 // import Nav from "../components/Nav";
+
 import AddForm from "../components/AddForm";
 import DropdownButton from "../components/DropdownButton";
-
+import Nav from "../components/Nav";
 import API from "../utils/API"; //new
+import Footer from "../components/Footer";
+
 
 class Landing extends Component {
   state = {
     name: [],
+
     type: "cards",
     data: "", //won't be needed, we search right away for now
     searchResult: []
@@ -43,11 +48,13 @@ class Landing extends Component {
         this.setState({ searchResult: res.data });
       })
       .catch(err => console.log(err));
+
   };
 
   render() {
     return (
       <div>
+
         <h1>At least we have something</h1>
         <AddForm text={"Search Collection Type"}>
           <DropdownButton onClick={() => this.makeSearch("music")}>

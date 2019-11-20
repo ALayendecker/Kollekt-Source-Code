@@ -4,7 +4,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const connectDB = require("./config/db");
-const mongoose = require("mongoose");
 const routes = require("./routes");
 //connect to database
 connectDB();
