@@ -17,4 +17,11 @@ export default {
   // saveBook: function(bookData) {
   //   return axios.post("/api/books", bookData);
   // }
+  createCollection: function(objectWithParameters) {
+    return axios.post("api/collections/create", objectWithParameters);
+  },
+  getCollectionByType: function(query) {
+    console.log(query);
+    return axios.get("/api/collections/bytype/" + query);
+  }
 };
