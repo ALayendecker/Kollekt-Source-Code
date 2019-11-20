@@ -2,3 +2,7 @@
     background-color: rgb(91, 89, 92);
     color: rgb(241, 243, 245);
 }
+
+.navbarItem {
+    float: right;
+}

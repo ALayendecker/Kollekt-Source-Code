@@ -1,6 +1,9 @@
+//this is the page that will render as soon as someone opens the website
+
 import React, { Component } from "react";
 // import Nav from "../components/Nav";
 import { Input } from "../components/AddForm";
+
 
 class Landing extends Component {
   state = {
@@ -18,7 +21,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
-        <h1>At least we have something</h1>
+        <h1>Search for a collection below</h1>
         <form>
           <Input
             value={this.state.name}
@@ -32,6 +35,7 @@ class Landing extends Component {
             name="type"
             placeholder="Type"
           />
+
         </form>
       </div>
     );

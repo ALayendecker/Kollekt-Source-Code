@@ -7,17 +7,14 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg">
 {/* Can change the names just putting in placeholders */}
-      <a className="navbar" href="/home">
+      <a className="navbar navbarItem" href="/home">
         Home
       </a>
-      <a className="navbar" href="/">
+      <a className="navbar navbarItem" href="/">
         Sign In
       </a>
-      <a className="navbar" href="/saved">
+      <a className="navbar navbarItem" href="/dashboard">
         Dashboard
-      </a>
-      <a className="navbar" href="/dashboard">
-        Collections
       </a>
     </nav>
   );

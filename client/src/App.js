@@ -16,7 +16,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />;
           <Route exact path="/PublicCollection" component={PublicCollection} />;
-          <Route exact path="/Login" component={Home} />;
+
+          <Route exact path="/Login" component={Login} />;
+
           <Route exact path="/Dashboard" component={Dashboard} />;
           <Route exact path="/MyCollections" component={MyCollections} />;
           <Route component={NoMatch} />
