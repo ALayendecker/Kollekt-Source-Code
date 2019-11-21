@@ -5,14 +5,14 @@ function LoginForm() {
     return (
    
     <div className="div2 col">
-      <div class="wrapper">
-        <form class="form-signin">
-          <h2 class="form-signin-heading">Please login</h2>
+      <div className="wrapper">
+        <form className="form-signin">
+          <h2 className="form-signin-heading">Please login</h2>
           <br></br>
 
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="username"
             placeholder="Email Address"
             required=""
@@ -20,13 +20,13 @@ function LoginForm() {
           />
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             name="password"
             placeholder="Password"
             required=""
           />
 
-          <button class="btn btn-lg btn-dark btn-block" type="submit">
+          <button className="btn btn-lg btn-dark btn-block" type="submit">
             Login
           </button>
           <br></br>

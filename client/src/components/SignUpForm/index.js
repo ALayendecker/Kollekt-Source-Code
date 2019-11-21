@@ -5,13 +5,13 @@ function SignUpForm() {
     return (
     
     <div className="div2 col">
-      <div class="wrapper">
-        <form class="form-signin">
-          <h2 class="form-signin-heading">Create an Account</h2>
+      <div className="wrapper">
+        <form className="form-signin">
+          <h2 className="form-signin-heading">Create an Account</h2>
           <br></br>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="firstname"
             placeholder="Andrew"
             required=""
@@ -19,7 +19,7 @@ function SignUpForm() {
           />
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="lastname"
             placeholder="Verane"
             required=""
@@ -27,26 +27,26 @@ function SignUpForm() {
           />
           <input
             type="username"
-            class="form-control"
+            className="form-control"
             name="username"
             placeholder="SisterWife4Life"
             required=""
           />
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             name="email"
             placeholder="email@email.com"
             required=""
           />
             <input
             type="password"
-            class="form-control"
+            className="form-control"
             name="password"
             placeholder="Password"
             required=""
           />
-          <button class="btn btn-lg btn-dark btn-block" type="submit">
+          <button className="btn btn-lg btn-dark btn-block" type="submit">
             Sign Up
           </button>
           <br></br>
