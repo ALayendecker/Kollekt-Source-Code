@@ -8,6 +8,7 @@ const CollectionSchema = new Schema({
     type: Boolean,
     default: true
   },
+  itemFields: Array,
   items: [
     {
       type: Schema.Types.ObjectId,
