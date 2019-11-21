@@ -13,11 +13,16 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
   create: function(req, res) {
-    db.Item.create(req.body)
+    console.log(req.body);
+    const collectionId = req.body.collectionId;
+    db.Item.create(req.body.newItem)
       .then(function(dbItem) {
+        console.log("---------");
+        console.log(dbItem);
+        console.log(collectionId);
         return db.Collection.findOneAndUpdate(
           //do I keep the return?
-          { id: SOME_ID_PARAMETER }, //get the id from the collection I'm adding the item to
+          { _id: collectionId }, //get the id from the collection I'm adding the item to
           { $push: { items: dbItem._id } },
           { new: true }
         );
@@ -33,11 +38,16 @@ module.exports = {
     db.Item.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
   // remove: function(req, res) {
   //   db.Item.findById({ _id: req.params.id })
   //     .then(dbModel => dbModel.remove())
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // }
+  remove: function(req, res) {
+    db.Item.remove({ _id: req.params.id })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
 };
