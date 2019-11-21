@@ -2,6 +2,20 @@ import React, { Component } from "react";
 import "./Login.css";
 
 class Login extends Component {
+
+  state = {
+    username: "",
+    password: "",
+    loggedin: false,
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     return (
       <div className="main row ">
@@ -18,7 +32,7 @@ class Login extends Component {
                 type="text"
                 class="form-control"
                 name="username"
-                placeholder="Email Address"
+                placeholder="Username"
                 required=""
                 autofocus=""
               />
