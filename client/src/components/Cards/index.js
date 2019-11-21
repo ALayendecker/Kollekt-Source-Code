@@ -9,7 +9,8 @@ function Card(props) {
   <div className="card-body">
 <h5 className="card-title">{props.name}</h5>
 <p className="card-text">{props.type}</p>
-    <a href="#" className="btn btn-secondary">Go to Collection associated with pic</a>
+      {/* need to make click function to take to collection associated with card */}
+    <a href="#" className="btn btn-secondary">View This Collection</a>
   </div>
 </div>
 );
