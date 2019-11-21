@@ -9,7 +9,7 @@ import CollectionDetails from "./pages/CollectionDetails";
 import PublicCollection from "./pages/PublicCollection";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
-import SignInUp from "./pages/SignInUp";
+import SignUp from "./pages/SignUp";
 // import Nav from "./components/Nav";
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/" component={Landing} />;
           <Route exact path="/PublicCollection" component={PublicCollection} />;
           <Route exact path="/Login" component={Login} />;
-          <Route exact path="/kala" component={SignInUp} />;
+          <Route exact path="/Signup" component={SignUp} />;
           <Route exact path="/Dashboard" component={Dashboard} />;
           <Route exact path="/MyCollections" component={MyCollections} />;
           <Route

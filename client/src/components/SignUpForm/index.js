@@ -1,12 +1,9 @@
 import React from "react";
 import "./style.css";
 
-function SignUp() {
+function SignUpForm() {
     return (
-    <div className="main row ">
-    <div className="div1 col">
-      <img src={"starwars_1.jpg"} alt="Logo" />
-    </div>
+    
     <div className="div2 col">
       <div class="wrapper">
         <form class="form-signin">
@@ -53,12 +50,14 @@ function SignUp() {
             Sign Up
           </button>
           <br></br>
-          <a href="/login">Log In</a>
+          <a href="/login">Already a member? Log In Here</a>
+          <br></br>
+          <a href="/">Take Me Home</a>
         </form>
       </div>
     </div>
-  </div>
+  
 );
 
 }
-export default SignUp;
+export default SignUpForm;

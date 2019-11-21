@@ -1,12 +1,9 @@
 import React from "react";
 import "./style.css";
 
-function Login() {
+function LoginForm() {
     return (
-    <div className="main row ">
-    <div className="div1 col">
-      <img src={"starwars_1.jpg"} alt="Logo" />
-    </div>
+   
     <div className="div2 col">
       <div class="wrapper">
         <form class="form-signin">
@@ -28,28 +25,19 @@ function Login() {
             placeholder="Password"
             required=""
           />
-          <label class="checkbox">
-            <input
-              type="checkbox"
-              value="remember-me"
-              id="rememberMe"
-              name="rememberMe"
-            />
-            Remember me
-          </label>
 
           <button class="btn btn-lg btn-dark btn-block" type="submit">
             Login
           </button>
-
           <br></br>
-
           <a href="/signup">Create an account!</a>
+          <br></br>
+          <a href="/">Take Me Home</a>
         </form>
       </div>
     </div>
-  </div>
+
 );
 
 }
-export default Login;
+export default LoginForm;
