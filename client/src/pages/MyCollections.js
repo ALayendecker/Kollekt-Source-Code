@@ -6,6 +6,7 @@ import API from "../utils/API";
 import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import InputField from "../components/InputField";
+import Card from "../components/Cards";
 
 class Collection extends Component {
   state = {
@@ -90,37 +91,23 @@ class Collection extends Component {
       .catch(err => console.log(err));
     this.setState({ collectionId: id });
   };
-  testFunction = async event => {
-    event.preventDefault();
-    console.log(this.state.newkey);
-    await this.setState({ newkey: "newvalue" });
-    console.log(this.state.newkey);
-  };
   createNewItem = () => {
+    console.log(this.state.newItem); //re add that
+    API.createItem(this.state.newItem, this.state.collectionId)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
     //just do the api call with that oobject. probably need to grab the collection id from the page and send it with.
-    console.log(this.state.newItem);
   };
-  // renderFormForEachItem = () => {
-  //   console.log("hit renderFormForEachItem");
-  //   try {
-  //     console.log(this.state.searchByIdResult[0].itemFields);
-  //     this.state.searchByIdResult[0].itemFields.forEach(element => {
-  //       console.log(element);
-  //       return (
-  //         <h1>{element}</h1>
-  //         // <InputField
-  //         //   // value={this.state.title}
-  //         //   // onChange={this.handleInputChange}
-  //         //   name={element}
-  //         //   placeholder={element}
-  //         // />
-  //       );
-  //     });
-  //   } catch {
-  //     console.log("not ready yet");
-  //   }
-  //   // console.log(collection);
-  // };
+  deleteItem = itemId => {
+    API.deleteItem(itemId)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+  deleteCollection = collectionId => {
+    API.deleteCollection(collectionId)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
   render() {
     return (
       <div>
@@ -133,29 +120,31 @@ class Collection extends Component {
                 className="this should be the ListItem component"
                 key={collection._id}
               >
-                <h4>Name</h4>
-                <p>{collection.name}</p>
-                <h4>Type</h4>
-                <p>{collection.type}</p>
-                {collection.isPivate ? (
-                  <p>This collection is private</p>
-                ) : (
-                  <h4>This collection is not private</h4>
-                )}
+                <Card {...collection} />
                 <h4>Items</h4>
+                {/* would go into card? another component? */}
                 {collection.items.length ? (
-                  collection.items.map(item => <p>{item}</p>)
+                  collection.items.map((item, index) => (
+                    <div>
+                      <p key={index}>{item.title}</p>
+                      <button onClick={() => this.deleteItem(item._id)}>
+                        Detele Item
+                      </button>
+                    </div>
+                  ))
                 ) : (
                   <p>No items to show</p>
                 )}
-                {collection.itemFields.map(item => (
+                {collection.itemFields.map((item, index) => (
                   <InputField
+                    key={index}
                     value={this.state.newItem.item}
                     onChange={this.handleInputChangeForNewItem}
                     name={item}
                     placeholder={item}
                   />
                 ))}
+                {/* give the button id of collection id? won't it be on the state anyway? */}
                 <button onClick={() => this.createNewItem()}>
                   Create New Item
                 </button>
@@ -194,7 +183,6 @@ class Collection extends Component {
                 </DropdownButton>
               </AddForm>
               <button onClick={this.handleFormSubmit}>Create Kollection</button>
-              <button onClick={this.testFunction}>Test Stuff</button>
             </form>
             {this.state.searchAllCollectionsResult.length ? (
               <div className="this should be the List component">
@@ -203,28 +191,17 @@ class Collection extends Component {
                     className="this should be the ListItem component"
                     key={collection._id}
                   >
-                    <h4>Name</h4>
-                    <p>{collection.name}</p>
-                    <h4>Type</h4>
-                    <p>{collection.type}</p>
-                    {collection.isPivate ? (
-                      <p>This collection is private</p>
-                    ) : (
-                      <h4>This collection is not private</h4>
-                    )}
-                    <h4>Items</h4>
-                    {collection.items.length ? (
-                      collection.items.map(item => <p>{item}</p>)
-                    ) : (
-                      <p>No items to show</p>
-                    )}
-
+                    <Card {...collection} />
                     <button
                       onClick={() => this.searchCollectionById(collection._id)}
                     >
                       View Kollection
                     </button>
-                    <p>--space--</p>
+                    <button
+                      onClick={() => this.deleteCollection(collection._id)}
+                    >
+                      Delete Kollection
+                    </button>
                   </div>
                 ))}
               </div>

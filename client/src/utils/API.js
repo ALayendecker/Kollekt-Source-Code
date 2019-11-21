@@ -31,5 +31,17 @@ export default {
   },
   getAllCollections: function() {
     return axios.get("/api/collections/all");
+  },
+  createItem: function(newItem, collectionId) {
+    return axios.post("api/items/create", {
+      newItem,
+      collectionId
+    });
+  },
+  deleteItem: function(id) {
+    return axios.delete("api/items/delete/" + id);
+  },
+  deleteCollection: function(id) {
+    return axios.delete("api/collections/delete/" + id);
   }
 };

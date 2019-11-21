@@ -14,8 +14,12 @@ const itemController = require("../../controllers/itemController");
 
 //a few of them will probably go in the same route
 
-router.route("/routeToUpdateOne").get(itemController.update);
+// router.route("/routeToUpdateOne").get(itemController.update);
 
-router.route(".../addItemToCollection").post(itemController.create);
+// router.route(".../addItemToCollection").post(itemController.create);
+
+//
+router.route("/create").post(itemController.create);
+router.route("/delete/:id").delete(itemController.remove);
 
 module.exports = router;
