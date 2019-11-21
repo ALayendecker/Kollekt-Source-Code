@@ -1,16 +1,20 @@
-
 const express = require("express");
 const router = express.Router();
+const gravatar = require("gravatar");
 const { check, validationResult } = require("express-validator");
-const userController = require("../../controllers/userController");
+// const userController = require("../../controllers/userController");
 const User = require("../../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
+
 //route     PST api/users
 //desc      Register user
 //access    public
 router.post(
   "/",
   [
-    check("name", "Username is required")
+    check("username", "Username is required")
       .not()
       .isEmpty(),
     check("email", "Please include a valid email").isEmail(),
@@ -32,21 +36,52 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        res.status(400).json({ errors: [{ msg: "Email already in use" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Email already in use" }] });
       }
-      //get users gravatar
+      //gravatar
+      const avatar = gravatar.url(email, {
+        s: "200",
+        r: "pg",
+        d: "mm"
+      });
+
+      user = new User({
+        username,
+        email,
+        avatar,
+        password
+      });
+
       //encrypt password
-      //return jwt
-      res.send("User route");
+      const salt = await bcrypt.genSalt(10);
+
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        {
+          expiresIn: 36000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
     }
-
-    console.log(req.body);
-    res.send("users route");
   }
 );
-
 
 module.exports = router;
