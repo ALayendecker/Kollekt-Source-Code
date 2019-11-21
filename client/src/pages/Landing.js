@@ -76,6 +76,7 @@ class Landing extends Component {
                   className="this should be the ListItem component"
                   key={index}
                 >
+
                   <Card key={collection._id} {...collection}/>
                 
                   
