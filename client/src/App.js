@@ -5,6 +5,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MyCollections from "./pages/MyCollections";
+import CollectionDetails from "./pages/CollectionDetails";
 import PublicCollection from "./pages/PublicCollection";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
@@ -21,6 +22,12 @@ function App() {
           <Route exact path="/kala" component={SignInUp} />;
           <Route exact path="/Dashboard" component={Dashboard} />;
           <Route exact path="/MyCollections" component={MyCollections} />;
+          <Route
+            exact
+            path="/CollectionDetails"
+            component={CollectionDetails}
+          />
+          ;
           <Route component={NoMatch} />
         </Switch>
       </Router>

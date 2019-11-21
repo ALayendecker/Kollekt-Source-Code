@@ -30,7 +30,9 @@ const collectionController = require("../../controllers/collectionController");
 
 // router.route(".../addCollectionToUser").post(collectionController.create);
 
-router.route("/bytype/:query").get(collectionController.findByType);
+router.route("/all").get(collectionController.findAll);
+router.route("/byid/:id").get(collectionController.findById);
+router.route("/bytype/:type").get(collectionController.findByType);
 router.route("/create").post(collectionController.create);
 
 module.exports = router;
