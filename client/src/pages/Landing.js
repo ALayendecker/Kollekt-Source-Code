@@ -1,13 +1,9 @@
-//this is the page that will render as soon as someone opens the website
 import React, { Component } from "react";
-// import Nav from "../components/Nav";
-
 import AddForm from "../components/AddForm";
 import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
-import API from "../utils/API"; //new
+import API from "../utils/API";
 import Footer from "../components/Footer";
-
 
 class Landing extends Component {
   state = {
@@ -48,13 +44,12 @@ class Landing extends Component {
         this.setState({ searchResult: res.data });
       })
       .catch(err => console.log(err));
-
   };
 
   render() {
     return (
       <div>
-
+        <Nav />
         <h1>At least we have something</h1>
         <AddForm text={"Search Collection Type"}>
           <DropdownButton onClick={() => this.makeSearch("music")}>
@@ -99,25 +94,10 @@ class Landing extends Component {
         ) : (
           <p>Make a search to see results!</p>
         )}
+        <Footer />
       </div>
     );
   }
 }
 
 export default Landing;
-
-/* <form>
-          <AddForm
-            value={this.state.name}
-            onChange={this.handleInputChange}
-            name="name"
-            placeholder="Name"
-          />
-          <AddForm
-            value={this.state.type}
-            onChange={this.handleInputChange}
-            name="type"
-            placeholder="Type"
-          />
-          <FormBtn onClick={this.handleFormSubmit}>Button</FormBtn>
-        </form> */

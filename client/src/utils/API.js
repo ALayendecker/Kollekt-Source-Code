@@ -23,5 +23,13 @@ export default {
   getCollectionByType: function(query) {
     console.log(query);
     return axios.get("/api/collections/bytype/" + query);
+  },
+  getCollectionById: function(query) {
+    console.log("hit getcollectionbyid in API with query= " + query);
+    console.log(query);
+    return axios.get("/api/collections/byid/" + query);
+  },
+  getAllCollections: function() {
+    return axios.get("/api/collections/all");
   }
 };
