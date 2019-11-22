@@ -1,22 +1,7 @@
 import axios from "axios";
 //this might host all API functions. Might need to be separated later
 export default {
-  // Gets all books
-  // getBooks: function() {
-  //   return axios.get("/api/books");
-  // },
-  // // Gets the book with the given id
-  // getBook: function(id) {
-  //   return axios.get("/api/books/saved");
-  // },
-  // // Deletes the book with the given id
-  // deleteBook: function(id) {
-  //   return axios.delete("/api/books/saved/" + id);
-  // },
-  // // Saves a book to the database
-  // saveBook: function(bookData) {
-  //   return axios.post("/api/books", bookData);
-  // }
+  //Collection
   createCollection: function(objectWithParameters) {
     return axios.post("api/collections/create", objectWithParameters);
   },
@@ -32,16 +17,16 @@ export default {
   getAllCollections: function() {
     return axios.get("/api/collections/all");
   },
-  createItem: function(newItem, collectionId) {
-    return axios.post("api/items/create", {
-      newItem,
-      collectionId
-    });
+  deleteCollection: function(id) {
+    return axios.delete("api/collections/delete/" + id);
+  },
+  //Item
+  createItem: function(newItem, colID) {
+    console.log("hit createItem in API with newItem=");
+    console.log(newItem);
+    return axios.post("api/items/create", { newItem, colID });
   },
   deleteItem: function(id) {
     return axios.delete("api/items/delete/" + id);
-  },
-  deleteCollection: function(id) {
-    return axios.delete("api/collections/delete/" + id);
   }
 };
