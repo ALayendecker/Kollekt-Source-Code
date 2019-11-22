@@ -2,8 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom"
 import "./style.css";
 
-
 function Card(props) {
+
     return (
 <div className="card">
   <img src="/assets/images/comic.jpeg" className="card-img-top" alt="..."></img>
@@ -15,6 +15,8 @@ function Card(props) {
   </div>
 </div>
 );
+
+
 }
 
 export default Card;

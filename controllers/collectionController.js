@@ -58,7 +58,7 @@ module.exports = {
       .catch(function(err) {
         res.json(err);
       });
-  }
+  },
   // update: function(req, res) {
   //   db.Collection.findOneAndUpdate({ _id: req.params.id }, req.body)
   //     .then(dbModel => res.json(dbModel))
@@ -70,4 +70,10 @@ module.exports = {
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // }
+  remove: function(req, res) {
+    db.Collection.remove({ _id: req.params.id })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+  // db.Collection.deleteMany({ Item: req.user.id })
 };
