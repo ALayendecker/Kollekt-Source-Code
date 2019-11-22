@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./style.css";
 
 function SignUpForm() {
@@ -50,9 +51,9 @@ function SignUpForm() {
             Sign Up
           </button>
           <br></br>
-          <a href="/login">Already a member? Log In Here</a>
+          <Link to="/login">Already a member? Log In Here</Link>
           <br></br>
-          <a href="/">Take Me Home</a>
+          <Link to="/">Take Me Home</Link>
         </form>
       </div>
     </div>

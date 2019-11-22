@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./style.css";
 
 
@@ -10,7 +11,7 @@ function Card(props) {
 <h5 className="card-title">{props.name}</h5>
 <p className="card-text">{props.type}</p>
       {/* need to make click function to take to collection associated with card */}
-    <a href="#" className="btn btn-secondary">View This Collection</a>
+    <Link to="#" className="btn btn-secondary">View This Collection</Link>
   </div>
 </div>
 );
