@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Card from "../components/Cards";
+import Card from "../components/Cards";
 import "./Landing.css";
 
 import AddForm from "../components/AddForm";
@@ -53,61 +53,46 @@ class Landing extends Component {
     return (
       <div>
         <Nav />
+
+        <div class="masthead">
+          <div class="container h-100">
+            <div class="row h-100 align-items-center">
+              <div class="col-12 text-center search-container">
+                <h1 class="font-weight-light">A smarter way to inventory.</h1>
+
+                <div>
+                  <AddForm text={"Search Collection Type"}>
+                    <DropdownButton onClick={() => this.makeSearch("music")}>
+                      Music
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("comics")}>
+                      Comics
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("currency")}>
+                      Currency
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("cards")}>
+                      Cards
+                    </DropdownButton>
+                  </AddForm>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container justify-content-center">
-          <h1>View an existing collection</h1>
-          <AddForm text={"Search Collection Type"}>
-            <DropdownButton onClick={() => this.makeSearch("music")}>
-              Music
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("comics")}>
-              Comics
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("currency")}>
-              Currency
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("cards")}>
-              Cards
-            </DropdownButton>
-          </AddForm>
+          <h3>View an existing collection</h3>
+
           {this.state.searchResult.length ? (
-            <div className="this should be the List component">
+            <div className="this should be the List component row">
               {this.state.searchResult.map((collection, index) => (
                 <div
                   className="this should be the ListItem component"
                   key={index}
                 >
-                  {/* <Card /> */}
-                {/* the card is hardcoded but needs to be created in comp */}
-                  <div className="card">
-                    <img
-                      src="/assets/images/comic.jpeg"
-                      className="card-img-top"
-                      alt="..."
-                    ></img>
-                    <div className="card-body">
-                      <h5 className="card-title">{collection.name}</h5>
-                      <p className="card-text">{collection.type}</p>
-                      <a href="#" className="btn btn-secondary">
-                        Go to Collection
-                      </a>
-                    </div>
-                  </div>
-                  <h4>Name</h4>
-                  <p>{collection.name}</p>
-                  <h4>Type</h4>
-                  <p>{collection.type}</p>
-                  {collection.isPivate ? (
-                    <p>This collection is private</p>
-                  ) : (
-                    <h4>This collection is not private</h4>
-                  )}
-                  <h4>Items</h4>
-                  {collection.items.length ? (
-                    collection.items.map(item => <p>{item}</p>)
-                  ) : (
-                    <p>No items to show</p>
-                  )}
-                  {/* <p>--space--</p> */}
+                  <Card key={collection._id} {...collection} />
+                  {/* the card is hardcoded but needs to be created in comp */}
                 </div>
               ))}
             </div>
