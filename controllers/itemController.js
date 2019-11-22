@@ -13,7 +13,8 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
   create: function(req, res) {
-    console.log(req.body);
+    console.log("hit item controller");
+    console.log(req.body.newItem);
     const collectionId = req.body.collectionId;
     db.Item.create(req.body.newItem)
       .then(function(dbItem) {

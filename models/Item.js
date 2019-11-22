@@ -19,7 +19,8 @@ const ItemSchema = new Schema({
   country: String,
   mintMark: String,
   quantity: Number,
-  category: String //assigned by user to all of them
+  category: String, //assigned by user to all of them
+  collectionId: String
 });
 
 const Item = mongoose.model("Item", ItemSchema);
