@@ -8,17 +8,11 @@ a {
     color: black;
 }
 
-input:active, 
-input:hover,
-input:focus {
-    border: 1px solid rgb(40, 40, 71);
-    outline: none;
+/* I defeated the  blue border */
+input:focus,
+input:active {
+    border: 1px solid rgb(40, 40, 71) !important;
+    /* outline: grey !important; */
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px rgba(207, 163, 228, 0.836);
-}
-
-/* this isnt working but I wont be defeated by a blue border */
-form-control:focus {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    /* -webkit-box-shadow: none !important; */
 }

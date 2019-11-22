@@ -70,6 +70,7 @@ class Landing extends Component {
             </DropdownButton>
           </AddForm>
           {this.state.searchResult.length ? (
+
             <div className="this should be the List component">
               {this.state.searchResult.map(collection => (
                 <Card key={collection._id} {...collection} />

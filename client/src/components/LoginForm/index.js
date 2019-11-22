@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./style.css";
 
 function LoginForm() {
@@ -30,9 +31,9 @@ function LoginForm() {
             Login
           </button>
           <br></br>
-          <a href="/signup">Create an account!</a>
+          <Link to="/signup">Create an account!</Link>
           <br></br>
-          <a href="/">Take Me Home</a>
+          <Link to="/">Take Me Home</Link>
         </form>
       </div>
     </div>
