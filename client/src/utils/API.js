@@ -21,10 +21,11 @@ export default {
     return axios.delete("api/collections/delete/" + id);
   },
   //Item
-  createItem: function(newItem, colID) {
+  createItem: function(newItem, collectionId) {
     console.log("hit createItem in API with newItem=");
     console.log(newItem);
-    return axios.post("api/items/create", { newItem, colID });
+    console.log("hit createItem in API with collectionId= " + collectionId);
+    return axios.post("api/items/create", { newItem, collectionId });
   },
   deleteItem: function(id) {
     return axios.delete("api/items/delete/" + id);

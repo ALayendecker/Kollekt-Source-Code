@@ -9,13 +9,18 @@ import { Link } from "react-router-dom";
 class CollectionDetails extends Component {
   state = {
     newItem: {}
-    // collection: {}
+    // collectionId: ""
   };
 
   componentDidMount() {
-    const idToSearch = new URLSearchParams(this.props.location.search).get(
-      "id"
-    );
+    // const idToSearch = new URLSearchParams(this.props.location.search).get(
+    //   "id"
+    // );
+    const idToSearch = this.props.location.state.collectionId;
+    // console.log(this.props.location.state.collectionId);
+    // console.log("location url spliced = ");
+    // console.log(this.props.location.pathname);
+    // const idToSearch = "5dd74c9f32ed554f9cb27dba";
     console.log("id to search = " + idToSearch);
     this.searchCollectionById(idToSearch);
   }
@@ -50,8 +55,9 @@ class CollectionDetails extends Component {
     }));
     console.log("moving to create");
     console.log(this.state.newItem);
-    API.createItem((this.state.newItem, this.state.collection._id))
-      .then(res => console.log(res.data))
+    console.log(this.state.collection._id);
+    API.createItem(this.state.newItem, this.state.collection._id)
+      .then(res => console.log(res)) //that's what it hits
       .catch(err => console.log(err));
   };
   deleteItem = itemId => {

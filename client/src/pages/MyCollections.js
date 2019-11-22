@@ -3,10 +3,10 @@ import AddForm from "../components/AddForm";
 import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
-import Footer from "../components/Footer";
-// import { Redirect } from "react-router-dom";
+// import Footer from "../components/Footer";
+import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class Collection extends Component {
   state = {
@@ -14,12 +14,34 @@ class Collection extends Component {
     type: "",
     searchAllCollectionsResult: [],
     searchByIdResult: [],
-    collectionId: ""
+    collectionId: "",
+    redirect: false
   };
+
+  setRedirect = async targetId => {
+    await this.setState({
+      redirect: true,
+      collectionId: targetId
+    });
+  };
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/collectiondetails",
+            state: { collectionId: this.state.collectionId }
+          }}
+        />
+      );
+    }
+  };
+
   componentDidMount() {
     this.searchAllCollections();
     console.log("component did indeed mount");
   }
+
   searchAllCollections = () => {
     API.getAllCollections()
       .then(res => {
@@ -28,6 +50,7 @@ class Collection extends Component {
       })
       .catch(err => console.log(err));
   };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -63,17 +86,17 @@ class Collection extends Component {
   setCollectionType = text => {
     this.setState({ type: text });
   };
-  searchCollectionById = id => {
-    console.log(id);
-    // console.log(this.state.collectionId);
-    API.getCollectionById(id)
-      .then(res => {
-        console.log(res.data);
-        this.setState({ searchByIdResult: res.data });
-      })
-      .catch(err => console.log(err));
-    this.setState({ collectionId: id });
-  };
+  // searchCollectionById = id => {
+  //   console.log(id);
+  //   // console.log(this.state.collectionId);
+  //   API.getCollectionById(id)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       this.setState({ searchByIdResult: res.data });
+  //     })
+  //     .catch(err => console.log(err));
+  //   this.setState({ collectionId: id });
+  // };
 
   deleteCollection = collectionId => {
     API.deleteCollection(collectionId)
@@ -112,16 +135,19 @@ class Collection extends Component {
             <button onClick={this.handleFormSubmit}>Create Kollection</button>
           </form>
           {this.state.searchAllCollectionsResult.length ? (
-            <div className="this should be the List component">
+            <div className="row">
               {this.state.searchAllCollectionsResult.map(collection => (
                 <div
                   className="this should be the ListItem component"
                   key={collection._id}
                 >
                   <Card {...collection} />
-                  <Link to={"/collectiondetails/?id=" + collection._id}>
-                    <button>View Kollection</button>
-                  </Link>
+
+                  {this.renderRedirect()}
+                  <button onClick={() => this.setRedirect(collection._id)}>
+                    View Kollection
+                  </button>
+
                   <button onClick={() => this.deleteCollection(collection._id)}>
                     Delete Kollection
                   </button>
@@ -132,7 +158,7 @@ class Collection extends Component {
             <p>Make a search to see results!</p>
           )}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

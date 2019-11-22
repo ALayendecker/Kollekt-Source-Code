@@ -13,7 +13,7 @@ function Card(props) {
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">{props.type}</p>
         <a href={"/mycollections/" + props._id} className="btn btn-secondary">
-          Go to Collection associated with pic
+          Go to Collection
         </a>
       </div>
     </div>
