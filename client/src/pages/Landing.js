@@ -85,15 +85,9 @@ class Landing extends Component {
           <h3>View an existing collection</h3>
 
           {this.state.searchResult.length ? (
-            <div className="this should be the List component row">
-              {this.state.searchResult.map((collection, index) => (
-                <div
-                  className="this should be the ListItem component"
-                  key={index}
-                >
-                  <Card key={collection._id} {...collection} />
-                  {/* the card is hardcoded but needs to be created in comp */}
-                </div>
+            <div className="this should be the List component">
+              {this.state.searchResult.map(collection => (
+                <Card key={collection._id} {...collection} />
               ))}
             </div>
           ) : (

@@ -1,10 +1,8 @@
 .footlose {
-    background-color: rgb(37, 37, 37);
-    color: rgb(241, 243, 245);
-    clear: both;
-    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #F5F5F5;
     text-align: center;
-    /* background: rgb(204, 187, 238); */
-    height: 90px; 
-    flex-shrink: 0;
-}
+  }
