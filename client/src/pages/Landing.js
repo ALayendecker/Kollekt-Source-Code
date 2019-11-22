@@ -53,24 +53,38 @@ class Landing extends Component {
     return (
       <div>
         <Nav />
-        <div className="container justify-content-center">
-          <h1>View an existing collection</h1>
-          <AddForm text={"Search Collection Type"}>
-            <DropdownButton onClick={() => this.makeSearch("music")}>
-              Music
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("comics")}>
-              Comics
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("currency")}>
-              Currency
-            </DropdownButton>
-            <DropdownButton onClick={() => this.makeSearch("cards")}>
-              Cards
-            </DropdownButton>
-          </AddForm>
-          {this.state.searchResult.length ? (
 
+        <div class="masthead">
+          <div class="container h-100">
+            <div class="row h-100 align-items-center">
+              <div class="col-12 text-center search-container">
+                <h1 class="font-weight-light">A smarter way to inventory.</h1>
+
+                <div>
+                  <AddForm text={"Search Collection Type"}>
+                    <DropdownButton onClick={() => this.makeSearch("music")}>
+                      Music
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("comics")}>
+                      Comics
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("currency")}>
+                      Currency
+                    </DropdownButton>
+                    <DropdownButton onClick={() => this.makeSearch("cards")}>
+                      Cards
+                    </DropdownButton>
+                  </AddForm>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container justify-content-center">
+          <h3>View an existing collection</h3>
+
+          {this.state.searchResult.length ? (
             <div className="this should be the List component">
               {this.state.searchResult.map(collection => (
                 <Card key={collection._id} {...collection} />
