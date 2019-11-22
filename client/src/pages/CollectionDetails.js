@@ -16,12 +16,22 @@ class CollectionDetails extends Component {
     // const idToSearch = new URLSearchParams(this.props.location.search).get(
     //   "id"
     // );
-    const idToSearch = this.props.location.state.collectionId;
+    // console.log(this.props.match.params.id);
+    // const idToSearch = this.props.match.params.id;
+    let idToSearch = "";
+    try {
+      idToSearch = this.props.location.state.collectionId;
+      console.log("try");
+    } catch {
+      idToSearch = "5dd74c9f32ed554f9cb27dba";
+      console.log("catch");
+    }
     // console.log(this.props.location.state.collectionId);
     // console.log("location url spliced = ");
     // console.log(this.props.location.pathname);
     // const idToSearch = "5dd74c9f32ed554f9cb27dba";
     console.log("id to search = " + idToSearch);
+    console.log("---------------");
     this.searchCollectionById(idToSearch);
   }
 

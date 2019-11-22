@@ -4,9 +4,9 @@ import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 // import Footer from "../components/Footer";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Collection extends Component {
   state = {
@@ -16,25 +16,6 @@ class Collection extends Component {
     searchByIdResult: [],
     collectionId: "",
     redirect: false
-  };
-
-  setRedirect = async targetId => {
-    await this.setState({
-      redirect: true,
-      collectionId: targetId
-    });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/collectiondetails",
-            state: { collectionId: this.state.collectionId }
-          }}
-        />
-      );
-    }
   };
 
   componentDidMount() {
@@ -86,17 +67,6 @@ class Collection extends Component {
   setCollectionType = text => {
     this.setState({ type: text });
   };
-  // searchCollectionById = id => {
-  //   console.log(id);
-  //   // console.log(this.state.collectionId);
-  //   API.getCollectionById(id)
-  //     .then(res => {
-  //       console.log(res.data);
-  //       this.setState({ searchByIdResult: res.data });
-  //     })
-  //     .catch(err => console.log(err));
-  //   this.setState({ collectionId: id });
-  // };
 
   deleteCollection = collectionId => {
     API.deleteCollection(collectionId)
@@ -142,11 +112,14 @@ class Collection extends Component {
                   key={collection._id}
                 >
                   <Card {...collection} />
-
-                  {this.renderRedirect()}
-                  <button onClick={() => this.setRedirect(collection._id)}>
-                    View Kollection
-                  </button>
+                  <Link
+                    to={{
+                      pathname: "/collectiondetails",
+                      state: { collectionId: collection._id }
+                    }}
+                  >
+                    <button>View Kollection</button>
+                  </Link>
 
                   <button onClick={() => this.deleteCollection(collection._id)}>
                     Delete Kollection
