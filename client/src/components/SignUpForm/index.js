@@ -1,50 +1,79 @@
-import React from "react";
+import React, {useState}  from "react";
 import {Link} from "react-router-dom"
 import "./style.css";
 
-function SignUpForm() {
+const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    name: "", 
+    username: "",
+    email: "",
+    password: "", 
+    password2: ""
+  });
+
+  const {name, username, email, password, password2} = formData;
+
+const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+
+const onSubmit = e => {
+  e.preventDefault();
+  if(password !== password2) {
+    console.log("Passwords do not match");
+} else {
+  console.log(formData);
+}
+}
+
     return (
-    
     <div className="div2 col">
       <div className="wrapper">
-        <form className="form-signin">
+        <form className="form-signin" onSubmit={e => onSubmit(e)}>
           <h2 className="form-signin-heading">Create an Account</h2>
           <br></br>
           <input
             type="text"
             className="form-control"
-            name="firstname"
-            placeholder="Andrew"
+            name="name"
+            placeholder="Full Name"
+            value={name}
+            onChange={e => onChange(e)}
             required=""
-            autofocus=""
-          />
-          <input
-            type="text"
-            className="form-control"
-            name="lastname"
-            placeholder="Verane"
-            required=""
-            autofocus=""
+            // autofocus=""
           />
           <input
             type="username"
             className="form-control"
             name="username"
-            placeholder="SisterWife4Life"
+            value={username}
+            onChange={e => onChange(e)}
+            placeholder="Username"
             required=""
           />
           <input
             type="email"
             className="form-control"
             name="email"
-            placeholder="email@email.com"
+            value={email}
+            onChange={e => onChange(e)}
+            placeholder="Email"
             required=""
           />
             <input
             type="password"
             className="form-control"
             name="password"
+            value={password}
+            onChange={e => onChange(e)}
             placeholder="Password"
+            required=""
+          />
+             <input
+            type="password"
+            className="form-control"
+            name="password2"
+            value={password2}
+            onChange={e => onChange(e)}
+            placeholder="Verify Password"
             required=""
           />
           <button className="btn btn-lg btn-dark btn-block" type="submit">
@@ -57,7 +86,6 @@ function SignUpForm() {
         </form>
       </div>
     </div>
-  
 );
 
 }

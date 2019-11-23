@@ -4,7 +4,7 @@ import "./style.css";
 function Footer() {
   return (
     <footer className="footlose">
-      <div className="container">&copy;2019 Kollekt</div>
+      <div className="container giveMeAFoot">&copy;2019 Kollekt</div>
     </footer>
   );
 }

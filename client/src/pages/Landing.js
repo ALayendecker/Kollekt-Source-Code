@@ -1,7 +1,12 @@
+// this page needs padding/margin at botton to serperate cards from footer
+// something is going on with the html page and placing odd spacing that had no element
+// need to reduce size of sides of .search-container 
+// need h3 and p elements to center in flex-container
+// need p element to alight under h3 element when no cards display
+
 import React, { Component } from "react";
 import Card from "../components/Cards";
 import "./Landing.css";
-
 import AddForm from "../components/AddForm";
 import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
@@ -51,17 +56,17 @@ class Landing extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container">
         <Nav />
 
-        <div class="masthead">
-          <div class="container h-100">
-            <div class="row h-100 align-items-center">
-              <div class="col-12 text-center search-container">
-                <h1 class="font-weight-light">A smarter way to inventory.</h1>
+        <div className="masthead">
+          <div className="container h-100">
+            <div className="row h-100 align-items-center">
+              <div className="col text-center search-container">
+                <h1 className="font-weight-light">A smarter way to collect.</h1>
 
                 <div>
-                  <AddForm text={"Search Collection Type"}>
+                  <AddForm className="dropDown" text={"Search Collection Type"}>
                     <DropdownButton onClick={() => this.makeSearch("music")}>
                       Music
                     </DropdownButton>
@@ -80,19 +85,23 @@ class Landing extends Component {
             </div>
           </div>
         </div>
+        <h3 className="text-center">View an existing collection</h3>
+        <div className="container flex-container darker">
+          <div className="divSanta">
 
-        <div className="container justify-content-center">
-          <h3>View an existing collection</h3>
-
+          
           {this.state.searchResult.length ? (
-            <div className="this should be the List component">
+            <div className="row flex-container dark">
               {this.state.searchResult.map(collection => (
                 <Card key={collection._id} {...collection} />
               ))}
             </div>
           ) : (
+            <div className="divBaby">
             <p>Make a search to see results!</p>
+            </div>
           )}
+          </div>
         </div>
         <Footer />
       </div>

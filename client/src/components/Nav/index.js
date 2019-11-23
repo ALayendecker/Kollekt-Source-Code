@@ -5,7 +5,7 @@ import "./style.css";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar navbar-dark">
       <img src="/assets/images/logo_small.png" alt="logo"></img>
       <button
         className="navbar-toggler"
