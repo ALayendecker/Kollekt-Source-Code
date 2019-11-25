@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import "./App.css";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -9,14 +9,31 @@ import PublicCollection from "./pages/PublicCollection";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import SignUp from "./pages/SignUp";
+import Alert from "./components/layout/alert"
 // import PrivateRoute from "./components/PrivateRoute"
+//Redux below
+import {Provider} from "react-redux";
+import store from "./store";
+import {loadUser} from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken"
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 // dude uses const App = () =>   (video32)
 function App() {
+  //empty brakets tell function to only run once similar to compDidMount
+  useEffect(() => {
+store.dispatch(loadUser());
+  }, []);
+
   return (
+    <Provider store={store}>
     <div className="App">
       <Router>
+        {/* alert can not be in the switch but must be in the container */}
+        <Alert />
         <Switch>
           <Route exact path="/" component={Landing} />;
           <Route exact path="/PublicCollection" component={PublicCollection} />;
@@ -36,6 +53,7 @@ function App() {
         </Switch>
       </Router>
     </div>
+    </Provider>
   );
 }
 export default App;

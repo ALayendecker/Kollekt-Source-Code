@@ -1,16 +1,50 @@
+/* * {
+  border: 1px solid red;
+} */
+
+/* body {
+  min-height: 100%;
+  padding-bottom: 20px;
+  background-color: rgb(43, 43, 43) !important;
+} */
+
 .card {
   width: 19em;
 }
-.container {
+/* .container {
   margin: auto;
-}
+} */
 
 .masthead {
+  background: url("/assets/images/vinyl.jpg") no-repeat; 
   height: 50vh;
   min-height: 400px;
-  background-color: black;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: white;
 }
+
+.search-container {
+  margin-right: 15em;
+  margin-left: 15em;
+  background: rgba(241, 243, 245, .8);
+  color: black;
+}
+
+/* had to set min and max height for black background to render w/ and w/o search */
+.main-container {
+  min-height: 100vh;
+  max-height: 100%;
+  color: white;
+  background-color: rgb(43, 43, 43);
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* .divSanta {
+  padding: 8em;
+} */
