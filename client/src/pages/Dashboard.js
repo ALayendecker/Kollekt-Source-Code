@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Cards";
-import Profile from "../components/Profile";
+// import Profile from "../components/Profile";
 
 class Dashboard extends Component {
   render() {

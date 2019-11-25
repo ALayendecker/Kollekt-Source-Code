@@ -1,28 +1,34 @@
 import React, {useState}  from "react";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+//connect sets the alert used 
+import {connect} from "react-redux";
+//if alerts dont work the routing is wrong on this we dont use auth folder
+import {setAlert} from "../../actions/alert"
+import PropTypes from "prop-types";
 import "./style.css";
 
-const SignUpForm = () => {
+const SignUpForm = ({setAlert}) => {
   const [formData, setFormData] = useState({
-    name: "", 
     username: "",
     email: "",
     password: "", 
     password2: ""
   });
 
-  const {name, username, email, password, password2} = formData;
+  const {username, email, password, password2} = formData;
 
-const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+const onChange = e => 
+setFormData({...formData, [e.target.name]: e.target.value});
 
-const onSubmit = e => {
+const onSubmit = async e => {
   e.preventDefault();
   if(password !== password2) {
-    console.log("Passwords do not match");
+    //passes through alert to actions-- (msg, type)
+    setAlert("Passwords do not match", "danger");
 } else {
-  console.log(formData);
+  console.log("Success");
 }
-}
+};
 
     return (
     <div className="div2 col">
@@ -30,7 +36,7 @@ const onSubmit = e => {
         <form className="form-signin" onSubmit={e => onSubmit(e)}>
           <h2 className="form-signin-heading">Create an Account</h2>
           <br></br>
-          <input
+          {/* <input
             type="text"
             className="form-control"
             name="name"
@@ -39,7 +45,7 @@ const onSubmit = e => {
             onChange={e => onChange(e)}
             required=""
             // autofocus=""
-          />
+          /> */}
           <input
             type="username"
             className="form-control"
@@ -89,4 +95,13 @@ const onSubmit = e => {
 );
 
 }
-export default SignUpForm;
+
+SignUpForm.propTypes = {
+ setAlert: PropTypes.func.isRequired
+}
+
+//if you want to use an action it has to pass through connect
+export default connect(
+    null, 
+    {setAlert}
+    )(SignUpForm);

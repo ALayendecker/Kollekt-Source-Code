@@ -1,43 +1,58 @@
-import React from "react";
-import {Link} from "react-router-dom"
+import React, {useState}  from "react";
+import {Link} from "react-router-dom";
 import "./style.css";
 
-function LoginForm() {
+const LoginForm = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "", 
+  });
+
+  const { email, password} = formData;
+
+const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+
+const onSubmit = async e => {
+  e.preventDefault();
+  
+  console.log("Success");
+}
+
+
     return (
-   
     <div className="div2 col">
       <div className="wrapper">
-        <form className="form-signin">
-          <h2 className="form-signin-heading">Please login</h2>
+        <form className="form-signin" onSubmit={e => onSubmit(e)}>
+          <h2 className="form-signin-heading">Sign into your Account</h2>
           <br></br>
-
           <input
-            type="text"
+            type="email"
             className="form-control"
-            name="username"
-            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={e => onChange(e)}
+            placeholder="Email"
             required=""
-            autofocus=""
           />
-          <input
+            <input
             type="password"
             className="form-control"
             name="password"
+            value={password}
+            onChange={e => onChange(e)}
             placeholder="Password"
             required=""
           />
-
           <button className="btn btn-lg btn-dark btn-block" type="submit">
-            Login
+            Sign in
           </button>
           <br></br>
-          <Link to="/signup">Create an account!</Link>
+          <Link to="/signup">Need an Account? Signup Here</Link>
           <br></br>
           <Link to="/">Take Me Home</Link>
         </form>
       </div>
     </div>
-
 );
 
 }

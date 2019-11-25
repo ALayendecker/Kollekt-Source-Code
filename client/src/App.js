@@ -9,14 +9,22 @@ import PublicCollection from "./pages/PublicCollection";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import SignUp from "./pages/SignUp";
+import Alert from "./components/layout/alert"
 // import PrivateRoute from "./components/PrivateRoute"
+//Redux below
+import {Provider} from "react-redux";
+import store from "./store";
+
 
 
 // dude uses const App = () =>   (video32)
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <Router>
+        {/* alert can not be in the switch but must be in the container */}
+        <Alert />
         <Switch>
           <Route exact path="/" component={Landing} />;
           <Route exact path="/PublicCollection" component={PublicCollection} />;
@@ -36,6 +44,7 @@ function App() {
         </Switch>
       </Router>
     </div>
+    </Provider>
   );
 }
 export default App;
