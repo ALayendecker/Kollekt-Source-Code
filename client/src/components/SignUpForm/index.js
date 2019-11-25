@@ -1,13 +1,14 @@
 import React, {useState}  from "react";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 //connect sets the alert used 
 import {connect} from "react-redux";
 //if alerts dont work the routing is wrong on this we dont use auth folder
 import {setAlert} from "../../actions/alert"
+import {register} from "../../actions/auth"
 import PropTypes from "prop-types";
 import "./style.css";
 
-const SignUpForm = ({setAlert}) => {
+const SignUpForm = ({setAlert, register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -26,9 +27,13 @@ const onSubmit = async e => {
     //passes through alert to actions-- (msg, type)
     setAlert("Passwords do not match", "danger");
 } else {
-  console.log("Success");
+  register({ username, email, password});
 }
 };
+
+if (isAuthenticated) {
+  return <Redirect to='/dashboard' />;
+}
 
     return (
     <div className="div2 col">
@@ -97,11 +102,17 @@ const onSubmit = async e => {
 }
 
 SignUpForm.propTypes = {
- setAlert: PropTypes.func.isRequired
+ setAlert: PropTypes.func.isRequired,
+ register: PropTypes.func.isRequired, 
+ isAuthenticated: PropTypes.bool
 }
+
+const mapStateTpProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
 
 //if you want to use an action it has to pass through connect
 export default connect(
-    null, 
-    {setAlert}
+    mapStateTpProps, 
+    {setAlert, register}
     )(SignUpForm);

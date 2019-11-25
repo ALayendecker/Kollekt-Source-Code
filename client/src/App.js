@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import "./App.css";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -14,11 +14,20 @@ import Alert from "./components/layout/alert"
 //Redux below
 import {Provider} from "react-redux";
 import store from "./store";
+import {loadUser} from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken"
 
-
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 // dude uses const App = () =>   (video32)
 function App() {
+  //empty brakets tell function to only run once similar to compDidMount
+  useEffect(() => {
+store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
     <div className="App">
