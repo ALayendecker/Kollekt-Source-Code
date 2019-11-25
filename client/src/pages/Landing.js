@@ -62,6 +62,7 @@ class Landing extends Component {
         <div className="masthead">
           <div className="container h-100">
             <div className="row h-100 align-items-center">
+
               <div className="col text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
 
@@ -93,7 +94,14 @@ class Landing extends Component {
           {this.state.searchResult.length ? (
             <div className="row flex-container dark">
               {this.state.searchResult.map(collection => (
-                <Card key={collection._id} {...collection} />
+                <Card
+                  key={collection._id}
+                  {...collection}
+                  linkInfo={{
+                    pathname: "/collectiondetails",
+                    state: { collectionId: collection._id }
+                  }}
+                />
               ))}
             </div>
           ) : (

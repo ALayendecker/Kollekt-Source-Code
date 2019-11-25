@@ -12,28 +12,33 @@ class CollectionDetails extends Component {
     // collectionId: ""
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     // const idToSearch = new URLSearchParams(this.props.location.search).get(
     //   "id"
     // );
     // console.log(this.props.match.params.id);
     // const idToSearch = this.props.match.params.id;
-    let idToSearch = "";
+    // let idToSearch = "";
     try {
-      idToSearch = this.props.location.state.collectionId;
+      await this.setState({
+        collectionId: this.props.location.state.collectionId
+      });
+      // idToSearch = this.props.location.state.collectionId;
       console.log("try");
     } catch {
-      idToSearch = "5dd74c9f32ed554f9cb27dba";
+      await this.setState({ collectionId: "5dd74c9f32ed554f9cb27dba" });
+      // idToSearch = "5dd74c9f32ed554f9cb27dba";
       console.log("catch");
     }
-    // console.log(this.props.location.state.collectionId);
+    // const idToSearch =
+    //   this.props.location.state.collectionId || "5dd74c9f32ed554f9cb27dba";
     // console.log("location url spliced = ");
     // console.log(this.props.location.pathname);
     // const idToSearch = "5dd74c9f32ed554f9cb27dba";
-    console.log("id to search = " + idToSearch);
+    console.log("id to search = " + this.state.collectionId);
     console.log("---------------");
-    this.searchCollectionById(idToSearch);
-  }
+    this.searchCollectionById(this.state.collectionId);
+  };
 
   searchCollectionById = id => {
     API.getCollectionById(id)
@@ -52,10 +57,10 @@ class CollectionDetails extends Component {
         [name]: value // update the value of specific key
       }
     }));
-    console.log(this.state.newItem);
   };
 
-  createNewItem = async () => {
+  createNewItem = async event => {
+    event.preventDefault();
     await this.setState(prevState => ({
       newItem: {
         // object that we want to update
@@ -63,56 +68,71 @@ class CollectionDetails extends Component {
         collectionId: this.state.collection._id // CHANGE THIS TO MAKE IT BETTER
       }
     }));
-    console.log("moving to create");
-    console.log(this.state.newItem);
-    console.log(this.state.collection._id);
-    API.createItem(this.state.newItem, this.state.collection._id)
-      .then(res => console.log(res)) //that's what it hits
+    API.createItem(this.state.newItem)
+      .then(async res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+      }) //that's what it hits
       .catch(err => console.log(err));
+    // await this.setState({ newItem: {} });
+    // console.log(this.state.newItem);
+    // this.searchCollectionById(this.state.collectionId);
   };
+
   deleteItem = itemId => {
-    API.deleteItem(itemId)
-      .then(res => console.log(res.data))
+    API.deleteItem(itemId, this.state.collection._id)
+      .then(res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+      })
       .catch(err => console.log(err));
   };
+
   render() {
     return (
       <div>
         <Nav />
         {this.state.collection && (
-          <div
-            className="this should be the ListItem component"
-            key={this.state.collection._id}
-          >
+          <div key={this.state.collection._id}>
             <h1>{this.state.collection._id}</h1>
             <Card {...this.state.collection} />
             <h4>Items</h4>
             {/* would go into card? another component? */}
             {this.state.collection.items.length ? (
+              (console.log(this.state.collection),
               this.state.collection.items.map((item, index) => (
                 <div key={index}>
-                  <p>{item.title}</p>
+                  {this.state.collection.itemFields.map(
+                    (fields, otherIndex) => (
+                      <div key={otherIndex}>
+                        <p>{item[fields.name]}</p>
+                      </div>
+                    )
+                  )}
                   <button onClick={() => this.deleteItem(item._id)}>
                     Detele Item
                   </button>
                 </div>
-              ))
+              )))
             ) : (
               <p>No items to show</p>
             )}
-            {this.state.collection.itemFields.map((item, index) => (
-              <InputField
-                key={index}
-                value={this.state.newItem.item}
-                onChange={this.updateNewItem}
-                name={item}
-                placeholder={item}
-              />
-            ))}
-            {/* give the button id of collection id? won't it be on the state anyway? */}
-            <button onClick={() => this.createNewItem()}>
-              Create New Item
-            </button>
+            <form className="form-inline">
+              {this.state.collection.itemFields.map((item, index) => (
+                <div key={index}>
+                  <p>{item.displayName}</p>
+                  <InputField
+                    value={this.state.newItem.item}
+                    onChange={this.updateNewItem}
+                    name={item.name}
+                    placeholder={item.displayName}
+                    type={item.type}
+                  />
+                </div>
+              ))}
+              {/* give the button id of collection id? won't it be on the state anyway? */}
+              <button onClick={this.createNewItem}>Create New Item</button>
+            </form>
           </div>
         )}
         <Link to="/mycollections">

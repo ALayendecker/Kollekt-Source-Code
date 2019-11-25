@@ -21,13 +21,14 @@ export default {
     return axios.delete("api/collections/delete/" + id);
   },
   //Item
-  createItem: function(newItem, collectionId) {
-    console.log("hit createItem in API with newItem=");
+  createItem: function(newItem) {
     console.log(newItem);
-    console.log("hit createItem in API with collectionId= " + collectionId);
-    return axios.post("api/items/create", { newItem, collectionId });
+    return axios.post("api/items/create", newItem);
   },
-  deleteItem: function(id) {
-    return axios.delete("api/items/delete/" + id);
+  // deleteItem: function(id) {
+  //   return axios.delete("api/items/delete/" + id);
+  // }
+  deleteItem: function(itemId, collectionId) {
+    return axios.delete("api/items/delete/" + itemId + "/" + collectionId);
   }
 };

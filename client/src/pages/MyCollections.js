@@ -6,21 +6,18 @@ import API from "../utils/API";
 // import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class Collection extends Component {
   state = {
     name: "",
     type: "",
     searchAllCollectionsResult: [],
-    searchByIdResult: [],
-    collectionId: "",
-    redirect: false
+    collectionId: ""
   };
 
   componentDidMount() {
     this.searchAllCollections();
-    console.log("component did indeed mount");
   }
 
   searchAllCollections = () => {
@@ -44,14 +41,53 @@ class Collection extends Component {
     switch (this.state.type) {
       case "music":
         await this.setState({
-          itemFields: ["title", "artist", "album", "genre"]
+          itemFields: [
+            { name: "name", type: "text", displayName: "Song Name" },
+            { name: "artist", type: "text", displayName: "Artist" },
+            { name: "album", type: "text", displayName: "Album" },
+            { name: "genre", type: "text", displayName: "Genre" },
+            { name: "year", type: "date", displayName: "Release Date" },
+            { name: "quantity", type: "number", displayName: "Quantity" }
+          ]
         });
         break;
       case "comics":
-        await this.setState({ itemFields: ["title", "series", "issue"] });
+        await this.setState({
+          itemFields: [
+            { name: "name", type: "text", displayName: "Title" },
+            { name: "series", type: "text", displayName: "Series" },
+            { name: "issue", type: "text", displayName: "Issue" },
+            { name: "genre", type: "text", displayName: "Genre" },
+            { name: "year", type: "date", displayName: "Release Date" },
+            { name: "quantity", type: "number", displayName: "Quantity" }
+          ]
+        });
+        break;
+      case "currency":
+        await this.setState({
+          itemFields: [
+            { name: "type", type: "text", displayName: "Type" },
+            { name: "country", type: "text", displayName: "Country" },
+            { name: "mintMark", type: "text", displayName: "Mint Mark" },
+            { name: "year", type: "date", displayName: "Year" },
+            { name: "quantity", type: "number", displayName: "Quantity" }
+          ]
+        });
+        break;
+      case "cards":
+        await this.setState({
+          itemFields: [
+            { name: "name", type: "text", displayName: "Name" },
+            { name: "game", type: "text", displayName: "Game" },
+            { name: "type", type: "text", displayName: "Type" },
+            { name: "year", type: "date", displayName: "Year" },
+            { name: "quantity", type: "number", displayName: "Quantity" }
+          ]
+        });
         break;
       default:
-        await this.setState({ itemFields: ["title", "author"] });
+        return;
+      // await this.setState({ itemFields: ["title", "author"] });
     }
     const newCollection = {
       name: this.state.name,
@@ -61,7 +97,10 @@ class Collection extends Component {
     };
     console.log(newCollection);
     API.createCollection(newCollection)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        this.searchAllCollections();
+      })
       .catch(err => console.log(err));
   };
   setCollectionType = text => {
@@ -70,7 +109,10 @@ class Collection extends Component {
 
   deleteCollection = collectionId => {
     API.deleteCollection(collectionId)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        this.searchAllCollections();
+      })
       .catch(err => console.log(err));
   };
   render() {
@@ -78,8 +120,8 @@ class Collection extends Component {
       <div>
         <Nav />
         <div>
-          <h1>Create a new Kollection</h1>;
-          <form>
+          <h1>Create a new Kollection</h1>
+          <form className="form-inline">
             <input
               value={this.state.name}
               onChange={this.handleInputChange}
@@ -104,26 +146,32 @@ class Collection extends Component {
             </AddForm>
             <button onClick={this.handleFormSubmit}>Create Kollection</button>
           </form>
+          <hr></hr>
+          <br></br>
           {this.state.searchAllCollectionsResult.length ? (
             <div className="row">
               {this.state.searchAllCollectionsResult.map(collection => (
-                <div
-                  className="this should be the ListItem component"
-                  key={collection._id}
-                >
-                  <Card {...collection} />
-                  <Link
+                <div key={collection._id}>
+                  <Card
+                    {...collection}
+                    deleteFunction={() => this.deleteCollection(collection._id)}
+                    linkInfo={{
+                      pathname: "/collectiondetails",
+                      state: { collectionId: collection._id }
+                    }}
+                  />
+                  {/* <Link
                     to={{
                       pathname: "/collectiondetails",
                       state: { collectionId: collection._id }
                     }}
                   >
                     <button>View Kollection</button>
-                  </Link>
+                  </Link> */}
 
-                  <button onClick={() => this.deleteCollection(collection._id)}>
+                  {/* <button onClick={() => this.deleteCollection(collection._id)}>
                     Delete Kollection
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </div>
