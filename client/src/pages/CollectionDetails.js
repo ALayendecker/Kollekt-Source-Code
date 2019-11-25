@@ -110,7 +110,7 @@ class CollectionDetails extends Component {
                     )
                   )}
                   <button onClick={() => this.deleteItem(item._id)}>
-                    Detele Item
+                    Delete Item
                   </button>
                 </div>
               )))

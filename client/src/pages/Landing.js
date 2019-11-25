@@ -1,6 +1,6 @@
 // this page needs padding/margin at botton to serperate cards from footer
 // something is going on with the html page and placing odd spacing that had no element
-// need to reduce size of sides of .search-container 
+// need to reduce size of sides of .search-container
 // need h3 and p elements to center in flex-container
 // need p element to alight under h3 element when no cards display
 
@@ -16,7 +16,6 @@ import Footer from "../components/Footer";
 class Landing extends Component {
   state = {
     name: [],
-
     type: "cards",
     data: "", //won't be needed, we search right away for now
     searchResult: []
@@ -62,7 +61,6 @@ class Landing extends Component {
         <div className="masthead">
           <div className="container h-100">
             <div className="row h-100 align-items-center">
-
               <div className="col text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
 
@@ -89,26 +87,24 @@ class Landing extends Component {
         <h3 className="text-center">View an existing collection</h3>
         <div className="container flex-container darker">
           <div className="divSanta">
-
-          
-          {this.state.searchResult.length ? (
-            <div className="row flex-container dark">
-              {this.state.searchResult.map(collection => (
-                <Card
-                  key={collection._id}
-                  {...collection}
-                  linkInfo={{
-                    pathname: "/collectiondetails",
-                    state: { collectionId: collection._id }
-                  }}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="divBaby">
-            <p>Make a search to see results!</p>
-            </div>
-          )}
+            {this.state.searchResult.length ? (
+              <div className="row flex-container dark">
+                {this.state.searchResult.map(collection => (
+                  <Card
+                    key={collection._id}
+                    {...collection}
+                    linkInfo={{
+                      pathname: "/collectiondetails",
+                      state: { collectionId: collection._id }
+                    }}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="divBaby">
+                <p>Make a search to see results!</p>
+              </div>
+            )}
           </div>
         </div>
         <Footer />
