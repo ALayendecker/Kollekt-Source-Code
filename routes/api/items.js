@@ -3,6 +3,6 @@ const itemController = require("../../controllers/itemController");
 
 router.route("/create").post(itemController.create);
 
-router.route("/delete/:id").delete(itemController.remove);
+router.route("/delete/:itemId/:collectionId").delete(itemController.remove);
 
 module.exports = router;

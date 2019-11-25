@@ -20,7 +20,9 @@ const ItemSchema = new Schema({
   mintMark: String,
   quantity: Number,
   category: String, //assigned by user to all of them
-  collectionId: String
+  collectionId: String,
+  game: String,
+  name: String
 });
 
 const Item = mongoose.model("Item", ItemSchema);

@@ -71,8 +71,12 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // }
   remove: function(req, res) {
-    db.Collection.remove({ _id: req.params.id })
-      .then(dbModel => res.json(dbModel))
+    db.Item.deleteMany({ collectionId: req.params.id })
+      .then(
+        db.Collection.deleteOne({ _id: req.params.id })
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err))
+      )
       .catch(err => res.status(422).json(err));
   }
   // db.Collection.deleteMany({ Item: req.user.id })
