@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 // import "./App.css";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
@@ -9,13 +9,14 @@ import PublicCollection from "./pages/PublicCollection";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import SignUp from "./pages/SignUp";
-import Alert from "./components/layout/alert"
-// import PrivateRoute from "./components/PrivateRoute"
+import Alert from "./components/layout/alert";
+// import Profile from "./components/Profile/index";
+import PrivateRoute from "./components/Routing/PrivateRoute";
 //Redux below
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store";
-import {loadUser} from "./actions/auth";
-import setAuthToken from "./utils/setAuthToken"
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -25,34 +26,39 @@ if (localStorage.token) {
 function App() {
   //empty brakets tell function to only run once similar to compDidMount
   useEffect(() => {
-store.dispatch(loadUser());
+    store.dispatch(loadUser());
   }, []);
 
   return (
     <Provider store={store}>
-    <div className="App">
-      <Router>
-        {/* alert can not be in the switch but must be in the container */}
-        <Alert />
-        <Switch>
-          <Route exact path="/" component={Landing} />;
-          <Route exact path="/PublicCollection" component={PublicCollection} />;
-          <Route exact path="/Login" component={Login} />;
-          <Route exact path="/Signup" component={SignUp} />;
-          <Route exact path="/Dashboard" component={Dashboard} />;
-          {/* Private Route is set but waiting on Redux for it to compile */}
-          {/* <PrivateRoute exact path="/Dashboard" component={Dashboard} />; */}
-          <Route exact path="/MyCollections" component={MyCollections} />;
-          <Route
-            exact
-            path="/CollectionDetails"
-            component={CollectionDetails}
-          />
-          ;
-          <Route component={NoMatch} />
-        </Switch>
-      </Router>
-    </div>
+      <div className="App">
+        <Router>
+          {/* alert can not be in the switch but must be in the container */}
+          <Alert />
+          <Switch>
+            <Route exact path="/" component={Landing} />;
+            <Route
+              exact
+              path="/PublicCollection"
+              component={PublicCollection}
+            />
+            ;
+            <Route exact path="/Login" component={Login} />;
+            <Route exact path="/Signup" component={SignUp} />;
+            {/* <Route exact path="/Dashboard" component={Dashboard} />; */}
+            {/* Private Route is set but waiting on Redux for it to compile */}
+            <Route exact path="/MyCollections" component={MyCollections} />;
+            <PrivateRoute exact path="/Dashboard" component={Dashboard} />;
+            <Route
+              exact
+              path="/CollectionDetails"
+              component={CollectionDetails}
+            />
+            ;
+            <Route component={NoMatch} />
+          </Switch>
+        </Router>
+      </div>
     </Provider>
   );
 }
