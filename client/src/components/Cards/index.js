@@ -6,9 +6,9 @@ function Card(props) {
   return (
     <div className="card">
       <img
-        src="/assets/images/comic.jpeg"
+        src={props.image || "/assets/images/comic.jpeg"}
         className="card-img-top"
-        alt="..."
+        alt={props.name}
       ></img>
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>

@@ -9,7 +9,7 @@ module.exports = {
   },
   findAll: function(req, res) {
     console.log("hit findAll");
-    db.Collection.find({})
+    db.Collection.find({ isPrivate: false }) //maybe this should be a parameter passed
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },
