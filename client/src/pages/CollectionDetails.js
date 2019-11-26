@@ -11,7 +11,9 @@ import moment from "moment";
 class CollectionDetails extends Component {
   state = {
     newItem: {},
-    editCollection: false
+    editCollection: false,
+    editItem: false,
+    itemChanges: {}
     // collectionId: ""
   };
 
@@ -66,9 +68,8 @@ class CollectionDetails extends Component {
     event.preventDefault();
     await this.setState(prevState => ({
       newItem: {
-        // object that we want to update
-        ...prevState.newItem, // keep all other key-value pairs
-        collectionId: this.state.collection._id // CHANGE THIS TO MAKE IT BETTER
+        ...prevState.newItem,
+        collectionId: this.state.collection._id
       }
     }));
     if (this.state.newItem.year) {
@@ -83,11 +84,8 @@ class CollectionDetails extends Component {
       .then(async res => {
         console.log(res);
         this.searchCollectionById(this.state.collectionId);
-      }) //that's what it hits
+      })
       .catch(err => console.log(err));
-    // await this.setState({ newItem: {} });
-    // console.log(this.state.newItem);
-    // this.searchCollectionById(this.state.collectionId);
   };
 
   deleteItem = itemId => {
@@ -95,14 +93,12 @@ class CollectionDetails extends Component {
       .then(res => {
         console.log(res);
         this.searchCollectionById(this.state.collectionId);
+        this.setState({ editItem: false, itemChanges: {} });
       })
       .catch(err => console.log(err));
   };
 
-  editCollection = async () => {
-    console.log(this.state.collection.isPrivate);
-    // this.setState({ editCollection: true, collectionChanges: {}, itemsToUpdate:["image, name"] });
-    // this.setState({ collectionChanges: this.state.collection });
+  editCollectionFunction = async () => {
     await this.setState({
       editCollection: true,
       collectionChanges: { isPrivate: true }
@@ -113,38 +109,74 @@ class CollectionDetails extends Component {
     const { name, value } = event.target;
     this.setState(prevState => ({
       collectionChanges: {
-        // object that we want to update
-        ...prevState.collectionChanges, // keep all other key-value pairs
-        [name]: value // update the value of specific key
+        ...prevState.collectionChanges,
+        [name]: value
       }
     }));
     console.log(this.state.collectionChanges);
   };
 
   handleCheckboxChange = async event => {
-    console.log("handleCheckboxChange");
-    console.log(event.target.checked);
+    //needed to make another const for scope reasons
     const checkedStatus = event.target.checked;
     await this.setState(prevState => ({
       collectionChanges: {
-        // object that we want to update
-        ...prevState.collectionChanges, // keep all other key-value pairs
-        isPrivate: checkedStatus // update the value of specific key
+        ...prevState.collectionChanges,
+        isPrivate: checkedStatus
       }
     }));
-    // await this.setState({ test: event.target.checked });
-    // console.log(this.state.test);
-    // this.setState({ isPrivate: event.target.checked });
-    console.log(this.state.collectionChanges);
   };
 
   updateCollection = () => {
-    console.log(this.state.collectionChanges);
     API.updateCollection(
       this.state.collection._id,
       this.state.collectionChanges
     )
       .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  editItemFunction = async (id, index) => {
+    console.log(id);
+    console.log(index);
+    console.log(this.state.collection.items);
+    console.log(this.state.collection.items[index]);
+    if (id === this.state.collection.items[index]._id) {
+      console.log("it matches");
+      //setting the state here assures that it will remain false if something goes wrong. I'm double checking that I'm getting the right item
+      await this.setState({ editItem: { id: id, index: index } });
+    }
+    console.log(this.state.editItem);
+  };
+
+  updateExistingItem = async event => {
+    const { name, value } = event.target;
+    await this.setState(prevState => ({
+      itemChanges: {
+        // object that we want to update
+        ...prevState.itemChanges, // keep all other key-value pairs
+        [name]: value // update the value of specific key
+      }
+    }));
+    console.log(this.state.itemChanges);
+  };
+
+  cancelUpdateItem = () => {
+    // event.preventDefault();
+    this.setState({
+      editItem: false,
+      itemChanges: {}
+      // editCollection: false
+    });
+  };
+
+  updateItem = () => {
+    API.updateItem(this.state.editItem.id, this.state.itemChanges)
+      .then(res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+        this.setState({ editItem: false, itemChanges: {} });
+      })
       .catch(err => console.log(err));
   };
 
@@ -162,7 +194,9 @@ class CollectionDetails extends Component {
             <br></br>
 
             <h6>COLLECTION NAME: {this.state.collection.name}</h6>
-            <button onClick={this.editCollection}>Edit Kollektion</button>
+            <button onClick={this.editCollectionFunction}>
+              Edit Kollektion
+            </button>
             <hr></hr>
             {this.state.editCollection && (
               <div className="row">
@@ -233,36 +267,74 @@ class CollectionDetails extends Component {
             {/* <Card {...this.state.collection} /> */}
             <h5>Items</h5>
             {/* would go into card? another component? */}
-
+            {/* {this.state.editItem === false ? <p>test</p> : <p>hi</p>}
+            {this.state.editItem === false && <p>new line</p>} */}
             {this.state.collection.items.length ? (
-              this.state.collection.items.map(item => (
+              this.state.collection.items.map((item, index) => (
                 <div
                   className="form-inline card-title text-center"
                   key={item._id}
                 >
-                  {/* {test ={(100 / this.state.collection.itemFields.length)}} */}
-                  {/* {(test = 100 / this.state.collection.itemFields.length)} */}
-                  {this.state.collection.itemFields.map(
-                    (fields, otherIndex) => (
-                      <div
-                        // style={{
-                        //   width:
-                        //     100 /
-                        //       (this.state.collection.itemFields.length + 1) +
-                        //     "%"
-                        // }}
-                        key={otherIndex}
-                      >
-                        <p>
-                          <strong> {fields.displayName} </strong>
-                        </p>
-                        <p>{item[fields.name]}</p>
-                      </div>
-                    )
+                  {/* this \/ should be inside the map under it (?) */}
+                  {this.state.editItem.id === item._id
+                    ? this.state.collection.itemFields.map((fields, index) => (
+                        <div key={index} className="divider">
+                          <p>
+                            <strong> {fields.displayName}</strong>
+                          </p>
+                          {/* <p>
+                            {
+                              this.state.collection.items[
+                                this.state.editItem.index
+                              ][fields.name]
+                            }
+                          </p> */}
+                          <InputField
+                            value={
+                              this.state.itemChanges[fields.name] ||
+                              this.state.collection.items[
+                                this.state.editItem.index
+                              ][fields.name]
+                            }
+                            onChange={this.updateExistingItem}
+                            name={fields.name}
+                            placeholder={fields.displayName}
+                            type={fields.type}
+                            className="inputField"
+                          />
+                        </div>
+                      ))
+                    : this.state.collection.itemFields.map(
+                        (fields, otherIndex) => (
+                          <div key={otherIndex}>
+                            <p>
+                              <strong> {fields.displayName} </strong>
+                            </p>
+                            <p>{item[fields.name]}</p>
+                          </div>
+                        )
+                      )}
+                  {this.state.editCollection && !this.state.editItem.id && (
+                    <button
+                      onClick={() => this.editItemFunction(item._id, index)}
+                    >
+                      Edit Item
+                    </button>
                   )}
-                  <button onClick={() => this.deleteItem(item._id)}>
+                  {this.state.editItem.id === item._id && (
+                    <div>
+                      <button onClick={this.updateItem}>Save Changes</button>
+                      <button onClick={this.cancelUpdateItem}>
+                        Discard Changes
+                      </button>
+                      <button onClick={() => this.deleteItem(item._id)}>
+                        Delete Item
+                      </button>
+                    </div>
+                  )}
+                  {/* <button onClick={() => this.deleteItem(item._id)}>
                     Detele Item
-                  </button>
+                  </button> */}
                 </div>
               ))
             ) : (

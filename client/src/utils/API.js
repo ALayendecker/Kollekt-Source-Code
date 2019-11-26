@@ -33,5 +33,8 @@ export default {
   // }
   deleteItem: function(itemId, collectionId) {
     return axios.delete("api/items/delete/" + itemId + "/" + collectionId);
+  },
+  updateItem: function(id, changes) {
+    return axios.put("api/items/update/" + id, changes);
   }
 };
