@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import InputField from "../components/InputField";
 import Card from "../components/Cards";
 import { Link } from "react-router-dom";
+import "./CollectionDetails.css";
 
 class CollectionDetails extends Component {
   state = {
@@ -93,50 +94,75 @@ class CollectionDetails extends Component {
       <div>
         <Nav />
         {this.state.collection && (
-          <div key={this.state.collection._id}>
-            <h1>{this.state.collection._id}</h1>
-            <Card {...this.state.collection} />
-            <h4>Items</h4>
+          <div key={this.state.collection._id} className="maincontainer">
+            <br></br>
+
+            <a href="https://placeholder.com">
+              <img src="https://via.placeholder.com/150" />
+            </a>
+
+            <br></br>
+            <br></br>
+
+            <h6>COLLECTION NAME: {this.state.collection.name}</h6>
+            <hr></hr>
+            <div>
+              <form className="form-inline">
+                {this.state.collection.itemFields.map((item, index) => (
+                  <div key={index} className="divider">
+                    <p>
+                      <strong> {item.displayName}</strong>
+                    </p>
+                    <InputField
+                      value={this.state.newItem.item}
+                      onChange={this.updateNewItem}
+                      name={item.name}
+                      placeholder={item.displayName}
+                      type={item.type}
+                      className="inputField"
+                    />
+                  </div>
+                ))}
+              </form>
+              <button className="create" onClick={this.createNewItem}>
+                Create New Item
+              </button>
+            </div>
+            <br></br>
+            {/* <Card {...this.state.collection} /> */}
+            <h5>Items</h5>
             {/* would go into card? another component? */}
+
             {this.state.collection.items.length ? (
               (console.log(this.state.collection),
               this.state.collection.items.map((item, index) => (
-                <div key={index}>
+                <div className="form-inline card-title text-center" key={index}>
                   {this.state.collection.itemFields.map(
                     (fields, otherIndex) => (
                       <div key={otherIndex}>
+                        <p>
+                          <strong> {fields.name} </strong>
+                        </p>
                         <p>{item[fields.name]}</p>
                       </div>
                     )
                   )}
                   <button onClick={() => this.deleteItem(item._id)}>
-                    Delete Item
+                    Detele Item
                   </button>
                 </div>
               )))
             ) : (
               <p>No items to show</p>
             )}
-            <form className="form-inline">
-              {this.state.collection.itemFields.map((item, index) => (
-                <div key={index}>
-                  <p>{item.displayName}</p>
-                  <InputField
-                    value={this.state.newItem.item}
-                    onChange={this.updateNewItem}
-                    name={item.name}
-                    placeholder={item.displayName}
-                    type={item.type}
-                  />
-                </div>
-              ))}
-              {/* give the button id of collection id? won't it be on the state anyway? */}
-              <button onClick={this.createNewItem}>Create New Item</button>
-            </form>
           </div>
         )}
+
+        <br></br>
+        <br></br>
+
         <Link to="/mycollections">
-          <button>Back to main page</button>
+          <button className="back">Back to collections</button>
         </Link>
         <Footer />
       </div>
