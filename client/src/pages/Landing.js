@@ -16,6 +16,7 @@ import Footer from "../components/Footer";
 class Landing extends Component {
   state = {
     name: [],
+
     type: "cards",
     data: "", //won't be needed, we search right away for now
     searchResult: []
@@ -61,7 +62,7 @@ class Landing extends Component {
         <div className="masthead">
           <div className="container h-100">
             <div className="row h-100 align-items-center">
-              <div className="col text-center search-container">
+              <div className="text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
 
                 <div>
@@ -85,7 +86,7 @@ class Landing extends Component {
           </div>
         </div>
         <h3 className="text-center">View an existing collection</h3>
-        <div className="container flex-container darker">
+        <div className="container flex-container darker landingcollection">
           <div className="divSanta">
             {this.state.searchResult.length ? (
               <div className="row flex-container dark">

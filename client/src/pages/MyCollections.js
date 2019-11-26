@@ -48,6 +48,7 @@ class Collection extends Component {
     let itemFields = [];
     let image = "";
     switch (this.state.type) {
+
       case "Music":
         itemFields = [
           { name: "name", type: "text", displayName: "Song Name" },
@@ -58,6 +59,7 @@ class Collection extends Component {
           { name: "quantity", type: "number", displayName: "Quantity" }
         ];
         image = "/assets/images/vinyl.jpg";
+
         break;
       case "Comics":
         itemFields = [
