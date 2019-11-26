@@ -3,10 +3,11 @@
 // need to reduce size of sides of .search-container
 // need h3 and p elements to center in flex-container
 // need p element to alight under h3 element when no cards display
-
 import React, { Component } from "react";
 import Card from "../components/Cards";
 import "./Landing.css";
+// import {connect} from "react-redux";
+// import PropTypes from "prop-types";
 import AddForm from "../components/AddForm";
 import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
@@ -57,7 +58,6 @@ class Landing extends Component {
     return (
       <div className="main-container">
         <Nav />
-
         <div className="masthead">
           <div className="container h-100">
             <div className="row h-100 align-items-center">

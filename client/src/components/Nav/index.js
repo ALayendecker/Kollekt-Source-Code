@@ -18,7 +18,11 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
           Dashboard
         </Link>
       </li>
-      <li><a onClick={logout} href="/"><i className="fas.fa-sign-out-alt"></i>{" "}<span className="hide-sm">Logout</span></a></li> 
+      <li className="nav-item">
+        <Link className="nav-link" onClick={logout} to="/">
+          Logout
+        </Link>
+        </li> 
     </ul>
   );
 
