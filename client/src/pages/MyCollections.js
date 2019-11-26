@@ -151,6 +151,7 @@ class Collection extends Component {
                 Cards
               </DropdownButton>
             </AddForm>
+            <p>Private</p>
             <input
               type="checkbox"
               checked={this.state.isPrivate}

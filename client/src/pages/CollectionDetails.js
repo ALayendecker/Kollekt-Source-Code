@@ -132,7 +132,15 @@ class CollectionDetails extends Component {
       this.state.collection._id,
       this.state.collectionChanges
     )
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+        this.setState({
+          editItem: false,
+          itemChanges: {},
+          editCollection: false
+        });
+      })
       .catch(err => console.log(err));
   };
 
@@ -161,13 +169,16 @@ class CollectionDetails extends Component {
     console.log(this.state.itemChanges);
   };
 
-  cancelUpdateItem = () => {
+  cancelUpdate = target => {
     // event.preventDefault();
     this.setState({
       editItem: false,
       itemChanges: {}
       // editCollection: false
     });
+    if (target === "collection") {
+      this.setState({ editCollection: false });
+    }
   };
 
   updateItem = () => {
@@ -176,6 +187,15 @@ class CollectionDetails extends Component {
         console.log(res);
         this.searchCollectionById(this.state.collectionId);
         this.setState({ editItem: false, itemChanges: {} });
+      })
+      .catch(err => console.log(err));
+  };
+
+  deleteCollection = () => {
+    API.deleteCollection(this.state.collection._id)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ collection: false });
       })
       .catch(err => console.log(err));
   };
@@ -229,16 +249,20 @@ class CollectionDetails extends Component {
                   type="text"
                   className="inputField"
                 />
+                <p>Private</p>
                 <input
                   type="checkbox"
                   name="isPrivate"
-                  checked={
-                    this.state.collectionChanges.isPrivate
-                    // this.state.collection.isPrivate
-                  }
+                  checked={this.state.collectionChanges.isPrivate}
                   onChange={this.handleCheckboxChange}
                 />
                 <button onClick={this.updateCollection}>Save Changes</button>
+                <button onClick={() => this.cancelUpdate("collection")}>
+                  Discard Changes
+                </button>
+                <button onClick={this.deleteCollection}>
+                  Delete Collection
+                </button>
               </div>
             )}
             <div>
@@ -264,31 +288,19 @@ class CollectionDetails extends Component {
               </button>
             </div>
             <br></br>
-            {/* <Card {...this.state.collection} /> */}
             <h5>Items</h5>
-            {/* would go into card? another component? */}
-            {/* {this.state.editItem === false ? <p>test</p> : <p>hi</p>}
-            {this.state.editItem === false && <p>new line</p>} */}
             {this.state.collection.items.length ? (
               this.state.collection.items.map((item, index) => (
                 <div
                   className="form-inline card-title text-center"
                   key={item._id}
                 >
-                  {/* this \/ should be inside the map under it (?) */}
                   {this.state.editItem.id === item._id
                     ? this.state.collection.itemFields.map((fields, index) => (
                         <div key={index} className="divider">
                           <p>
                             <strong> {fields.displayName}</strong>
                           </p>
-                          {/* <p>
-                            {
-                              this.state.collection.items[
-                                this.state.editItem.index
-                              ][fields.name]
-                            }
-                          </p> */}
                           <InputField
                             value={
                               this.state.itemChanges[fields.name] ||
@@ -324,7 +336,7 @@ class CollectionDetails extends Component {
                   {this.state.editItem.id === item._id && (
                     <div>
                       <button onClick={this.updateItem}>Save Changes</button>
-                      <button onClick={this.cancelUpdateItem}>
+                      <button onClick={() => this.cancelUpdate("item")}>
                         Discard Changes
                       </button>
                       <button onClick={() => this.deleteItem(item._id)}>
@@ -332,9 +344,6 @@ class CollectionDetails extends Component {
                       </button>
                     </div>
                   )}
-                  {/* <button onClick={() => this.deleteItem(item._id)}>
-                    Detele Item
-                  </button> */}
                 </div>
               ))
             ) : (
