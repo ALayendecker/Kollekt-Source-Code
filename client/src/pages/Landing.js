@@ -67,16 +67,16 @@ class Landing extends Component {
 
                 <div>
                   <AddForm className="dropDown" text={"Search Collection Type"}>
-                    <DropdownButton onClick={() => this.makeSearch("music")}>
+                    <DropdownButton onClick={() => this.makeSearch("Music")}>
                       Music
                     </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("comics")}>
+                    <DropdownButton onClick={() => this.makeSearch("Comics")}>
                       Comics
                     </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("currency")}>
+                    <DropdownButton onClick={() => this.makeSearch("Currency")}>
                       Currency
                     </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("cards")}>
+                    <DropdownButton onClick={() => this.makeSearch("Cards")}>
                       Cards
                     </DropdownButton>
                   </AddForm>

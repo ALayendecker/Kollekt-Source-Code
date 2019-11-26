@@ -78,6 +78,13 @@ module.exports = {
           .catch(err => res.status(422).json(err))
       )
       .catch(err => res.status(422).json(err));
-  }
+  },
   // db.Collection.deleteMany({ Item: req.user.id })
+  update: function(req, res) {
+    console.log(req.body);
+    console.log(req.params);
+    db.Collection.findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
 };

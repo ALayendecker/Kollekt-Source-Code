@@ -44,11 +44,9 @@ class Collection extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    //the switch could be giving the value to a itemFiels const array instead
     let itemFields = [];
     let image = "";
     switch (this.state.type) {
-
       case "Music":
         itemFields = [
           { name: "name", type: "text", displayName: "Song Name" },
@@ -153,6 +151,7 @@ class Collection extends Component {
                 Cards
               </DropdownButton>
             </AddForm>
+            <p>Private</p>
             <input
               type="checkbox"
               checked={this.state.isPrivate}
