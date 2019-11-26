@@ -3,11 +3,12 @@ const Schema = mongoose.Schema;
 
 const CollectionSchema = new Schema({
   name: String,
-  type: String, //coins, cds, cards, etc....
+  type: String,
   isPrivate: {
     type: Boolean,
     default: true
   },
+  image: String,
   itemFields: Array,
   items: [
     {
