@@ -13,7 +13,8 @@ class Collection extends Component {
     name: "",
     type: "",
     searchAllCollectionsResult: [],
-    collectionId: ""
+    collectionId: "",
+    isPrivate: true
   };
 
   componentDidMount() {
@@ -36,64 +37,70 @@ class Collection extends Component {
     });
   };
 
-  handleFormSubmit = async event => {
+  handleCheckboxChange = async event => {
+    await this.setState({ isPrivate: event.target.checked });
+    console.log(this.state.isPrivate);
+  };
+
+  handleFormSubmit = event => {
     event.preventDefault();
+    //the switch could be giving the value to a itemFiels const array instead
+    let itemFields = [];
+    let image = "";
     switch (this.state.type) {
-      case "music":
-        await this.setState({
-          itemFields: [
-            { name: "name", type: "text", displayName: "Song Name" },
-            { name: "artist", type: "text", displayName: "Artist" },
-            { name: "album", type: "text", displayName: "Album" },
-            { name: "genre", type: "text", displayName: "Genre" },
-            { name: "year", type: "date", displayName: "Release Date" },
-            { name: "quantity", type: "number", displayName: "Quantity" }
-          ]
-        });
+
+      case "Music":
+        itemFields = [
+          { name: "name", type: "text", displayName: "Song Name" },
+          { name: "artist", type: "text", displayName: "Artist" },
+          { name: "album", type: "text", displayName: "Album" },
+          { name: "genre", type: "text", displayName: "Genre" },
+          { name: "year", type: "date", displayName: "Release Date" },
+          { name: "quantity", type: "number", displayName: "Quantity" }
+        ];
+        image = "/assets/images/vinyl.jpg";
+
         break;
-      case "comics":
-        await this.setState({
-          itemFields: [
-            { name: "name", type: "text", displayName: "Title" },
-            { name: "series", type: "text", displayName: "Series" },
-            { name: "issue", type: "text", displayName: "Issue" },
-            { name: "genre", type: "text", displayName: "Genre" },
-            { name: "year", type: "date", displayName: "Release Date" },
-            { name: "quantity", type: "number", displayName: "Quantity" }
-          ]
-        });
+      case "Comics":
+        itemFields = [
+          { name: "name", type: "text", displayName: "Title" },
+          { name: "series", type: "text", displayName: "Series" },
+          { name: "issue", type: "text", displayName: "Issue" },
+          { name: "genre", type: "text", displayName: "Genre" },
+          { name: "year", type: "date", displayName: "Release Date" },
+          { name: "quantity", type: "number", displayName: "Quantity" }
+        ];
+        image = "/assets/images/comic.jpeg";
         break;
-      case "currency":
-        await this.setState({
-          itemFields: [
-            { name: "type", type: "text", displayName: "Type" },
-            { name: "country", type: "text", displayName: "Country" },
-            { name: "mintMark", type: "text", displayName: "Mint Mark" },
-            { name: "year", type: "date", displayName: "Year" },
-            { name: "quantity", type: "number", displayName: "Quantity" }
-          ]
-        });
+      case "Currency":
+        itemFields = [
+          { name: "type", type: "text", displayName: "Type" },
+          { name: "country", type: "text", displayName: "Country" },
+          { name: "mintMark", type: "text", displayName: "Mint Mark" },
+          { name: "year", type: "date", displayName: "Year" },
+          { name: "quantity", type: "number", displayName: "Quantity" }
+        ];
+        image = "/assets/images/coins.jpg";
         break;
-      case "cards":
-        await this.setState({
-          itemFields: [
-            { name: "name", type: "text", displayName: "Name" },
-            { name: "game", type: "text", displayName: "Game" },
-            { name: "type", type: "text", displayName: "Type" },
-            { name: "year", type: "date", displayName: "Year" },
-            { name: "quantity", type: "number", displayName: "Quantity" }
-          ]
-        });
+      case "Cards":
+        itemFields = [
+          { name: "name", type: "text", displayName: "Name" },
+          { name: "game", type: "text", displayName: "Game" },
+          { name: "type", type: "text", displayName: "Type" },
+          { name: "year", type: "date", displayName: "Year" },
+          { name: "quantity", type: "number", displayName: "Quantity" }
+        ];
+        image = "/assets/images/cards.jpg";
         break;
       default:
         return;
-      // await this.setState({ itemFields: ["title", "author"] });
     }
     const newCollection = {
       name: this.state.name,
       type: this.state.type,
-      isPrivate: false,
-      itemFields: this.state.itemFields
+      isPrivate: this.state.isPrivate,
+      itemFields: itemFields,
+      image: image
     };
     console.log(newCollection);
     API.createCollection(newCollection)
@@ -103,6 +110,7 @@ class Collection extends Component {
       })
       .catch(err => console.log(err));
   };
+
   setCollectionType = text => {
     this.setState({ type: text });
   };
@@ -115,6 +123,7 @@ class Collection extends Component {
       })
       .catch(err => console.log(err));
   };
+
   render() {
     return (
       <div>
@@ -129,21 +138,26 @@ class Collection extends Component {
               placeholder="Name you collection"
             />
             <AddForm text={this.state.type || "Select a type"}>
-              <DropdownButton onClick={() => this.setCollectionType("music")}>
+              <DropdownButton onClick={() => this.setCollectionType("Music")}>
                 Music
               </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("comics")}>
+              <DropdownButton onClick={() => this.setCollectionType("Comics")}>
                 Comics
               </DropdownButton>
               <DropdownButton
-                onClick={() => this.setCollectionType("currency")}
+                onClick={() => this.setCollectionType("Currency")}
               >
                 Currency
               </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("cards")}>
+              <DropdownButton onClick={() => this.setCollectionType("Cards")}>
                 Cards
               </DropdownButton>
             </AddForm>
+            <input
+              type="checkbox"
+              checked={this.state.isPrivate}
+              onChange={this.handleCheckboxChange}
+            />
             <button onClick={this.handleFormSubmit}>Create Kollection</button>
           </form>
           <hr></hr>
@@ -160,18 +174,6 @@ class Collection extends Component {
                       state: { collectionId: collection._id }
                     }}
                   />
-                  {/* <Link
-                    to={{
-                      pathname: "/collectiondetails",
-                      state: { collectionId: collection._id }
-                    }}
-                  >
-                    <button>View Kollection</button>
-                  </Link> */}
-
-                  {/* <button onClick={() => this.deleteCollection(collection._id)}>
-                    Delete Kollection
-                  </button> */}
                 </div>
               ))}
             </div>

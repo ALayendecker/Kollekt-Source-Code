@@ -1,0 +1,28 @@
+p {
+  margin: 20px;
+  text-align: center;
+}
+
+.card-title {
+  background-color: rgb(209, 209, 209);
+
+  text-align: center;
+}
+.maincontainer {
+  padding-left: 50px;
+  width: 90%;
+}
+
+.back {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.divider {
+  margin: 5px;
+}
+
+.create {
+  margin-top: 10px;
+  margin-left: 5px;
+}
