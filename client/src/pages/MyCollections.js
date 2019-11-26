@@ -51,7 +51,7 @@ class Collection extends Component {
 
       case "Music":
         itemFields = [
-          { name: "name", type: "text", displayName: "Song Name" },
+          // { name: "name", type: "text", displayName: "Song Name" },
           { name: "artist", type: "text", displayName: "Artist" },
           { name: "album", type: "text", displayName: "Album" },
           { name: "genre", type: "text", displayName: "Genre" },

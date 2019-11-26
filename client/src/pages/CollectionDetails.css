@@ -3,11 +3,27 @@ p {
   text-align: center;
 }
 
-.card-title {
-  background-color: rgb(209, 209, 209);
-
+/* css for item box */
+.itemBox {
+  background-color: rgb(239, 241, 241);
+  border: 1px solid black;
+  border-radius: 4px;
   text-align: center;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+       box-shadow: 0 10px 6px -6px #777;
+       margin-bottom: 20px;
 }
+
+/* shadow box for image */
+.collectionPic {
+  border: 1px solid black;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+       box-shadow: 0 10px 6px -6px #777;
+}
+
 .maincontainer {
   padding-left: 50px;
   width: 90%;
@@ -25,4 +41,19 @@ p {
 .create {
   margin-top: 10px;
   margin-left: 5px;
+}
+
+/* coloring for all buttons */
+.btn-secondary {
+  background-color: rgb(64, 96, 128) !important;
+}
+
+/* styling for input forms */
+.input {
+  width: 40%;
+  height: 35px;
+  margin: 0 auto;
+  /* border: none; */
+  border:solid 1px #ccc;
+  border-radius: 10px !important;
 }

@@ -22,7 +22,7 @@ const ItemSchema = new Schema({
   category: String, //assigned by user to all of them
   collectionId: String,
   game: String,
-  name: String
+  // name: String
 });
 
 const Item = mongoose.model("Item", ItemSchema);

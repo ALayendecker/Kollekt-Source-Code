@@ -98,15 +98,16 @@ class CollectionDetails extends Component {
             <br></br>
 
             <a href="https://placeholder.com">
-              <img src="https://via.placeholder.com/150" />
+              <img className="collectionPic"src="https://via.placeholder.com/150" />
             </a>
 
             <br></br>
             <br></br>
 
-            <h6>COLLECTION NAME: {this.state.collection.name}</h6>
+        <h6>COLLECTION NAME: <span style={{ fontWeight: "bolder", fontSize: 25}}> {this.state.collection.name}</span></h6>
             <hr></hr>
             <div>
+            <h5>Add to this collection:</h5>
               <form className="form-inline">
                 {this.state.collection.itemFields.map((item, index) => (
                   <div key={index} className="divider">
@@ -119,36 +120,38 @@ class CollectionDetails extends Component {
                       name={item.name}
                       placeholder={item.displayName}
                       type={item.type}
-                      className="inputField"
+                      className="form-control input"
                     />
                   </div>
                 ))}
               </form>
-              <button className="create" onClick={this.createNewItem}>
+              <button className="create btn btn-secondary" onClick={this.createNewItem}>
                 Create New Item
               </button>
             </div>
-            <br></br>
+            <hr/>
             {/* <Card {...this.state.collection} /> */}
-            <h5>Items</h5>
+            <h5>Items in your collection:</h5>
+            <br />
             {/* would go into card? another component? */}
 
             {this.state.collection.items.length ? (
               (console.log(this.state.collection),
               this.state.collection.items.map((item, index) => (
-                <div className="form-inline card-title text-center" key={index}>
+                <div className="form-inline itemBox text-center" key={index}>
                   {this.state.collection.itemFields.map(
                     (fields, otherIndex) => (
                       <div key={otherIndex}>
-                        <p>
-                          <strong> {fields.name} </strong>
-                        </p>
+                        {/* !!-need to make a header for the column names!! */}
+                        {/* <p>
+                          <strong> {fields.displayName} </strong>
+                        </p> */}
                         <p>{item[fields.name]}</p>
                       </div>
                     )
                   )}
-                  <button onClick={() => this.deleteItem(item._id)}>
-                    Detele Item
+                  <button className="btn btn-secondary" onClick={() => this.deleteItem(item._id)}>
+                    Delete Item
                   </button>
                 </div>
               )))
@@ -162,7 +165,7 @@ class CollectionDetails extends Component {
         <br></br>
 
         <Link to="/mycollections">
-          <button className="back">Back to collections</button>
+          <button className="back btn btn-secondary">Back to collections</button>
         </Link>
         <Footer />
       </div>
