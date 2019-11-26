@@ -46,8 +46,8 @@ class Collection extends Component {
             { name: "artist", type: "text", displayName: "Artist" },
             { name: "album", type: "text", displayName: "Album" },
             { name: "genre", type: "text", displayName: "Genre" },
-            { name: "year", type: "date", displayName: "Release Date" },
-            { name: "quantity", type: "number", displayName: "Quantity" }
+            { name: "quantity", type: "number", displayName: "Quantity" },
+            { name: "year", type: "date", displayName: "Release Date" }
           ]
         });
         break;

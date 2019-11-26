@@ -16,18 +16,23 @@
 } */
 
 .masthead {
-  background: url("/assets/images/vinyl.jpg") no-repeat; 
+  background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg")
+    no-repeat;
   height: 50vh;
   min-height: 400px;
   background-size: cover;
   color: white;
+  margin-bottom: 30px;
 }
 
 .search-container {
-  margin-right: 15em;
-  margin-left: 15em;
-  background: rgba(241, 243, 245, .8);
+  width: 500px;
+  background: rgba(207, 207, 207, 0.6);
   color: black;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+  padding: 25px;
 }
 
 /* had to set min and max height for black background to render w/ and w/o search */
@@ -44,6 +49,9 @@
   justify-content: center;
 }
 
+.landingcollection {
+  padding-bottom: 30px;
+}
 
 /* .divSanta {
   padding: 8em;
