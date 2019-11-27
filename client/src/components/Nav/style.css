@@ -1,9 +1,10 @@
 .navbar {
-    background-color: rgb(43, 43, 43);
-    color: rgb(241, 243, 245);
+  background-color: rgb(43, 43, 43);
+  color: rgb(241, 243, 245);
+  width: 100vw;
 }
 
 .navbarItem {
-    display: flex;
-    align-content: flex-end;
+  display: flex;
+  align-content: flex-end;
 }

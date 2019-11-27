@@ -13,17 +13,8 @@ class Dashboard extends Component {
       <div>
         <Nav />
         <div className="main row ">
-          {/* <div className="div1 col">
-            <img src={"starwars_1.jpg"} alt="Logo" />
-          </div> */}
           <Profile />
           <Dashboardjs />
-          <div className="div2 col">
-            <div className="wrapper">
-              <h1>Your Collections</h1>
-              {/* <Card /> */}
-            </div>
-          </div>
         </div>
         <Footer />
       </div>

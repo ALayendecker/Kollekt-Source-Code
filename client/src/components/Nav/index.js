@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -22,7 +22,12 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link className="nav-link" onClick={logout} to="/"><i className="fas fa-sign-out-alt"></i>
           Logout
         </Link>
-        </li> 
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/profiles">
+          Collectors
+        </Link>
+      </li>
     </ul>
   );
 
@@ -48,6 +53,11 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
           Dashboard
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/profiles">
+          Collectors
+        </Link>
+      </li>
     </ul>
   );
 
@@ -66,7 +76,9 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
         <span className="navbar-toggler-icon "></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav"></div>
-      {!loading && ( <Fragment>{isAuthenticated ? authLinks : guestLinks }</Fragment>)}
+      {!loading && (
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+      )}
     </nav>
   );
 };

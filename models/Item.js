@@ -15,7 +15,7 @@ const ItemSchema = new Schema({
   series: String,
   issue: Number,
   type: String,
-  year: Date,
+  year: String,
   country: String,
   mintMark: String,
   quantity: Number,
