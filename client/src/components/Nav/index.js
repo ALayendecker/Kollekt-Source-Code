@@ -8,18 +8,18 @@ import "./style.css";
 const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul className="navbar-nav ml-auto">
-      <li className="nav-item active">
+      {/* <li className="nav-item active">
         <Link className="nav-link " to="/">
           Home <span className="sr-only">(current)</span>
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
         <Link className="nav-link" to="/dashboard">
           Dashboard
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" onClick={logout} to="/">
+        <Link className="nav-link" onClick={logout} to="/"><i className="fas fa-sign-out-alt"></i>
           Logout
         </Link>
       </li>
@@ -33,18 +33,18 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <ul className="navbar-nav ml-auto">
-      <li className="nav-item active">
+      {/* <li className="nav-item active">
         <Link className="nav-link " to="/">
           Home <span className="sr-only">(current)</span>
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
-        <Link className="nav-link" to="/login">
+        <Link className="nav-link" to="/login"><i className="fas fa-sign-in-alt"></i>
           Sign-in
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/signup">
+        <Link className="nav-link" to="/signup"><i className="fas fa-user-plus"></i>
           Sign-up
         </Link>
       </li>
@@ -63,7 +63,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar navbar-dark">
-      <img src="/assets/images/logo_small.png" alt="logo"></img>
+      <Link to="/"><img src="/assets/images/logo_small.png" alt="logo"></img></Link>
       <button
         className="navbar-toggler"
         type="button"

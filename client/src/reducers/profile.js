@@ -9,6 +9,7 @@ import {
 const initialState = {
   profile: null,
   profiles: [],
+  //for github repos we wont need
   repos: [],
   loading: true,
   error: {}

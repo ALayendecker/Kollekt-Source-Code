@@ -57,7 +57,6 @@ if (isAuthenticated) {
           <br></br>
           <Link to="/signup">Need an Account? Signup Here</Link>
           <br></br>
-          <Link to="/">Take Me Home</Link>
         </form>
       </div>
     </div>

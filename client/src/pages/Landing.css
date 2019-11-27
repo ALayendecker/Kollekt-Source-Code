@@ -2,23 +2,17 @@
   border: 1px solid red;
 } */
 
-/* body {
-  min-height: 100%;
-  padding-bottom: 20px;
-  background-color: rgb(43, 43, 43) !important;
-} */
-
+/* card css is being called in serveral places */
 .card {
   width: 19em;
+  border: 1px solid rgb(64, 96, 128) ;
 }
-/* .container {
-  margin: auto;
-} */
 
 .masthead {
-  background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg")
-    no-repeat;
-  height: 50vh;
+  background: url("/assets/images/vinyl-headphones.jpg") no-repeat;
+  background-position-y: -200px;
+  /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
+  height: 65vh;
   min-height: 400px;
   background-size: cover;
   color: white;
@@ -53,6 +47,8 @@
   padding-bottom: 30px;
 }
 
-/* .divSanta {
-  padding: 8em;
-} */
+.darker {
+  background-color: rgb(221, 218, 218);
+  border: 1px solid rgb(64, 96, 128) ;
+  margin-bottom: 20px;
+}

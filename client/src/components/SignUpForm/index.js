@@ -93,12 +93,10 @@ if (isAuthenticated) {
           <br></br>
           <Link to="/login">Already a member? Log In Here</Link>
           <br></br>
-          <Link to="/">Take Me Home</Link>
         </form>
       </div>
     </div>
 );
-
 }
 
 SignUpForm.propTypes = {

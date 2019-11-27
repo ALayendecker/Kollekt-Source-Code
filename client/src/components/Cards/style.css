@@ -1,6 +1,8 @@
 .card {
-    width: 19em;
-    text-align: center;
+  width: 19em;
+  /* the height needs to be fixed or the pics need to be set */
+  height: 29em;
+  text-align: center;
   margin: 10px;
   color: black;
 }
