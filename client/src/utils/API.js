@@ -9,6 +9,10 @@ export default {
     console.log(query);
     return axios.get("/api/collections/bytype/" + query);
   },
+  getOneCollectionByType: function(query) {
+    console.log(query);
+    return axios.get("/api/collections/onebytype/" + query);
+  },
   getCollectionById: function(query) {
     console.log("hit getcollectionbyid in API with query= " + query);
     console.log(query);

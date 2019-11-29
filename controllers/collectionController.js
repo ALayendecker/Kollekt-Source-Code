@@ -3,7 +3,15 @@ const db = require("../models");
 module.exports = {
   findByType: function(req, res) {
     console.log("findByType with req.params.type = " + req.params.type);
-    db.Collection.find({ type: req.params.type })
+    db.Collection.find({ type: req.params.type, isPrivate: false })
+      .select({ name: 1, type: 1, image: 1 })
+      .then(dbCollection => res.json(dbCollection))
+      .catch(err => res.status(422).json(err));
+  },
+  findOneByType: function(req, res) {
+    console.log("findOneByType with req.params.type = " + req.params.type);
+    db.Collection.findOne({ type: req.params.type, isPrivate: false })
+      .select({ name: 1, type: 1, image: 1 })
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },

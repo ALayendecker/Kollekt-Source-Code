@@ -16,38 +16,46 @@ import Footer from "../components/Footer";
 
 class Landing extends Component {
   state = {
-    name: [],
-
-    type: "cards",
-    data: "", //won't be needed, we search right away for now
     searchResult: []
   };
 
-  handleInputChange = async event => {
-    const { name, value } = event.target;
-    await this.setState({
-      [name]: value
-    });
-    // console.log(this.state.name);
-    // console.log(this.state.type);
+  componentDidMount = () => {
+    API.getOneCollectionByType("Music")
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          searchResult: this.state.searchResult.concat(res.data)
+        });
+      })
+      .catch(err => console.log(err));
+    API.getOneCollectionByType("Comics")
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          searchResult: this.state.searchResult.concat(res.data)
+        });
+      })
+      .catch(err => console.log(err));
+    API.getOneCollectionByType("Currency")
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          searchResult: this.state.searchResult.concat(res.data)
+        });
+      })
+      .catch(err => console.log(err));
+    API.getOneCollectionByType("Cards")
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          searchResult: this.state.searchResult.concat(res.data)
+        });
+      })
+      .catch(err => console.log(err));
   };
 
-  //if we search with a input field
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   console.log(this.state.type);
-  //   API.getCollectionByType(this.state.type)
-  //     .then(res => console.log(res.data))
-  //     .catch(err => console.log(err));
-  // };
-
-  //if we search with the dropdown
-  makeSearch = text => {
-    // event.preventDefault();
-    console.log(text);
-    // await this.setState({ data: text });
-    // console.log(this.state.data);
-    API.getCollectionByType(text)
+  makeSearch = collectionType => {
+    API.getCollectionByType(collectionType)
       .then(res => {
         console.log(res.data);
         this.setState({ searchResult: res.data });
@@ -86,7 +94,7 @@ class Landing extends Component {
           </div>
         </div>
         <h3 className="text-center">View existing collections</h3>
-        <hr/>
+        <hr />
         <div className="container flex-container darker landingcollection">
           <div className="divSanta">
             {this.state.searchResult.length ? (
