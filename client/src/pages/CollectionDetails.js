@@ -3,7 +3,6 @@ import Nav from "../components/Nav";
 import API from "../utils/API";
 import Footer from "../components/Footer";
 import InputField from "../components/InputField";
-// import Card from "../components/Cards";
 import { Link } from "react-router-dom";
 import "./CollectionDetails.css";
 import moment from "moment";
@@ -14,7 +13,6 @@ class CollectionDetails extends Component {
     editCollection: false,
     editItem: false,
     itemChanges: {}
-    // collectionId: ""
   };
 
   componentDidMount = async () => {
@@ -53,54 +51,12 @@ class CollectionDetails extends Component {
       .catch(err => console.log(err));
   };
 
-  updateNewItem = event => {
-    const { name, value } = event.target;
-    this.setState(prevState => ({
-      newItem: {
-        // object that we want to update
-        ...prevState.newItem, // keep all other key-value pairs
-        [name]: value // update the value of specific key
-      }
-    }));
-  };
-
-  createNewItem = async event => {
-    event.preventDefault();
-    await this.setState(prevState => ({
-      newItem: {
-        ...prevState.newItem,
-        collectionId: this.state.collection._id
-      }
-    }));
-    // if (this.state.newItem.year) {
-    //   await this.setState(prevState => ({
-    //     newItem: {
-    //       ...prevState.newItem,
-    //       year: moment(this.state.newItem.year).format("DD-MM-YYYY")
-    //     }
-    //   }));
-    // }
-    API.createItem(this.state.newItem)
-      .then(async res => {
-        console.log(res);
-        this.searchCollectionById(this.state.collectionId);
-      })
-      .catch(err => console.log(err));
-  };
-
-  deleteItem = itemId => {
-    API.deleteItem(itemId, this.state.collection._id)
-      .then(res => {
-        console.log(res);
-        this.searchCollectionById(this.state.collectionId);
-        this.setState({ editItem: false, itemChanges: {} });
-      })
-      .catch(err => console.log(err));
-  };
+  //edit collection functions
 
   editCollectionFunction = async () => {
     await this.setState({
       editCollection: true,
+      //when you edit the collection it defaults to private to manage the related checkbox
       collectionChanges: { isPrivate: true }
     });
   };
@@ -116,10 +72,11 @@ class CollectionDetails extends Component {
     console.log(this.state.collectionChanges);
   };
 
-  handleCheckboxChange = async event => {
+  //the checkbox requires a different function
+  handleCheckboxChange = event => {
     //needed to make another const for scope reasons
     const checkedStatus = event.target.checked;
-    await this.setState(prevState => ({
+    this.setState(prevState => ({
       collectionChanges: {
         ...prevState.collectionChanges,
         isPrivate: checkedStatus
@@ -144,13 +101,14 @@ class CollectionDetails extends Component {
       .catch(err => console.log(err));
   };
 
+  //edit item functions
+
   editItemFunction = async (id, index) => {
     if (id === this.state.collection.items[index]._id) {
       console.log("it matches");
       //setting the state here assures that it will remain false if something goes wrong. I'm double checking that I'm getting the right item
       await this.setState({
         editItem: { id: id, index: index }
-        // itemChanges: this.state.collection.items[index]
       });
     }
     console.log(this.state.editItem);
@@ -168,28 +126,61 @@ class CollectionDetails extends Component {
     console.log(this.state.itemChanges);
   };
 
+  updateItem = () => {
+    API.updateItem(this.state.editItem.id, this.state.itemChanges)
+      .then(res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+        this.setState({ editItem: false, itemChanges: {} });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //create new item functions
+
+  createNewItem = async event => {
+    event.preventDefault();
+    await this.setState(prevState => ({
+      newItem: {
+        ...prevState.newItem,
+        collectionId: this.state.collection._id
+      }
+    }));
+    API.createItem(this.state.newItem)
+      .then(async res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateNewItem = event => {
+    const { name, value } = event.target;
+    this.setState(prevState => ({
+      newItem: {
+        // object that we want to update
+        ...prevState.newItem, // keep all other key-value pairs
+        [name]: value // update the value of specific key
+      }
+    }));
+  };
+
+  //cancel changes
+
   cancelUpdate = target => {
-    // event.preventDefault();
     this.setState({
       editItem: false,
       itemChanges: {}
-      // editCollection: false
     });
     if (target === "collection") {
       this.setState({ editCollection: false });
     }
   };
 
-  updateItem = () => {
-    // if (this.state.itemChanges.year) {
-    //   await this.setState(prevState => ({
-    //     itemChanges: {
-    //       ...prevState.itemChanges,
-    //       year: moment(this.state.itemChanges.year).format("DD-MM-YYYY")
-    //     }
-    //   }));
-    // }
-    API.updateItem(this.state.editItem.id, this.state.itemChanges)
+  //delete item or collection functions
+
+  deleteItem = itemId => {
+    API.deleteItem(itemId, this.state.collection._id)
       .then(res => {
         console.log(res);
         this.searchCollectionById(this.state.collectionId);
@@ -314,34 +305,16 @@ class CollectionDetails extends Component {
             {this.state.collection.items.length ? (
               this.state.collection.items.map((item, index) => (
                 <div className="form-inline itemBox text-center" key={item._id}>
-                  {/* {this.state.editItem === item._id
-                    ?  */}
                   {this.state.collection.itemFields.map((fields, index) => (
                     <div key={index} className="divider">
                       {/* if this item was selected to be edited, show the values in input fields */}
                       {this.state.editItem.id === item._id ? (
                         // {/* !!-need to make a header for the column names!! */}
-                        // year: moment(this.state.itemChanges.year).format("DD-MM-YYYY")
-
                         <InputField
-                          // value={
-                          //   fields.type === "date"
-                          //     ? moment(
-                          //         this.state.itemChanges[fields.name]
-                          //       ).format("DD-MM-YYYY")
-                          //     : this.state.itemChanges[fields.name]
-                          // }
-                          // value={
-                          //   this.state.itemChanges[fields.name] ||
-                          // this.state.collection.items[
-                          //   this.state.editItem.index
-                          // ][fields.name]
-                          // }
                           //show the item info from the database as default, show the new state only for the ones that were changed
                           value={
                             fields.name in this.state.itemChanges
-                              ? // this.state.itemChanges[fields.name]
-                                this.state.itemChanges[fields.name]
+                              ? this.state.itemChanges[fields.name]
                               : this.state.collection.items[
                                   this.state.editItem.index
                                 ][fields.name]
@@ -349,7 +322,6 @@ class CollectionDetails extends Component {
                           onChange={this.updateExistingItem}
                           name={fields.name}
                           placeholder={fields.displayName}
-                          // type={fields.type === "date" ? "text" : fields.type}
                           type={fields.type}
                           className="inputField"
                         />
