@@ -48,6 +48,7 @@ class Collection extends Component {
     switch (this.state.type) {
       case "Music":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "artist", type: "text", displayName: "Artist" },
           { name: "album", type: "text", displayName: "Album" },
           { name: "genre", type: "text", displayName: "Genre" },
@@ -59,6 +60,7 @@ class Collection extends Component {
         break;
       case "Comics":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "name", type: "text", displayName: "Title" },
           { name: "series", type: "text", displayName: "Series" },
           { name: "issue", type: "text", displayName: "Issue" },
@@ -70,6 +72,7 @@ class Collection extends Component {
         break;
       case "Currency":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "type", type: "text", displayName: "Type" },
           { name: "country", type: "text", displayName: "Country" },
           { name: "mintMark", type: "text", displayName: "Mint Mark" },
@@ -80,6 +83,7 @@ class Collection extends Component {
         break;
       case "Cards":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "name", type: "text", displayName: "Name" },
           { name: "game", type: "text", displayName: "Game" },
           { name: "type", type: "text", displayName: "Type" },

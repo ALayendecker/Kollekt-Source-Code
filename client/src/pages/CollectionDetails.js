@@ -325,8 +325,16 @@ class CollectionDetails extends Component {
                           type={fields.type}
                           className="inputField"
                         />
+                      ) : // if this item was not selected to be edited, show the field values as normal
+                      // if it has the name image, display it as an image with the database value as the source, or the collection image if the item has none
+                      fields.name === "image" ? (
+                        <img
+                          height="50px"
+                          src={item.image || this.state.collection.image}
+                          alt="item thumbnail"
+                        ></img>
                       ) : (
-                        // if this item was not selected to be edited, show the field values as normal. if it has the type date, moment fixes the format
+                        // if it has the type date, moment fixes the format
                         <p>
                           {fields.type === "date"
                             ? moment(item[fields.name]).format("MM-DD-YYYY")
