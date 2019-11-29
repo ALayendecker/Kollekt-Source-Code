@@ -12,7 +12,8 @@ class CollectionDetails extends Component {
     newItem: {},
     editCollection: false,
     editItem: false,
-    itemChanges: {}
+    itemChanges: {},
+    sorting: {}
   };
 
   componentDidMount = async () => {
@@ -45,8 +46,9 @@ class CollectionDetails extends Component {
 
   searchCollectionById = id => {
     API.getCollectionById(id)
-      .then(res => {
-        this.setState({ collection: res.data[0] });
+      .then(async res => {
+        await this.setState({ collection: res.data[0] });
+        console.log(this.state.collection);
       })
       .catch(err => console.log(err));
   };
@@ -197,6 +199,50 @@ class CollectionDetails extends Component {
       })
       .catch(err => console.log(err));
   };
+  // on the first click for each field it sorts it ascending, on the second click it sorts it descending
+  // not using localeCompare because it doesn't work with empty fields
+  // when changing fields it remembers the setting for each. Is that desirable?
+  onSort = async (event, sortKey) => {
+    const data = this.state.collection.items;
+    if (this.state.sorting[sortKey]) {
+      // data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])).reverse();
+      data.sort(
+        (a, b) =>
+          (a[sortKey] === null) - (b[sortKey] === null) ||
+          -(a[sortKey] > b[sortKey]) ||
+          +(a[sortKey] < b[sortKey])
+      );
+      await this.setState(prevState => ({
+        sorting: {
+          ...prevState.sorting,
+          [sortKey]: false
+        }
+      }));
+    } else {
+      // data.sort((a, b) => a[sortKey].localeCompare(b[sortKey]));
+      data.sort(
+        (a, b) =>
+          (a[sortKey] === null) - (b[sortKey] === null) ||
+          +(a[sortKey] > b[sortKey]) ||
+          -(a[sortKey] < b[sortKey])
+      );
+      // .reverse(); //swaped + and - signals instead of doing reverse
+      await this.setState(prevState => ({
+        sorting: {
+          ...prevState.sorting,
+          [sortKey]: true
+        }
+      }));
+    }
+    await this.setState(prevState => ({
+      collection: {
+        ...prevState.collection,
+        items: data
+      }
+    }));
+    // console.log(this.state.collection.items);
+    // console.log(this.state.sorting);
+  };
 
   render() {
     return (
@@ -301,6 +347,14 @@ class CollectionDetails extends Component {
             <hr />
             <h5>Items in your collection:</h5>
             <br />
+            {/* header for the item list that sorts on click */}
+            <div className="row itemBox">
+              {this.state.collection.itemFields.map((fields, index) => (
+                <p key={index} onClick={e => this.onSort(e, fields.name)}>
+                  {fields.displayName}
+                </p>
+              ))}
+            </div>
             {/* if the collection has items, show them */}
             {this.state.collection.items.length ? (
               this.state.collection.items.map((item, index) => (
@@ -309,7 +363,6 @@ class CollectionDetails extends Component {
                     <div key={index} className="divider">
                       {/* if this item was selected to be edited, show the values in input fields */}
                       {this.state.editItem.id === item._id ? (
-                        // {/* !!-need to make a header for the column names!! */}
                         <InputField
                           //show the item info from the database as default, show the new state only for the ones that were changed
                           value={
