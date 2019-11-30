@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
+import "./style.css";
+import Nav from "../Nav"
+
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -11,6 +14,9 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   }, [getProfiles]);
 
   return (
+    <div>
+      <Nav />
+      <div className="profilePage container">
     <Fragment>
       {loading ? (
         <Spinner />
@@ -30,6 +36,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         </Fragment>
       )}
     </Fragment>
+    </div>
+    </div>
   );
 };
 

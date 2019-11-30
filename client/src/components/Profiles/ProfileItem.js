@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./style.css";
 
 const ProfileItem = ({
   profile: {
@@ -11,13 +12,14 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <div className="profile bg-light">
+    <div className="container profileItem">
+    <div className="profile">
       <img src={avatar} alt="" className="round-img" />
       <div>
         <h2>{username}</h2>
         <p>{status}</p>
         <p className="my-1">{location && <span>{location}</span>}</p>
-        <Link to={`/profile/user/${_id}`} className="btn btn-primary">
+        <Link to={`/profile/user/${_id}`} className="btn btn-secondary">
           View Profile
         </Link>
       </div>
@@ -29,6 +31,7 @@ const ProfileItem = ({
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 };

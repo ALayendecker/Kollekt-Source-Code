@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
+import "./style.css";
 
 const EditProfile = ({
   profile: { profile, loading },
@@ -28,11 +29,11 @@ const EditProfile = ({
     });
   }, [
     loading,
-    getCurrentProfile,
-    profile.bio,
-    profile.location,
-    profile.status,
-    profile.interests
+    // getCurrentProfile,
+    // profile.bio,
+    // profile.location,
+    // profile.status,
+    // profile.interests
   ]);
 
   const { location, bio, status, interests } = formData;
@@ -86,8 +87,8 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated values (eg. Magic Cards,Marvel
-            Comics,Dice,Coins)
+            Please use comma separated items (eg. Magic Cards, Marvel
+            Comics, Dice, Coins)
           </small>
         </div>
         <div className="form-group">
@@ -133,8 +134,8 @@ const EditProfile = ({
         </div> */}
 
         {/* this is a submit button as input */}
-        <input type="submit" className="btn btn-primary my-1 input" />
-        <Link className="btn btn-light my-1" to="/dashboard">
+        <input type="submit" className="btn btn-secondary my-1 input" />
+        <Link className="btn btn-secondary my-1" to="/dashboard">
           Go Back
         </Link>
       </form>
