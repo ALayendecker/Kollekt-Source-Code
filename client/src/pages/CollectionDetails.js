@@ -3,7 +3,6 @@ import Nav from "../components/Nav";
 import API from "../utils/API";
 import Footer from "../components/Footer";
 import InputField from "../components/InputField";
-// import Card from "../components/Cards";
 import { Link } from "react-router-dom";
 import "./CollectionDetails.css";
 import moment from "moment";
@@ -13,8 +12,8 @@ class CollectionDetails extends Component {
     newItem: {},
     editCollection: false,
     editItem: false,
-    itemChanges: {}
-    // collectionId: ""
+    itemChanges: {},
+    sorting: {}
   };
 
   componentDidMount = async () => {
@@ -47,62 +46,22 @@ class CollectionDetails extends Component {
 
   searchCollectionById = id => {
     API.getCollectionById(id)
-      .then(res => {
-        this.setState({ collection: res.data[0] });
-      })
-      .catch(err => console.log(err));
-  };
-
-  updateNewItem = event => {
-    const { name, value } = event.target;
-    this.setState(prevState => ({
-      newItem: {
-        // object that we want to update
-        ...prevState.newItem, // keep all other key-value pairs
-        [name]: value // update the value of specific key
-      }
-    }));
-  };
-
-  createNewItem = async event => {
-    event.preventDefault();
-    await this.setState(prevState => ({
-      newItem: {
-        ...prevState.newItem,
-        collectionId: this.state.collection._id
-      }
-    }));
-    if (this.state.newItem.year) {
-      await this.setState(prevState => ({
-        newItem: {
-          ...prevState.newItem,
-          year: moment(this.state.newItem.year).format("DD-MM-YYYY")
-        }
-      }));
-    }
-    API.createItem(this.state.newItem)
       .then(async res => {
-        console.log(res);
-        this.searchCollectionById(this.state.collectionId);
+        await this.setState({ collection: res.data[0] });
+        console.log(this.state.collection);
       })
       .catch(err => console.log(err));
   };
 
-  deleteItem = itemId => {
-    API.deleteItem(itemId, this.state.collection._id)
-      .then(res => {
-        console.log(res);
-        this.searchCollectionById(this.state.collectionId);
-        this.setState({ editItem: false, itemChanges: {} });
-      })
-      .catch(err => console.log(err));
-  };
+  //edit collection functions
 
   editCollectionFunction = async () => {
     await this.setState({
       editCollection: true,
-      collectionChanges: { isPrivate: true }
+      //when you edit the collection it defaults to private to manage the related checkbox
+      collectionChanges: { isPrivate: this.state.collection.isPrivate }
     });
+    console.log(this.state.collectionChanges);
   };
 
   updateEditCollection = event => {
@@ -116,10 +75,11 @@ class CollectionDetails extends Component {
     console.log(this.state.collectionChanges);
   };
 
-  handleCheckboxChange = async event => {
+  //the checkbox requires a different function
+  handleCheckboxChange = event => {
     //needed to make another const for scope reasons
     const checkedStatus = event.target.checked;
-    await this.setState(prevState => ({
+    this.setState(prevState => ({
       collectionChanges: {
         ...prevState.collectionChanges,
         isPrivate: checkedStatus
@@ -144,15 +104,15 @@ class CollectionDetails extends Component {
       .catch(err => console.log(err));
   };
 
+  //edit item functions
+
   editItemFunction = async (id, index) => {
-    console.log(id);
-    console.log(index);
-    console.log(this.state.collection.items);
-    console.log(this.state.collection.items[index]);
     if (id === this.state.collection.items[index]._id) {
       console.log("it matches");
       //setting the state here assures that it will remain false if something goes wrong. I'm double checking that I'm getting the right item
-      await this.setState({ editItem: { id: id, index: index } });
+      await this.setState({
+        editItem: { id: id, index: index }
+      });
     }
     console.log(this.state.editItem);
   };
@@ -169,20 +129,61 @@ class CollectionDetails extends Component {
     console.log(this.state.itemChanges);
   };
 
+  updateItem = () => {
+    API.updateItem(this.state.editItem.id, this.state.itemChanges)
+      .then(res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+        this.setState({ editItem: false, itemChanges: {} });
+      })
+      .catch(err => console.log(err));
+  };
+
+  //create new item functions
+
+  createNewItem = async event => {
+    event.preventDefault();
+    await this.setState(prevState => ({
+      newItem: {
+        ...prevState.newItem,
+        collectionId: this.state.collection._id
+      }
+    }));
+    API.createItem(this.state.newItem)
+      .then(async res => {
+        console.log(res);
+        this.searchCollectionById(this.state.collectionId);
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateNewItem = event => {
+    const { name, value } = event.target;
+    this.setState(prevState => ({
+      newItem: {
+        // object that we want to update
+        ...prevState.newItem, // keep all other key-value pairs
+        [name]: value // update the value of specific key
+      }
+    }));
+  };
+
+  //cancel changes
+
   cancelUpdate = target => {
-    // event.preventDefault();
     this.setState({
       editItem: false,
       itemChanges: {}
-      // editCollection: false
     });
     if (target === "collection") {
       this.setState({ editCollection: false });
     }
   };
 
-  updateItem = () => {
-    API.updateItem(this.state.editItem.id, this.state.itemChanges)
+  //delete item or collection functions
+
+  deleteItem = itemId => {
+    API.deleteItem(itemId, this.state.collection._id)
       .then(res => {
         console.log(res);
         this.searchCollectionById(this.state.collectionId);
@@ -199,22 +200,77 @@ class CollectionDetails extends Component {
       })
       .catch(err => console.log(err));
   };
+  // on the first click for each field it sorts it ascending, on the second click it sorts it descending
+  // not using localeCompare because it doesn't work with empty fields
+  // when changing fields it remembers the setting for each. Is that desirable?
+  onSort = async (event, sortKey) => {
+    const data = this.state.collection.items;
+    if (this.state.sorting[sortKey]) {
+      // data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])).reverse();
+      data.sort(
+        (a, b) =>
+          (a[sortKey] === null) - (b[sortKey] === null) ||
+          -(a[sortKey] > b[sortKey]) ||
+          +(a[sortKey] < b[sortKey])
+      );
+      await this.setState(prevState => ({
+        sorting: {
+          ...prevState.sorting,
+          [sortKey]: false
+        }
+      }));
+    } else {
+      // data.sort((a, b) => a[sortKey].localeCompare(b[sortKey]));
+      data.sort(
+        (a, b) =>
+          (a[sortKey] === null) - (b[sortKey] === null) ||
+          +(a[sortKey] > b[sortKey]) ||
+          -(a[sortKey] < b[sortKey])
+      );
+      // .reverse(); //swaped + and - signals instead of doing reverse
+      await this.setState(prevState => ({
+        sorting: {
+          ...prevState.sorting,
+          [sortKey]: true
+        }
+      }));
+    }
+    await this.setState(prevState => ({
+      collection: {
+        ...prevState.collection,
+        items: data
+      }
+    }));
+    // console.log(this.state.collection.items);
+    // console.log(this.state.sorting);
+  };
 
   render() {
     return (
       <div>
         <Nav />
+        {/* if there is a collection, render it */}
         {this.state.collection && (
           <div key={this.state.collection._id} className="maincontainer">
             <br></br>
-            <img className="collectionPic" src={this.state.collection.image} alt="..." />
+            <img
+              className="collectionPic"
+              src={this.state.collection.image}
+              alt={this.state.collection.name}
+            />
             <br></br>
             <br></br>
-            <h6>COLLECTION NAME: <span style={{ fontWeight: "bolder", fontSize: 25}}> {this.state.collection.name}</span></h6>
+            <h6>
+              COLLECTION NAME:
+              <span style={{ fontWeight: "bolder", fontSize: 25 }}>
+                {this.state.collection.name}
+              </span>
+            </h6>
             <button onClick={this.editCollectionFunction}>
               Edit Kollektion
             </button>
             <hr></hr>
+            {/* if the user clicked the Edit Kollektion button, show the options to edit the collection */}
             {this.state.editCollection && (
               <div className="row">
                 <p>
@@ -263,70 +319,85 @@ class CollectionDetails extends Component {
               </div>
             )}
             <div>
-            <h5>Add to this collection:</h5>
+              <h5>Add to this collection:</h5>
               <form className="form-inline">
-                {this.state.collection.itemFields.map((item, index) => (
+                {/* show the fields to add a new item based on the collection */}
+                {this.state.collection.itemFields.map((fields, index) => (
                   <div key={index} className="divider">
                     <p>
-                      <strong> {item.displayName}</strong>
+                      <strong> {fields.displayName}</strong>
                     </p>
                     <InputField
                       value={this.state.newItem.item}
                       onChange={this.updateNewItem}
-                      name={item.name}
-                      placeholder={item.displayName}
-                      type={item.type}
+                      name={fields.name}
+                      placeholder={fields.displayName}
+                      type={fields.type}
                       className="form-control input"
                     />
                   </div>
                 ))}
               </form>
-              <button className="create btn btn-secondary" onClick={this.createNewItem}>
+              <button
+                className="create btn btn-secondary"
+                onClick={this.createNewItem}
+              >
                 Create New Item
               </button>
             </div>
-            <hr/>
+            <hr />
             <h5>Items in your collection:</h5>
             <br />
+            {/* header for the item list that sorts on click */}
+            <div className="row itemBox">
+              {this.state.collection.itemFields.map((fields, index) => (
+                <p key={index} onClick={e => this.onSort(e, fields.name)}>
+                  {fields.displayName}
+                </p>
+              ))}
+            </div>
+            {/* if the collection has items, show them */}
             {this.state.collection.items.length ? (
               this.state.collection.items.map((item, index) => (
-             
-                <div
-                  className="form-inline itemBox text-center"
-                  key={item._id}
-                >
-                  {this.state.editItem.id === item._id
-                    ? this.state.collection.itemFields.map((fields, index) => (
-                        <div key={index} className="divider">
-                          {/* !!-need to make a header for the column names!! */}
-//                           <p>
-//                             <strong> {fields.displayName}</strong>
-//                           </p>
-                          <InputField
-                            value={
-                              this.state.itemChanges[fields.name] ||
-                              this.state.collection.items[
-                                this.state.editItem.index
-                              ][fields.name]
-                            }
-                            onChange={this.updateExistingItem}
-                            name={fields.name}
-                            placeholder={fields.displayName}
-                            type={fields.type}
-                            className="inputField"
-                          />
-                        </div>
-                      ))
-                    : this.state.collection.itemFields.map(
-                        (fields, otherIndex) => (
-                          <div key={otherIndex}>
-//                             <p>
-//                               <strong> {fields.displayName} </strong>
-//                             </p>
-                            <p>{item[fields.name]}</p>
-                          </div>
-                        )
+                <div className="form-inline itemBox text-center" key={item._id}>
+                  {this.state.collection.itemFields.map((fields, index) => (
+                    <div key={index} className="divider">
+                      {/* if this item was selected to be edited, show the values in input fields */}
+                      {this.state.editItem.id === item._id ? (
+                        <InputField
+                          //show the item info from the database as default, show the new state only for the ones that were changed
+                          value={
+                            fields.name in this.state.itemChanges
+                              ? this.state.itemChanges[fields.name]
+                              : this.state.collection.items[
+                                  this.state.editItem.index
+                                ][fields.name]
+                          }
+                          onChange={this.updateExistingItem}
+                          name={fields.name}
+                          placeholder={fields.displayName}
+                          type={fields.type}
+                          className="inputField"
+                        />
+                      ) : // if this item was not selected to be edited, show the field values as normal
+                      // if it has the name image, display it as an image with the database value as the source, or the collection image if the item has none
+                      fields.name === "image" ? (
+                        <img
+                          height="50px"
+                          src={item.image || this.state.collection.image}
+                          alt="item thumbnail"
+                        ></img>
+                      ) : (
+                        // if it has the type date, moment fixes the format
+                        <p>
+                          {fields.type === "date"
+                            ? moment(item[fields.name]).format("MM-DD-YYYY")
+                            : item[fields.name]}
+                        </p>
                       )}
+                    </div>
+                  ))}
+                  {/* if the collection is being edited but this item was not selected to be edited, show the edit button */}
                   {this.state.editCollection && !this.state.editItem.id && (
                     <button
                       onClick={() => this.editItemFunction(item._id, index)}
@@ -334,13 +405,17 @@ class CollectionDetails extends Component {
                       Edit Item
                     </button>
                   )}
+                  {/* if this item is being edited, show the buttons to save changes, discard changes and delete it */}
                   {this.state.editItem.id === item._id && (
                     <div>
                       <button onClick={this.updateItem}>Save Changes</button>
                       <button onClick={() => this.cancelUpdate("item")}>
                         Discard Changes
                       </button>
-                      <button className="btn btn-secondary" onClick={() => this.deleteItem(item._id)}>
+                      <button
+                        className="btn btn-secondary"
+                        onClick={() => this.deleteItem(item._id)}
+                      >
                         Delete Item
                       </button>
                     </div>
@@ -348,6 +423,7 @@ class CollectionDetails extends Component {
                 </div>
               ))
             ) : (
+              // if the collection has no items
               <p>No items to show</p>
             )}
           </div>
@@ -357,7 +433,9 @@ class CollectionDetails extends Component {
         <br></br>
 
         <Link to="/mycollections">
-          <button className="back btn btn-secondary">Back to collections</button>
+          <button className="back btn btn-secondary">
+            Back to collections
+          </button>
         </Link>
         <Footer />
       </div>

@@ -1,9 +1,18 @@
 const db = require("../models");
+const Profile = require("../models/Profile");
 //edit the functions as we go
 module.exports = {
   findByType: function(req, res) {
     console.log("findByType with req.params.type = " + req.params.type);
-    db.Collection.find({ type: req.params.type })
+    db.Collection.find({ type: req.params.type, isPrivate: false })
+      .select({ name: 1, type: 1, image: 1 })
+      .then(dbCollection => res.json(dbCollection))
+      .catch(err => res.status(422).json(err));
+  },
+  findOneByType: function(req, res) {
+    console.log("findOneByType with req.params.type = " + req.params.type);
+    db.Collection.findOne({ type: req.params.type, isPrivate: false })
+      .select({ name: 1, type: 1, image: 1 })
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },
@@ -53,7 +62,17 @@ module.exports = {
   create: function(req, res) {
     db.Collection.create(req.body)
       .then(function(dbCollection) {
-        res.json(dbCollection);
+        return Profile.findOneAndUpdate(
+          { _id: req.body.profileId },
+          { $push: { collections: dbCollection._id } },
+          { new: true }
+        )
+          .then(function(dbProfile) {
+            res.json(dbProfile);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(function(err) {
         res.json(err);
