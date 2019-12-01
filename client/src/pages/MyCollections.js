@@ -13,7 +13,6 @@ class Collection extends Component {
     name: "",
     type: "",
     searchAllCollectionsResult: [],
-    collectionId: "",
     isPrivate: true
   };
 
@@ -49,11 +48,11 @@ class Collection extends Component {
     switch (this.state.type) {
       case "Music":
         itemFields = [
-          // { name: "name", type: "text", displayName: "Song Name" },
+          { name: "image", type: "text", displayName: "Image" },
           { name: "artist", type: "text", displayName: "Artist" },
           { name: "album", type: "text", displayName: "Album" },
           { name: "genre", type: "text", displayName: "Genre" },
-          { name: "year", type: "date", displayName: "Release Date" },
+          { name: "date", type: "date", displayName: "Release Date" },
           { name: "quantity", type: "number", displayName: "Quantity" }
         ];
         image = "/assets/images/vinyl.jpg";
@@ -61,31 +60,34 @@ class Collection extends Component {
         break;
       case "Comics":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "name", type: "text", displayName: "Title" },
           { name: "series", type: "text", displayName: "Series" },
           { name: "issue", type: "text", displayName: "Issue" },
           { name: "genre", type: "text", displayName: "Genre" },
-          { name: "year", type: "date", displayName: "Release Date" },
+          { name: "date", type: "date", displayName: "Release Date" },
           { name: "quantity", type: "number", displayName: "Quantity" }
         ];
         image = "/assets/images/comic.jpeg";
         break;
       case "Currency":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "type", type: "text", displayName: "Type" },
           { name: "country", type: "text", displayName: "Country" },
           { name: "mintMark", type: "text", displayName: "Mint Mark" },
-          { name: "year", type: "date", displayName: "Year" },
+          { name: "year", type: "number", displayName: "Year" },
           { name: "quantity", type: "number", displayName: "Quantity" }
         ];
         image = "/assets/images/coins.jpg";
         break;
       case "Cards":
         itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
           { name: "name", type: "text", displayName: "Name" },
           { name: "game", type: "text", displayName: "Game" },
           { name: "type", type: "text", displayName: "Type" },
-          { name: "year", type: "date", displayName: "Year" },
+          { name: "year", type: "number", displayName: "Year" },
           { name: "quantity", type: "number", displayName: "Quantity" }
         ];
         image = "/assets/images/cards.jpg";
