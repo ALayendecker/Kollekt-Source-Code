@@ -5,6 +5,3 @@ function InputField(props) {
 }
 export default InputField;
 
-/* <div className="form-group">
-<input className="form-control" {...props} />
-</div> */

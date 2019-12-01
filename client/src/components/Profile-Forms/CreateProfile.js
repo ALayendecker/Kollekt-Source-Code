@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 import "./style.css";
+import Nav from "../Nav";
+import Footer from "../Footer";
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -24,6 +26,8 @@ const CreateProfile = ({ createProfile, history }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
+    <div>
+      <Nav />
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
@@ -118,6 +122,8 @@ const CreateProfile = ({ createProfile, history }) => {
         </Link>
       </form>
     </Fragment>
+    <Footer />
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 // import Profile from "../components/Profile";
 import Dashboardjs from "../components/DashboardComp/Dashboardjs";
 import Profile from "../components/Profile/index";
+import Collections from "./MyCollections"
 
 class Dashboard extends Component {
   render() {
@@ -15,6 +16,7 @@ class Dashboard extends Component {
         <div className="main row ">
           <Profile />
           <Dashboardjs />
+          <Collections />
         </div>
         <Footer />
       </div>

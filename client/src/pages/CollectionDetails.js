@@ -211,9 +211,7 @@ class CollectionDetails extends Component {
             <br></br>
             <br></br>
             <h6>COLLECTION NAME: <span style={{ fontWeight: "bolder", fontSize: 25}}> {this.state.collection.name}</span></h6>
-            <button onClick={this.editCollectionFunction}>
-              Edit Kollektion
-            </button>
+
             <hr></hr>
             {this.state.editCollection && (
               <div className="row">
@@ -229,7 +227,7 @@ class CollectionDetails extends Component {
                   name="name"
                   placeholder="Name"
                   type="text"
-                  className="inputField"
+                  className="inputField input"
                 />
 
                 <p>
@@ -244,7 +242,7 @@ class CollectionDetails extends Component {
                   name="image"
                   placeholder="Image"
                   type="text"
-                  className="inputField"
+                  className="inputField input"
                 />
                 <p>Private</p>
                 <input
@@ -253,15 +251,17 @@ class CollectionDetails extends Component {
                   checked={this.state.collectionChanges.isPrivate}
                   onChange={this.handleCheckboxChange}
                 />
-                <button onClick={this.updateCollection}>Save Changes</button>
-                <button onClick={() => this.cancelUpdate("collection")}>
+                
+                <button onClick={this.updateCollection} className="btn btn-secondary">Save Changes</button>
+                <button onClick={() => this.cancelUpdate("collection")} className="btn btn-secondary">
                   Discard Changes
                 </button>
-                <button onClick={this.deleteCollection}>
+                <button onClick={this.deleteCollection} className="btn btn-danger">
                   Delete Collection
                 </button>
               </div>
             )}
+            <hr />
             <div>
             <h5>Add to this collection:</h5>
               <form className="form-inline">
@@ -284,6 +284,9 @@ class CollectionDetails extends Component {
               <button className="create btn btn-secondary" onClick={this.createNewItem}>
                 Create New Item
               </button>
+              <button onClick={this.editCollectionFunction} className="btn btn-secondary">
+              Edit Collection
+            </button>
             </div>
             <hr/>
             <h5>Items in your collection:</h5>
@@ -299,9 +302,9 @@ class CollectionDetails extends Component {
                     ? this.state.collection.itemFields.map((fields, index) => (
                         <div key={index} className="divider">
                           {/* !!-need to make a header for the column names!! */}
-//                           <p>
-//                             <strong> {fields.displayName}</strong>
-//                           </p>
+                           {/* <p>
+                             <strong> {fields.displayName}</strong>
+                           </p> */}
                           <InputField
                             value={
                               this.state.itemChanges[fields.name] ||
@@ -313,34 +316,34 @@ class CollectionDetails extends Component {
                             name={fields.name}
                             placeholder={fields.displayName}
                             type={fields.type}
-                            className="inputField"
+                            className="inputField inputHidden"
                           />
                         </div>
                       ))
                     : this.state.collection.itemFields.map(
                         (fields, otherIndex) => (
                           <div key={otherIndex}>
-//                             <p>
-//                               <strong> {fields.displayName} </strong>
-//                             </p>
+                             {/* <p>
+                               <strong> {fields.displayName} </strong>
+                             </p> */}
                             <p>{item[fields.name]}</p>
                           </div>
                         )
                       )}
                   {this.state.editCollection && !this.state.editItem.id && (
                     <button
-                      onClick={() => this.editItemFunction(item._id, index)}
+                      onClick={() => this.editItemFunction(item._id, index)} className="btn btn-secondary"
                     >
-                      Edit Item
+                    Edit Item
                     </button>
                   )}
                   {this.state.editItem.id === item._id && (
                     <div>
-                      <button onClick={this.updateItem}>Save Changes</button>
-                      <button onClick={() => this.cancelUpdate("item")}>
+                      <button onClick={this.updateItem} className="btn btn-secondary">Save Changes</button>
+                      <button onClick={() => this.cancelUpdate("item")} className="btn btn-secondary">
                         Discard Changes
                       </button>
-                      <button className="btn btn-secondary" onClick={() => this.deleteItem(item._id)}>
+                      <button className="btn btn-secondary" onClick={() => this.deleteItem(item._id)} className="btn btn-secondary">
                         Delete Item
                       </button>
                     </div>
