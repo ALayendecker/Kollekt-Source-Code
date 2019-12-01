@@ -125,7 +125,6 @@ class Collection extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <div>
           <h1>Create a new Kollection</h1>
           <div>
