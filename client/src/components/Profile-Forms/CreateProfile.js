@@ -3,6 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
+import "./style.css";
+import Nav from "../Nav";
+import Footer from "../Footer";
 
 const CreateProfile = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
@@ -23,6 +26,8 @@ const CreateProfile = ({ createProfile, history }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
+    <div>
+      <Nav />
     <Fragment>
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
@@ -111,12 +116,14 @@ const CreateProfile = ({ createProfile, history }) => {
         </div> */}
 
         {/* this is a submit button as input */}
-        <input type="submit" className="btn btn-primary my-1" />
-        <Link className="btn btn-light my-1" to="/dashboard">
+        <input type="submit" className="btn btn-secondary my-1" />
+        <Link className="btn btn-secondary my-1" to="/dashboard">
           Go Back
         </Link>
       </form>
     </Fragment>
+    <Footer />
+    </div>
   );
 };
 

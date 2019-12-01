@@ -7,8 +7,8 @@ import Nav from "../components/Nav";
 import Dashboardjs from "../components/DashboardComp/Dashboardjs";
 import Profile from "../components/Profile/index";
 import CreateCollection from "../components/CreateCollection/CreateCollection";
-
 import API from "../utils/API";
+
 
 class Dashboard extends Component {
   state = {
@@ -113,6 +113,7 @@ class Dashboard extends Component {
         <div className="main row ">
           <Profile />
           <Dashboardjs />
+          <Collections />
         </div>
         <CreateCollection
           name={this.state.name}

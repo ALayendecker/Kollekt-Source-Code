@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
+import "./style.css";
+import Nav from "../Nav"
+
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -11,13 +14,16 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   }, [getProfiles]);
 
   return (
+    <div>
+      <Nav />
+      <div className="profilePage container">
     <Fragment>
       {loading ? (
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className="large text-primary">Collectors</h1>
-          <p className="lead"></p> Look at all these other collectors!
+          <h1 className="large headerText">Collectors</h1>
+          <p className="profileP"> Browse other collectors!</p>
           <div className="profiles">
             {profiles.length > 0 ? (
               profiles.map(profile => (
@@ -30,6 +36,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         </Fragment>
       )}
     </Fragment>
+    </div>
+    </div>
   );
 };
 

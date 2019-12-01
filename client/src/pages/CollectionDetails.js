@@ -266,9 +266,10 @@ class CollectionDetails extends Component {
                 {this.state.collection.name}
               </span>
             </h6>
-            <button onClick={this.editCollectionFunction}>
+            <button className="btn btn-secondary" onClick={this.editCollectionFunction}>
               Edit Kollektion
             </button>
+
             <hr></hr>
             {/* if the user clicked the Edit Kollektion button, show the options to edit the collection */}
             {this.state.editCollection && (
@@ -285,7 +286,7 @@ class CollectionDetails extends Component {
                   name="name"
                   placeholder="Name"
                   type="text"
-                  className="inputField"
+                  className="inputField input"
                 />
 
                 <p>
@@ -300,7 +301,7 @@ class CollectionDetails extends Component {
                   name="image"
                   placeholder="Image"
                   type="text"
-                  className="inputField"
+                  className="inputField input"
                 />
                 <p>Private</p>
                 <input
@@ -309,15 +310,17 @@ class CollectionDetails extends Component {
                   checked={this.state.collectionChanges.isPrivate}
                   onChange={this.handleCheckboxChange}
                 />
-                <button onClick={this.updateCollection}>Save Changes</button>
-                <button onClick={() => this.cancelUpdate("collection")}>
+                
+                <button onClick={this.updateCollection} className="btn btn-secondary">Save Changes</button>
+                <button onClick={() => this.cancelUpdate("collection")} className="btn btn-secondary">
                   Discard Changes
                 </button>
-                <button onClick={this.deleteCollection}>
+                <button onClick={this.deleteCollection} className="btn btn-danger">
                   Delete Collection
                 </button>
               </div>
             )}
+            <hr />
             <div>
               <h5>Add to this collection:</h5>
               <form className="form-inline">
@@ -344,6 +347,9 @@ class CollectionDetails extends Component {
               >
                 Create New Item
               </button>
+              <button onClick={this.editCollectionFunction} className="btn btn-secondary">
+              Edit Collection
+            </button>
             </div>
             <hr />
             <h5>Items in your collection:</h5>
@@ -400,16 +406,16 @@ class CollectionDetails extends Component {
                   {/* if the collection is being edited but this item was not selected to be edited, show the edit button */}
                   {this.state.editCollection && !this.state.editItem.id && (
                     <button
-                      onClick={() => this.editItemFunction(item._id, index)}
+                      onClick={() => this.editItemFunction(item._id, index)} className="btn btn-secondary"
                     >
-                      Edit Item
+                    Edit Item
                     </button>
                   )}
                   {/* if this item is being edited, show the buttons to save changes, discard changes and delete it */}
                   {this.state.editItem.id === item._id && (
                     <div>
-                      <button onClick={this.updateItem}>Save Changes</button>
-                      <button onClick={() => this.cancelUpdate("item")}>
+                      <button onClick={this.updateItem} className="btn btn-secondary">Save Changes</button>
+                      <button onClick={() => this.cancelUpdate("item")} className="btn btn-secondary">
                         Discard Changes
                       </button>
                       <button

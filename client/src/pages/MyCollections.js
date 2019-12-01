@@ -127,15 +127,16 @@ class Collection extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <div>
           <h1>Create a new Kollection</h1>
+          <div>
           <form className="form-inline">
             <input
               value={this.state.name}
               onChange={this.handleInputChange}
               name="name"
               placeholder="Name you collection"
+              className="input"
             />
             <AddForm text={this.state.type || "Select a type"}>
               <DropdownButton onClick={() => this.setCollectionType("Music")}>
@@ -161,6 +162,7 @@ class Collection extends Component {
             />
             <button onClick={this.handleFormSubmit}>Create Kollection</button>
           </form>
+          </div>
           <hr></hr>
           <br></br>
           {this.state.searchAllCollectionsResult.length ? (

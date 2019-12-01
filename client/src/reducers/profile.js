@@ -7,13 +7,14 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  profile: null,
+  profile: null, 
   profiles: [],
   //for github repos we wont need
   repos: [],
-  loading: true,
+  loading: true, 
   error: {}
 };
+
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -27,12 +28,18 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_PROFILES:
-      return { ...state, profiles: payload, loading: false };
+      return { 
+        ...state, 
+        profiles: payload, 
+        loading: false 
+      };
     case PROFILE_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false, 
+        // the below code is in master code but was not in ours
+        profile: null
       };
     case CLEAR_PROFILE:
       return {
