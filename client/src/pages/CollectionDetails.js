@@ -207,10 +207,20 @@ class CollectionDetails extends Component {
         {this.state.collection && (
           <div key={this.state.collection._id} className="maincontainer">
             <br></br>
-            <img className="collectionPic" src={this.state.collection.image} alt="..." />
+            <img
+              className="collectionPic"
+              src={this.state.collection.image}
+              alt="..."
+            />
             <br></br>
             <br></br>
-            <h6>COLLECTION NAME: <span style={{ fontWeight: "bolder", fontSize: 25}}> {this.state.collection.name}</span></h6>
+            <h6>
+              COLLECTION NAME:{" "}
+              <span style={{ fontWeight: "bolder", fontSize: 25 }}>
+                {" "}
+                {this.state.collection.name}
+              </span>
+            </h6>
             <button onClick={this.editCollectionFunction}>
               Edit Kollektion
             </button>
@@ -263,7 +273,7 @@ class CollectionDetails extends Component {
               </div>
             )}
             <div>
-            <h5>Add to this collection:</h5>
+              <h5>Add to this collection:</h5>
               <form className="form-inline">
                 {this.state.collection.itemFields.map((item, index) => (
                   <div key={index} className="divider">
@@ -281,27 +291,28 @@ class CollectionDetails extends Component {
                   </div>
                 ))}
               </form>
-              <button className="create btn btn-secondary" onClick={this.createNewItem}>
+              <button
+                className="create btn btn-secondary"
+                onClick={this.createNewItem}
+              >
                 Create New Item
               </button>
             </div>
-            <hr/>
+            <hr />
             <h5>Items in your collection:</h5>
             <br />
             {this.state.collection.items.length ? (
               this.state.collection.items.map((item, index) => (
-             
-                <div
-                  className="form-inline itemBox text-center"
-                  key={item._id}
-                >
+                <div className="form-inline itemBox text-center" key={item._id}>
                   {this.state.editItem.id === item._id
                     ? this.state.collection.itemFields.map((fields, index) => (
                         <div key={index} className="divider">
                           {/* !!-need to make a header for the column names!! */}
-//                           <p>
-//                             <strong> {fields.displayName}</strong>
-//                           </p>
+                          {/* //{" "}
+                          <p>
+                            // <strong> {fields.displayName}</strong>
+                            //{" "}
+                          </p> */}
                           <InputField
                             value={
                               this.state.itemChanges[fields.name] ||
@@ -320,9 +331,11 @@ class CollectionDetails extends Component {
                     : this.state.collection.itemFields.map(
                         (fields, otherIndex) => (
                           <div key={otherIndex}>
-//                             <p>
-//                               <strong> {fields.displayName} </strong>
-//                             </p>
+                            {/* //{" "}
+                            <p>
+                              // <strong> {fields.displayName} </strong>
+                              //{" "}
+                            </p> */}
                             <p>{item[fields.name]}</p>
                           </div>
                         )
@@ -340,7 +353,10 @@ class CollectionDetails extends Component {
                       <button onClick={() => this.cancelUpdate("item")}>
                         Discard Changes
                       </button>
-                      <button className="btn btn-secondary" onClick={() => this.deleteItem(item._id)}>
+                      <button
+                        className="btn btn-secondary"
+                        onClick={() => this.deleteItem(item._id)}
+                      >
                         Delete Item
                       </button>
                     </div>
@@ -357,7 +373,9 @@ class CollectionDetails extends Component {
         <br></br>
 
         <Link to="/mycollections">
-          <button className="back btn btn-secondary">Back to collections</button>
+          <button className="back btn btn-secondary">
+            Back to collections
+          </button>
         </Link>
         <Footer />
       </div>

@@ -28,11 +28,11 @@ const EditProfile = ({
     });
   }, [
     loading,
-    getCurrentProfile,
-    profile.bio,
-    profile.location,
-    profile.status,
-    profile.interests
+    getCurrentProfile
+    // profile.bio,
+    // profile.location,
+    // profile.status,
+    // profile.interests
   ]);
 
   const { location, bio, status, interests } = formData;

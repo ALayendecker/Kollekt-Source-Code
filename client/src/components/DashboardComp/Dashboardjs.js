@@ -22,7 +22,9 @@ const Dashboardjs = ({
     <Fragment>
       <h1 className="large text-primary"> Profile</h1>
       <p className="lead">
-        <p>Welcome {user && user.username}</p>
+        <p>
+          Welcome {user && user.username} {user._id}
+        </p>
       </p>
       {profile !== null ? (
         <Fragment>
