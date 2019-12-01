@@ -31,7 +31,7 @@ const EditProfile = ({
     });
   }, [
     loading,
-    // getCurrentProfile,
+    getCurrentProfile,
     // profile.bio,
     // profile.location,
     // profile.status,
