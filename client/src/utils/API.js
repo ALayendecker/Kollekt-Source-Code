@@ -2,8 +2,8 @@ import axios from "axios";
 //this might host all API functions. Might need to be separated later
 export default {
   //Collection
-  createCollection: function(objectWithParameters) {
-    return axios.post("api/collections/create", objectWithParameters);
+  createCollection: function(newCollection) {
+    return axios.post("api/collections/create", newCollection);
   },
   getCollectionByType: function(query) {
     console.log(query);

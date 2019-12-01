@@ -59,8 +59,9 @@ class CollectionDetails extends Component {
     await this.setState({
       editCollection: true,
       //when you edit the collection it defaults to private to manage the related checkbox
-      collectionChanges: { isPrivate: true }
+      collectionChanges: { isPrivate: this.state.collection.isPrivate }
     });
+    console.log(this.state.collectionChanges);
   };
 
   updateEditCollection = event => {

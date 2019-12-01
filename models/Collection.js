@@ -15,7 +15,8 @@ const CollectionSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Item"
     }
-  ]
+  ],
+  profileId: String
 });
 
 const Collection = mongoose.model("Collection", CollectionSchema);
