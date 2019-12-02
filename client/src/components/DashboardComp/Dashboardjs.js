@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
+import "./style.css";
 
 const Dashboardjs = ({
   getCurrentProfile,
@@ -36,7 +37,7 @@ const Dashboardjs = ({
       ) : (
         <Fragment>
           <p>No Profile setup yet. Create profile.</p>
-          <Link to="/create-profile" className="btn btn-primary">
+          <Link to="/create-profile" className="btn btn-secondary">
             Create Profile
           </Link>
         </Fragment>

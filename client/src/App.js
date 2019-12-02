@@ -64,8 +64,8 @@ function App() {
               exact
               path="/CollectionDetails"
               component={CollectionDetails}
-            />
-            ;
+            />;
+            <Route exact path="/PublicCollection" component={PublicCollection} />;
             <Route component={NoMatch} />
           </Switch>
         </Router>

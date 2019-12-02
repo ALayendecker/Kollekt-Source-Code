@@ -30,10 +30,9 @@ ul {
 } */
 
 .profiles {
-    display: flex;
+    display: block;
     /* flex-direction: column; */
   justify-content: center;
-
     /* align-content: center; */
     /* justify-content: center; */
     /* flex-wrap: wrap; */
@@ -50,9 +49,6 @@ ul {
     border: .5px solid rgb(64, 96, 128);
     border-radius: 3px;
 }
-/* .profilePage {
-    background: url("/assets/images/cars.jpeg") no-repeat;
-} */
 
 .headerText {
     font-size: 70px;

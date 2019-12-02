@@ -5,9 +5,9 @@ class Public extends Component {
     
     render() {
         return (
-<Nav>
-   
-</Nav>
+        <div>
+            <Nav />
+        </div>
         );
     }
 }

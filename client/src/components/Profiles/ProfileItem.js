@@ -19,7 +19,7 @@ const ProfileItem = ({
         <h2>Username: {username}</h2>
         <p>Collector Status: {status}</p>
         <p className="my-1">Based out of: {location && <span>{location}</span>}</p>
-        <Link to={`/profile/user/${_id}`} className="btn btn-secondary">
+        <Link to="/PublicCollection" className="btn btn-secondary">
           View Collections
         </Link>
       </div>

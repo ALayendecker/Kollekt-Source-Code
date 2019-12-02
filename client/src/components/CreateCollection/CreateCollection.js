@@ -36,7 +36,7 @@ const CreateCollection = props => {
           handleCheckboxChange={props.handleCheckboxChange}
           isPrivate={props.isPrivate}
         />
-        <button
+        <button className="btn btn-secondary"
           onClick={e => props.handleFormSubmit(e, props.profile.profile._id)}
         >
           Create Kollection

@@ -109,7 +109,7 @@ class Landing extends Component {
                     }}
                   />
                 ))}
-              </div>
+             </div>
             ) : (
               <div className="divBaby">
                 <p>Make a search to see results!</p>
