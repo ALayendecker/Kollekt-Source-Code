@@ -55,12 +55,16 @@ function App() {
             />
             ;
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />;
-            <Route
+            <PrivateRoute
               exact
               path="/CollectionDetails"
               component={CollectionDetails}
             />
-            ;
+            <Route
+              exact
+              path="/CollectionDetails/:id"
+              component={CollectionDetails}
+            />
             <Route component={NoMatch} />
           </Switch>
         </Router>

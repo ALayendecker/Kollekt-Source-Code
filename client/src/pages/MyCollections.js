@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import AddForm from "../components/AddForm";
-import DropdownButton from "../components/DropdownButton";
+// import AddForm from "../components/AddForm";
+// import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 // import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
 // import { Link } from "react-router-dom";
+import SetType from "../components/CreateCollection/SetType";
 
 class Collection extends Component {
   state = {
@@ -139,24 +140,11 @@ class Collection extends Component {
                 placeholder="Name you collection"
                 className="input"
               />
-              <AddForm text={this.state.type || "Select a type"}>
-                <DropdownButton onClick={() => this.setCollectionType("Music")}>
-                  Music
-                </DropdownButton>
-                <DropdownButton
-                  onClick={() => this.setCollectionType("Comics")}
-                >
-                  Comics
-                </DropdownButton>
-                <DropdownButton
-                  onClick={() => this.setCollectionType("Currency")}
-                >
-                  Currency
-                </DropdownButton>
-                <DropdownButton onClick={() => this.setCollectionType("Cards")}>
-                  Cards
-                </DropdownButton>
-              </AddForm>
+              <SetType
+                text={"Select a type"}
+                dropdownFunction={this.setCollectionType}
+                type={this.state.type}
+              />
               <p>Private</p>
               <input
                 type="checkbox"

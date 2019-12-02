@@ -8,11 +8,12 @@ import Card from "../components/Cards";
 import "./Landing.css";
 // import {connect} from "react-redux";
 // import PropTypes from "prop-types";
-import AddForm from "../components/AddForm";
-import DropdownButton from "../components/DropdownButton";
+// import AddForm from "../components/AddForm";
+// import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import Footer from "../components/Footer";
+import SetType from "../components/CreateCollection/SetType";
 
 class Landing extends Component {
   state = {
@@ -55,6 +56,7 @@ class Landing extends Component {
   };
 
   makeSearch = collectionType => {
+    this.setState({ currenSearchType: collectionType });
     API.getCollectionByType(collectionType)
       .then(res => {
         console.log(res.data);
@@ -72,23 +74,11 @@ class Landing extends Component {
             <div className="row h-100 align-items-center">
               <div className="text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
-
-                <div>
-                  <AddForm className="dropDown" text={"Search Collection Type"}>
-                    <DropdownButton onClick={() => this.makeSearch("Music")}>
-                      Music
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Comics")}>
-                      Comics
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Currency")}>
-                      Currency
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Cards")}>
-                      Cards
-                    </DropdownButton>
-                  </AddForm>
-                </div>
+                <SetType
+                  text={"Search Collection Type"}
+                  dropdownFunction={this.makeSearch}
+                  type={this.state.currenSearchType}
+                />
               </div>
             </div>
           </div>
@@ -104,8 +94,8 @@ class Landing extends Component {
                     key={collection._id}
                     {...collection}
                     linkInfo={{
-                      pathname: "/collectiondetails",
-                      state: { collectionId: collection._id }
+                      pathname: "/collectiondetails/" + collection._id
+                      // state: { collectionId: collection._id }
                     }}
                   />
                 ))}

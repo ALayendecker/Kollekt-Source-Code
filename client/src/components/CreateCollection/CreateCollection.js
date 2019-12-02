@@ -28,7 +28,8 @@ const CreateCollection = props => {
           name={props.name}
         />
         <SetType
-          setCollectionType={props.setCollectionType}
+          text={"Select a Type"}
+          dropdownFunction={props.setCollectionType}
           type={props.type}
         />
         <p>Private</p>

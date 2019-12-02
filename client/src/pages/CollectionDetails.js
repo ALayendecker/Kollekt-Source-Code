@@ -24,19 +24,39 @@ class CollectionDetails extends Component {
     // const idToSearch = new URLSearchParams(this.props.location.search).get(
     //   "id"
     // );
-    // console.log(this.props.match.params.id);
+    // if (this.props.match.params.id) {
+    //   console.log("this.props.match.params.id is a thing");
+    // } else {
+    //   console.log("NO this.props.match.params.id");
+    // }
+    // try {
+    //   console.log("hit try");
+    //   console.log(this.props.match.params.id);
+    // } catch {
+    //   console.log("hit catch");
+    // }
     // const idToSearch = this.props.match.params.id;
     // let idToSearch = "";
     try {
       await this.setState({
-        collectionId: this.props.location.state.collectionId
+        collectionId: this.props.location.state.collectionId,
+        showCreateItem: true
       });
       // idToSearch = this.props.location.state.collectionId;
       console.log("try");
     } catch {
-      await this.setState({ collectionId: "5dd74c9f32ed554f9cb27dba" });
+      if (this.props.match.params.id === undefined) {
+        this.setState({ error: true });
+        console.log("no id to search");
+        console.log("catch-if");
+      } else {
+        console.log("catch-else");
+        await this.setState({
+          collectionId: this.props.match.params.id,
+          showCreateItem: false
+        });
+      }
       // idToSearch = "5dd74c9f32ed554f9cb27dba";
-      console.log("catch");
     }
     // const idToSearch =
     //   this.props.location.state.collectionId || "5dd74c9f32ed554f9cb27dba";
@@ -45,7 +65,11 @@ class CollectionDetails extends Component {
     // const idToSearch = "5dd74c9f32ed554f9cb27dba";
     console.log("id to search = " + this.state.collectionId);
     console.log("---------------");
-    this.searchCollectionById(this.state.collectionId);
+    if (this.state.collectionId) {
+      this.searchCollectionById(this.state.collectionId);
+    } else {
+      console.log("can't search without and id");
+    }
   };
 
   searchCollectionById = id => {
@@ -207,7 +231,7 @@ class CollectionDetails extends Component {
   // on the first click for each field it sorts it ascending, on the second click it sorts it descending
   // not using localeCompare because it doesn't work with empty fields
   // when changing fields it remembers the setting for each. Is that desirable?
-  onSort = async sortKey => {
+  onSort = async (event, sortKey) => {
     const data = this.state.collection.items;
     if (this.state.sorting[sortKey]) {
       // data.sort((a, b) => a[sortKey].localeCompare(b[sortKey])).reverse();
@@ -268,33 +292,39 @@ class CollectionDetails extends Component {
                 {this.state.collection.name}
               </span>
             </h6>
-            <hr></hr>
+            <hr />
             {/* if the user clicked the Edit Kollektion button, show the options to edit the collection */}
             {this.state.editCollection && (
-              <EditCollection
-                handleCheckboxChange={this.handleCheckboxChange}
-                updateEditCollection={this.updateEditCollection}
-                onChupdateEditCollectionange={this.updateEditCollection}
-                collectionChanges={this.state.collectionChanges}
-                collection={{
-                  name: this.state.collection.name,
-                  image: this.state.collection.image,
-                  isPrivate: this.state.collection.isPrivate
-                }}
-                updateCollection={this.updateCollection}
-                cancelUpdate={() => this.cancelUpdate("collection")}
-                deleteCollection={this.deleteCollection}
-              />
+              <div>
+                <EditCollection
+                  handleCheckboxChange={this.handleCheckboxChange}
+                  updateEditCollection={this.updateEditCollection}
+                  onChupdateEditCollectionange={this.updateEditCollection}
+                  collectionChanges={this.state.collectionChanges}
+                  collection={{
+                    name: this.state.collection.name,
+                    image: this.state.collection.image,
+                    isPrivate: this.state.collection.isPrivate
+                  }}
+                  updateCollection={this.updateCollection}
+                  cancelUpdate={() => this.cancelUpdate("collection")}
+                  deleteCollection={this.deleteCollection}
+                />
+                <hr />
+              </div>
             )}
-            <hr />
-            <CreateItem
-              itemFields={this.state.collection.itemFields}
-              newItem={this.state.newItem}
-              updateNewItem={this.updateNewItem}
-              createNewItem={this.createNewItem}
-              editCollectionFunction={this.editCollectionFunction}
-            />
-            <hr />
+            {this.state.showCreateItem && (
+              <div>
+                <CreateItem
+                  itemFields={this.state.collection.itemFields}
+                  newItem={this.state.newItem}
+                  updateNewItem={this.updateNewItem}
+                  createNewItem={this.createNewItem}
+                  editCollectionFunction={this.editCollectionFunction}
+                />
+                <hr />
+              </div>
+            )}
             <h5>Items in your collection:</h5>
             <br />
             {/* header for the item list that sorts on click */}
@@ -322,15 +352,23 @@ class CollectionDetails extends Component {
             />
           </div>
         )}
+        {this.state.error && (
+          <h1>Woops! Looks like you got here the wrong way!</h1>
+        )}
 
         <br></br>
         <br></br>
-
-        <Link to="/mycollections">
-          <button className="back btn btn-secondary">
-            Back to collections
-          </button>
-        </Link>
+        {this.state.showCreateItem ? (
+          <Link to="/dashboard">
+            <button className="back btn btn-secondary">
+              Back to Your Profile
+            </button>
+          </Link>
+        ) : (
+          <Link to="/">
+            <button className="back btn btn-secondary">Back to Landing</button>
+          </Link>
+        )}
         <Footer />
       </div>
     );
