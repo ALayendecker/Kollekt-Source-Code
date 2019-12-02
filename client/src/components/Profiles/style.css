@@ -3,73 +3,87 @@ It also is the least responsive page in the entirety of the internet
 have fun fixing it future self. 
     XOXO- tired Kala from saturday night */
 
+.card {
+  height: auto;
+  margin: 20px;
+  margin-bottom: 20px;
+}
+
 .profile {
-display: flex;
-justify-content: center;
-/* text-align: center; */
-color: white;
-background-color: rgb(49, 49, 49) !important;
+  display: flex;
+  text-align: center;
+  color: white;
+  background-color: rgb(49, 49, 49) !important;
   border: 1px solid black;
   border-radius: 4px;
   margin-top: 10px;
   margin-bottom: 20px;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
-box-shadow: 0 10px 6px -6px #777;
-min-width: 900px;
-max-width: 900px;
-/* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
+  box-shadow: 0 10px 6px -6px #777;
+  text-align: center;
+  /* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
 }
-
-ul {
-    list-style-type: none;
-  }
 
 /* .profileItem {
     
 } */
 
 .profiles {
-    display: flex;
-    /* flex-direction: column; */
   justify-content: center;
-
-    /* align-content: center; */
-    /* justify-content: center; */
-    /* flex-wrap: wrap; */
-    border: .5px solid rgb(64, 96, 128);
-    max-height: 800px;
-    min-width: 1200px;
-    overflow-y: auto;
-    margin-bottom: 30px;
-    background: url("/assets/images/wine.jpeg") center center fixed;
+  border: 0.5px solid rgb(64, 96, 128);
+  margin-bottom: 30px;
+  background: url("/assets/images/wine.jpeg") center center fixed;
 }
 
-.interest {
-    background-color: white;
-    border: .5px solid rgb(64, 96, 128);
-    border-radius: 3px;
-}
 /* .profilePage {
     background: url("/assets/images/cars.jpeg") no-repeat;
 } */
 
 .headerText {
-    font-size: 70px;
-    font-weight: bolder;
-    color: rgb(64, 96, 128);
+  font-size: 70px;
+  font-weight: bolder;
+  color: rgb(64, 96, 128);
 }
 
 .textInterest {
-color: rgb(64, 96, 128);
-}
-
-.round-img {
- margin-right: 20px;
+  color: rgb(64, 96, 128);
+  display: flex;
+  text-align: center;
+  margin: auto;
 }
 
 .profileP {
-    font-size: 30px;
-    font-weight: bolder !important;
-    color: rgb(64, 96, 128) !important;
+  font-size: 30px;
+  font-weight: bolder !important;
+  color: rgb(64, 96, 128) !important;
+}
+
+.profilecontainer {
+  margin: auto;
+  text-align: center;
+}
+
+.profilecontainer2 {
+  margin: auto;
+  text-align: center;
+}
+
+.row {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rowlog {
+  margin-left: 20px;
+}
+
+.rowneg {
+  margin-left: -40px;
+}
+
+.card-img-top {
+  max-width: 302px;
+  max-height: 302px;
+  object-fit: cover;
 }

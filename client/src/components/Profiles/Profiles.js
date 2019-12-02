@@ -5,8 +5,7 @@ import Spinner from "../layout/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
 import "./style.css";
-import Nav from "../Nav"
-
+import Nav from "../Nav";
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -16,27 +15,37 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   return (
     <div>
       <Nav />
-      <div className="profilePage container">
-    <Fragment>
-      {loading ? (
-        <Spinner />
-      ) : (
+      <div className="profilecontainer">
         <Fragment>
-          <h1 className="large headerText">Collectors</h1>
-          <p className="profileP"> Browse other collectors!</p>
-          <div className="profiles">
-            {profiles.length > 0 ? (
-              profiles.map(profile => (
-                <ProfileItem key={profile._id} profile={profile} />
-              ))
-            ) : (
-              <h4>No profiles found...</h4>
-            )}
-          </div>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Fragment>
+              <div className="masthead2">
+                <div className="container h-100">
+                  <div className="row h-100 align-items-center">
+                    <div className="text-center search-container2">
+                      <h1 className="font-weight-light2"> Collectors </h1>
+                      <h4 className="font-weight-light">
+                        Browse our community.
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row profilecontainer2 rowlog">
+                {profiles.length > 0 ? (
+                  profiles.map(profile => (
+                    <ProfileItem key={profile._id} profile={profile} />
+                  ))
+                ) : (
+                  <h4>No profiles found...</h4>
+                )}
+              </div>
+            </Fragment>
+          )}
         </Fragment>
-      )}
-    </Fragment>
-    </div>
+      </div>
     </div>
   );
 };

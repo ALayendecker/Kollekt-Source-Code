@@ -6,3 +6,9 @@
   margin: 10px;
   color: black;
 }
+
+.card-img-top {
+  max-width: 302px;
+  max-height: 302px;
+  object-fit: cover;
+}

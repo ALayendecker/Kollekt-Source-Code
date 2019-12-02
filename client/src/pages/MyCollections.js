@@ -6,6 +6,8 @@ import API from "../utils/API";
 // import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
+import "./MyCollentions.css";
+import Footer from "../components/Footer";
 // import { Link } from "react-router-dom";
 
 class Collection extends Component {
@@ -130,45 +132,47 @@ class Collection extends Component {
         <div>
           <h1>Create a new Kollection</h1>
           <div>
-          <form className="form-inline">
-            <input
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              name="name"
-              placeholder="Name you collection"
-              className="input"
-            />
-            <AddForm text={this.state.type || "Select a type"}>
-              <DropdownButton onClick={() => this.setCollectionType("Music")}>
-                Music
-              </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("Comics")}>
-                Comics
-              </DropdownButton>
-              <DropdownButton
-                onClick={() => this.setCollectionType("Currency")}
-              >
-                Currency
-              </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("Cards")}>
-                Cards
-              </DropdownButton>
-            </AddForm>
-            <p>Private</p>
-            <input
-              type="checkbox"
-              checked={this.state.isPrivate}
-              onChange={this.handleCheckboxChange}
-            />
-            <button onClick={this.handleFormSubmit}>Create Kollection</button>
-          </form>
+            <form className="form-inline">
+              <input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name you collection"
+                className="input"
+              />
+              <AddForm text={this.state.type || "Select a type"}>
+                <DropdownButton onClick={() => this.setCollectionType("Music")}>
+                  Music
+                </DropdownButton>
+                <DropdownButton
+                  onClick={() => this.setCollectionType("Comics")}
+                >
+                  Comics
+                </DropdownButton>
+                <DropdownButton
+                  onClick={() => this.setCollectionType("Currency")}
+                >
+                  Currency
+                </DropdownButton>
+                <DropdownButton onClick={() => this.setCollectionType("Cards")}>
+                  Cards
+                </DropdownButton>
+              </AddForm>
+              <p>Private</p>
+              <input
+                type="checkbox"
+                checked={this.state.isPrivate}
+                onChange={this.handleCheckboxChange}
+              />
+              <button onClick={this.handleFormSubmit}>Create Kollection</button>
+            </form>
           </div>
           <hr></hr>
           <br></br>
           {this.state.searchAllCollectionsResult.length ? (
-            <div className="row">
+            <div className="row rowlog">
               {this.state.searchAllCollectionsResult.map(collection => (
-                <div key={collection._id}>
+                <div key={collection._id} data-aos="fade-up">
                   <Card
                     {...collection}
                     deleteFunction={() => this.deleteCollection(collection._id)}
@@ -184,7 +188,7 @@ class Collection extends Component {
             <p>Make a search to see results!</p>
           )}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }
