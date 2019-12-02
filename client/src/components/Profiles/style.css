@@ -33,10 +33,8 @@ have fun fixing it future self.
 } */
 
 .profiles {
-
   justify-content: center;
   border: 0.5px solid rgb(64, 96, 128);
-
   margin-bottom: 30px;
   background: url("/assets/images/wine.jpeg") center center fixed;
 }
@@ -46,9 +44,6 @@ have fun fixing it future self.
   border: 0.5px solid rgb(64, 96, 128);
   border-radius: 3px;
 }
-/* .profilePage {
-    background: url("/assets/images/cars.jpeg") no-repeat;
-} */
 
 .headerText {
   font-size: 70px;

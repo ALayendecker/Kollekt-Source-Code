@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
+import "./style.css";
 
 const Dashboardjs = ({
   getCurrentProfile,
@@ -53,9 +54,14 @@ const Dashboardjs = ({
       ) : (
         <Fragment>
           <p>No Profile setup yet. Create profile.</p>
-          <Link to="/create-profile" className="btn btn-primary">
+          <div>
+            {/* had to change from link to button and wrap in a tag to get style and function */}
+            <a href="/create-profile">
+          <button type="button"  className="btn btn-secondary doSomething">
             Create Profile
-          </Link>
+          </button>
+            </a>
+          </div>
         </Fragment>
       )}
     </Fragment>

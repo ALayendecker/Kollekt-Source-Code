@@ -21,7 +21,7 @@ const CreateCollection = props => {
     <Spinner />
   ) : props.profile.profile ? (
     <div>
-      <h1>Create a new Kollection</h1>
+      <h1>Create a new Collection</h1>
       <form className="form-inline">
         <SetName
           handleInputChange={props.handleInputChange}
@@ -37,10 +37,10 @@ const CreateCollection = props => {
           handleCheckboxChange={props.handleCheckboxChange}
           isPrivate={props.isPrivate}
         />
-        <button
+        <button className="btn btn-secondary"
           onClick={e => props.handleFormSubmit(e, props.profile.profile._id)}
         >
-          Create Kollection
+          Create Collection
         </button>
       </form>
       {props.profile.profile.collections.length ? (
@@ -59,12 +59,12 @@ const CreateCollection = props => {
           ))}
         </div>
       ) : (
-        <p>No Kollections Yet</p>
+        <p>No Collections Yet</p>
       )}
     </div>
   ) : (
     <div>
-      <p>Create a profile to create Kollections!</p>
+      <p>Create a profile to create Collections!</p>
     </div>
   );
 };
