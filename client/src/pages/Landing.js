@@ -8,11 +8,12 @@ import Card from "../components/Cards";
 import "./Landing.css";
 // import {connect} from "react-redux";
 // import PropTypes from "prop-types";
-import AddForm from "../components/AddForm";
-import DropdownButton from "../components/DropdownButton";
+// import AddForm from "../components/AddForm";
+// import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import Footer from "../components/Footer";
+import SetType from "../components/CreateCollection/SetType";
 
 class Landing extends Component {
   state = {
@@ -55,6 +56,7 @@ class Landing extends Component {
   };
 
   makeSearch = collectionType => {
+    this.setState({ currenSearchType: collectionType });
     API.getCollectionByType(collectionType)
       .then(res => {
         console.log(res.data);
@@ -69,43 +71,31 @@ class Landing extends Component {
         <Nav />
         <div className="masthead">
           <div className="container h-100">
-            <div className="row h-100 align-items-center">
+            <div className="row h-100 align-items-center ">
               <div className="text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
-
-                <div>
-                  <AddForm className="dropDown" text={"Search Collection Type"}>
-                    <DropdownButton onClick={() => this.makeSearch("Music")}>
-                      Music
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Comics")}>
-                      Comics
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Currency")}>
-                      Currency
-                    </DropdownButton>
-                    <DropdownButton onClick={() => this.makeSearch("Cards")}>
-                      Cards
-                    </DropdownButton>
-                  </AddForm>
-                </div>
+                <SetType
+                  text={"Search Collection Type"}
+                  dropdownFunction={this.makeSearch}
+                  type={this.state.currenSearchType}
+                />
               </div>
             </div>
           </div>
         </div>
         <h3 className="text-center">View existing collections</h3>
         <hr />
-        <div className="container flex-container darker landingcollection">
-          <div className="divSanta">
+        <div className="">
+          <div data-aos="fade-up">
             {this.state.searchResult.length ? (
-              <div className="row flex-container dark">
+              <div className="row rowlog">
                 {this.state.searchResult.map(collection => (
                   <Card
                     key={collection._id}
                     {...collection}
                     linkInfo={{
-                      pathname: "/collectiondetails",
-                      state: { collectionId: collection._id }
+                      pathname: "/collectiondetails/" + collection._id
+                      // state: { collectionId: collection._id }
                     }}
                   />
                 ))}

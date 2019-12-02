@@ -9,6 +9,13 @@ module.exports = {
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },
+  findByProfile: function(req, res) {
+    console.log("findByProfile with req.params.id = " + req.params.id);
+    db.Collection.find({ profileId: req.params.id, isPrivate: false })
+      // .select({ name: 1, type: 1, image: 1 })
+      .then(dbCollection => res.json(dbCollection))
+      .catch(err => res.status(422).json(err));
+  },
   findOneByType: function(req, res) {
     console.log("findOneByType with req.params.type = " + req.params.type);
     db.Collection.findOne({ type: req.params.type, isPrivate: false })
@@ -90,6 +97,12 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // }
   remove: function(req, res) {
+    Profile.updateOne(
+      { collections: req.params.id },
+      { $pull: { collections: req.params.id } }
+    )
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
     db.Item.deleteMany({ collectionId: req.params.id })
       .then(
         db.Collection.deleteOne({ _id: req.params.id })

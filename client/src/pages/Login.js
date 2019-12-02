@@ -9,7 +9,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
-    loggedin: false,
+    loggedin: false
   };
 
   handleInputChange = event => {
@@ -22,15 +22,15 @@ class Login extends Component {
   render() {
     return (
       <div>
-      <Nav />
-      <div className="main row ">
-        <div className="div1 col">
-          <img src={"starwars_1.jpg"} alt="Logo" />
+        <Nav />
+        <div className="main row ">
+          <div className="div1 col">
+            <img src={"starwars_1.jpg"} alt="Logo" />
+          </div>
+          <LoginForm />
         </div>
-        <LoginForm />
-        </div>
-        </div>
-    )
+      </div>
+    );
   }
 }
 

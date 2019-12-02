@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import AddForm from "../components/AddForm";
-import DropdownButton from "../components/DropdownButton";
+// import AddForm from "../components/AddForm";
+// import DropdownButton from "../components/DropdownButton";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 // import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
+import "./MyCollentions.css";
+import Footer from "../components/Footer";
 // import { Link } from "react-router-dom";
+import SetType from "../components/CreateCollection/SetType";
 
 class Collection extends Component {
   state = {
@@ -139,24 +142,11 @@ class Collection extends Component {
                 placeholder="Name you collection"
                 className="input"
               />
-              <AddForm text={this.state.type || "Select a type"}>
-                <DropdownButton onClick={() => this.setCollectionType("Music")}>
-                  Music
-                </DropdownButton>
-                <DropdownButton
-                  onClick={() => this.setCollectionType("Comics")}
-                >
-                  Comics
-                </DropdownButton>
-                <DropdownButton
-                  onClick={() => this.setCollectionType("Currency")}
-                >
-                  Currency
-                </DropdownButton>
-                <DropdownButton onClick={() => this.setCollectionType("Cards")}>
-                  Cards
-                </DropdownButton>
-              </AddForm>
+              <SetType
+                text={"Select a type"}
+                dropdownFunction={this.setCollectionType}
+                type={this.state.type}
+              />
               <p>Private</p>
               <input
                 type="checkbox"
@@ -169,9 +159,9 @@ class Collection extends Component {
           <hr></hr>
           <br></br>
           {this.state.searchAllCollectionsResult.length ? (
-            <div className="row">
+            <div className="row rowlog">
               {this.state.searchAllCollectionsResult.map(collection => (
-                <div key={collection._id}>
+                <div key={collection._id} data-aos="fade-up">
                   <Card
                     {...collection}
                     deleteFunction={() => this.deleteCollection(collection._id)}
@@ -187,7 +177,7 @@ class Collection extends Component {
             <p>Make a search to see results!</p>
           )}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

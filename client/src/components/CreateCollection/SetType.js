@@ -3,20 +3,17 @@ import AddForm from "../AddForm";
 import DropdownButton from "../DropdownButton";
 
 function SetType(props) {
+  const typeOptions = ["Music", "Comics", "Currency", "Cards"];
   return (
-    <AddForm text={props.type || "Select a type"}>
-      <DropdownButton onClick={() => props.setCollectionType("Music")}>
-        Music
-      </DropdownButton>
-      <DropdownButton onClick={() => props.setCollectionType("Comics")}>
-        Comics
-      </DropdownButton>
-      <DropdownButton onClick={() => props.setCollectionType("Currency")}>
-        Currency
-      </DropdownButton>
-      <DropdownButton onClick={() => props.setCollectionType("Cards")}>
-        Cards
-      </DropdownButton>
+    <AddForm text={props.type || props.text}>
+      {typeOptions.map((typeOption, index) => (
+        <DropdownButton
+          key={index}
+          onClick={() => props.dropdownFunction(typeOption)}
+        >
+          {typeOption}
+        </DropdownButton>
+      ))}
     </AddForm>
   );
 }

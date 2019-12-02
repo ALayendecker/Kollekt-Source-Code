@@ -11,27 +11,44 @@ const Dashboardjs = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, loading }
+  profile: {
+    profile,
+    // user: { avatar },
+    // status,
+    // location,
+    // interests,
+    loading
+  }
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-
   return loading && profile === null ? (
     <Spinner />
   ) : (
     <Fragment>
       <h1 className="large text-primary"> Profile</h1>
       <p className="lead">
-        <p>Welcome {user && user.username}</p>
+        <h3>Welcome {user && user.username}</h3>
+        <img src={user.avatar} alt="" />
+        <p>{`Status: ${profile.status}`}</p>
+        <p>{`Location: ${profile.location}`}</p>
+        <p>{`Collector of: ${profile.interests}`}</p>
+        {/* <p>{location}</p> */}
+        {/* <p>{interests}</p> */}
       </p>
       {profile !== null ? (
         <Fragment>
-          <DashboardActions />
-          <div className="my-2">
-            <button className="btn btn-danger" onClick={() => deleteAccount()}>
-              Delete My Account
-            </button>
+          <div>
+            <DashboardActions />
+            <div className="my-2">
+              <button
+                className="btn btn-danger dlt-button"
+                onClick={() => deleteAccount()}
+              >
+                Delete My Account
+              </button>
+            </div>
           </div>
         </Fragment>
       ) : (
