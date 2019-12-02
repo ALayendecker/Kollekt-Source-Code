@@ -299,7 +299,6 @@ class CollectionDetails extends Component {
                 <EditCollection
                   handleCheckboxChange={this.handleCheckboxChange}
                   updateEditCollection={this.updateEditCollection}
-                  onChupdateEditCollectionange={this.updateEditCollection}
                   collectionChanges={this.state.collectionChanges}
                   collection={{
                     name: this.state.collection.name,
@@ -349,6 +348,7 @@ class CollectionDetails extends Component {
               updateItem={this.updateItem}
               cancelUpdate={() => this.cancelUpdate("item")}
               deleteItem={this.deleteItem}
+              editCollection={this.state.editCollection}
             />
           </div>
         )}
