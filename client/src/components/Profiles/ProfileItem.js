@@ -5,7 +5,8 @@ import "./style.css";
 
 const ProfileItem = ({
   profile: {
-    user: { _id, username, avatar },
+    _id,
+    user: { username, avatar },
     status,
     location,
     interests
@@ -13,27 +14,29 @@ const ProfileItem = ({
 }) => {
   return (
     <div className="container profileItem">
-    <div className="profile">
-      <img src={avatar} alt="" className="round-img" />
-      <div>
-        <h2>Username: {username}</h2>
-        <p>Collector Status: {status}</p>
-        <p className="my-1">Based out of: {location && <span>{location}</span>}</p>
-        <Link to={`/profile/user/${_id}`} className="btn btn-secondary">
-          View Collections
-        </Link>
+      <div className="profile">
+        <img src={avatar} alt="" className="round-img" />
+        <div>
+          <h2>Username: {username}</h2>
+          <p>Collector Status: {status}</p>
+          <p className="my-1">
+            Based out of: {location && <span>{location}</span>}
+          </p>
+          <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">
+            View Collections
+          </Link>
+        </div>
+        <ul>
+          <p className="my-1">Collection Interests:</p>
+          {interests.slice(0, 4).map((interests, index) => (
+            <div className="interest">
+              <li key={index} className="textInterest">
+                {interests}
+              </li>
+            </div>
+          ))}
+        </ul>
       </div>
-      <ul>
-        <p className="my-1">Collection Interests:</p>
-        {interests.slice(0, 4).map((interests, index) => (
-          <div className="interest">
-            <li key={index} className="textInterest">
-            {interests}
-          </li>
-          </div>
-        ))}
-      </ul>
-    </div>
     </div>
   );
 };
