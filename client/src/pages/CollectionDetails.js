@@ -308,6 +308,7 @@ class CollectionDetails extends Component {
                   updateCollection={this.updateCollection}
                   cancelUpdate={() => this.cancelUpdate("collection")}
                   deleteCollection={this.deleteCollection}
+
                 />
                 <hr />
               </div>
@@ -324,6 +325,7 @@ class CollectionDetails extends Component {
                 <hr />
               </div>
             )}
+
             <h5>Items in your collection:</h5>
             <br />
             {/* header for the item list that sorts on click */}

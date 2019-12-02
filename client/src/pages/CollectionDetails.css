@@ -1,3 +1,6 @@
+body {
+  background-color: white;
+}
 p {
   margin: 20px;
   text-align: center;
@@ -11,8 +14,8 @@ p {
   text-align: center;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
-       box-shadow: 0 10px 6px -6px #777;
-       margin-bottom: 20px;
+  box-shadow: 0 10px 6px -6px #777;
+  margin-bottom: 20px;
 }
 
 /* shadow box for image */
@@ -21,7 +24,7 @@ p {
   border-radius: 4px;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
-       box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 .maincontainer {
@@ -54,7 +57,7 @@ p {
   height: 35px;
   margin: 0;
   /* border: none; */
-  border:solid 1px #ccc;
+  border: solid 1px #ccc;
   border-radius: 10px !important;
 }
 
@@ -63,6 +66,6 @@ p {
   height: 35px;
   margin: 0 auto;
   /* border: none; */
-  border:solid 1px #ccc;
+  border: solid 1px #ccc;
   border-radius: 10px !important;
 }

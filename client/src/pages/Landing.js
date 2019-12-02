@@ -71,7 +71,7 @@ class Landing extends Component {
         <Nav />
         <div className="masthead">
           <div className="container h-100">
-            <div className="row h-100 align-items-center">
+            <div className="row h-100 align-items-center ">
               <div className="text-center search-container">
                 <h1 className="font-weight-light">A smarter way to collect.</h1>
                 <SetType
@@ -85,10 +85,10 @@ class Landing extends Component {
         </div>
         <h3 className="text-center">View existing collections</h3>
         <hr />
-        <div className="container flex-container darker landingcollection">
-          <div className="divSanta">
+        <div className="">
+          <div data-aos="fade-up">
             {this.state.searchResult.length ? (
-              <div className="row flex-container dark">
+              <div className="row rowlog">
                 {this.state.searchResult.map(collection => (
                   <Card
                     key={collection._id}

@@ -6,6 +6,8 @@ import API from "../utils/API";
 // import Footer from "../components/Footer";
 // import { Redirect } from "react-router-dom";
 import Card from "../components/Cards";
+import "./MyCollentions.css";
+import Footer from "../components/Footer";
 // import { Link } from "react-router-dom";
 import SetType from "../components/CreateCollection/SetType";
 
@@ -157,9 +159,9 @@ class Collection extends Component {
           <hr></hr>
           <br></br>
           {this.state.searchAllCollectionsResult.length ? (
-            <div className="row">
+            <div className="row rowlog">
               {this.state.searchAllCollectionsResult.map(collection => (
-                <div key={collection._id}>
+                <div key={collection._id} data-aos="fade-up">
                   <Card
                     {...collection}
                     deleteFunction={() => this.deleteCollection(collection._id)}
@@ -175,7 +177,7 @@ class Collection extends Component {
             <p>Make a search to see results!</p>
           )}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

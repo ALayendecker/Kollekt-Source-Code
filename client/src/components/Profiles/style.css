@@ -3,10 +3,16 @@ It also is the least responsive page in the entirety of the internet
 have fun fixing it future self. 
     XOXO- tired Kala from saturday night */
 
+.card {
+  height: auto;
+  margin: 20px;
+  margin-bottom: 20px;
+}
+
 .profile {
   display: flex;
-  justify-content: center;
-  /* text-align: center; */
+  text-align: center;
+
   color: white;
   background-color: rgb(49, 49, 49) !important;
   border: 1px solid black;
@@ -16,31 +22,21 @@ have fun fixing it future self.
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
   box-shadow: 0 10px 6px -6px #777;
-  min-width: 900px;
-  max-width: 900px;
+
+  text-align: center;
   /* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
 }
 
-ul {
-  list-style-type: none;
-}
 
 /* .profileItem {
     
 } */
 
 .profiles {
-  display: block;
-  /* flex-direction: column; */
-  justify-content: center;
 
-  /* align-content: center; */
-  /* justify-content: center; */
-  /* flex-wrap: wrap; */
+  justify-content: center;
   border: 0.5px solid rgb(64, 96, 128);
-  max-height: 800px;
-  min-width: 1200px;
-  overflow-y: auto;
+
   margin-bottom: 30px;
   background: url("/assets/images/wine.jpeg") center center fixed;
 }
@@ -62,14 +58,43 @@ ul {
 
 .textInterest {
   color: rgb(64, 96, 128);
-}
-
-.round-img {
-  margin-right: 20px;
+  display: flex;
+  text-align: center;
+  margin: auto;
 }
 
 .profileP {
   font-size: 30px;
   font-weight: bolder !important;
   color: rgb(64, 96, 128) !important;
+}
+
+.profilecontainer {
+  margin: auto;
+  text-align: center;
+}
+
+.profilecontainer2 {
+  margin: auto;
+  text-align: center;
+}
+
+.row {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rowlog {
+  margin-left: 20px;
+}
+
+.rowneg {
+  margin-left: -40px;
+}
+
+.card-img-top {
+  max-width: 302px;
+  max-height: 302px;
+  object-fit: cover;
+
 }

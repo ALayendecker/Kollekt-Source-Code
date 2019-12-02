@@ -13,30 +13,26 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <div className="container profileItem">
-      <div className="profile">
-        <img src={avatar} alt="" className="round-img" />
-        <div>
-          <h2>Username: {username}</h2>
-          <p>Collector Status: {status}</p>
-          <p className="my-1">
-            Based out of: {location && <span>{location}</span>}
-          </p>
-          <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">
+    <div className="card" data-aos="fade-up">
+      <img className="card-img-top" src={avatar} />
+      <h4>{username}</h4>
+
+      <p className="my-1">
+        <strong> Location: </strong> {location && <span>{location}</span>}
+      </p>
+
+      <p className="my-1">
+        <strong> Collection Interests </strong>
+      </p>
+
+      <div className="textInterest">
+        {interests.slice(0, 3).map((interests, index) => (
+          <p key={index}>{interests}</p>
+        ))}
+      </div>
+      <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">
             View Collections
           </Link>
-        </div>
-        <ul>
-          <p className="my-1">Collection Interests:</p>
-          {interests.slice(0, 4).map((interests, index) => (
-            <div className="interest">
-              <li key={index} className="textInterest">
-                {interests}
-              </li>
-            </div>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };

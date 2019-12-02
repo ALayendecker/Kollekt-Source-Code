@@ -5,32 +5,31 @@ import SignUpForm from "../components/SignUpForm";
 import Nav from "../components/Nav";
 
 class SignUp extends Component {
-
-    state = {
-        firstname: "",
-        lastname: "",
-        email: "",
-        username: "",
-        password: "",
-        loggedin: false,
-        signUpForm: true
-      };
-      changeForm = showSignUp=>{
-          this.setState({signUpForm:showSignUp})
-      }
+  state = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    username: "",
+    password: "",
+    loggedin: false,
+    signUpForm: true
+  };
+  changeForm = showSignUp => {
+    this.setState({ signUpForm: showSignUp });
+  };
   render() {
     return (
       <div>
-<Nav />
-         <div className="main row ">
-    <div className="div1 col">
-      <img src={"vinyl3RecordsRevenge.jpeg"} alt="" />
-    </div>
- <SignUpForm />
- </div>
- </div>
-    )}
+        <Nav />
+        <div className="main row rowlog ">
+          <div className="div1 col rowneg">
+            <img src={"vinyl3RecordsRevenge.jpeg"} alt="" />
+          </div>
+          <SignUpForm />
+        </div>
+      </div>
+    );
   }
-
+}
 
 export default SignUp;

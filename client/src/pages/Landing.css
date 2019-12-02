@@ -3,16 +3,33 @@
 } */
 
 /* card css is being called in serveral places */
+
+body {
+  background-color: rgb(43, 43, 43);
+}
 .card {
   width: 19em;
-  border: 1px solid rgb(64, 96, 128) ;
+  border: 1px solid rgb(64, 96, 128);
+  margin-bottom: 20px;
 }
 
 .masthead {
   background: url("/assets/images/vinyl-headphones.jpg") no-repeat;
-  background-position-y: -200px;
+
   /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
-  height: 65vh;
+  height: 45vh;
+  min-height: 400px;
+  background-size: cover;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.masthead2 {
+  background: url("https://www.punchbowl.com/gridfs/fs/4e7fe83d1a349e097100014d-1317005375")
+    no-repeat;
+
+  /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
+  height: 45vh;
   min-height: 400px;
   background-size: cover;
   color: white;
@@ -20,13 +37,23 @@
 }
 
 .search-container {
-  width: 500px;
+  width: auto;
   background: rgba(207, 207, 207, 0.6);
   color: black;
   border-radius: 1em;
   text-align: center;
   margin: auto;
   padding: 25px;
+}
+
+.search-container2 {
+  width: auto;
+  background: rgba(207, 207, 207, 0.6);
+  color: black;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+  padding: 35px;
 }
 
 /* had to set min and max height for black background to render w/ and w/o search */
@@ -43,12 +70,6 @@
   justify-content: center;
 }
 
-.landingcollection {
-  padding-bottom: 30px;
-}
-
-.darker {
-  background-color: rgb(221, 218, 218);
-  border: 1px solid rgb(64, 96, 128) ;
-  margin-bottom: 20px;
+.font-weight-light2 {
+  font-size: 4em;
 }
