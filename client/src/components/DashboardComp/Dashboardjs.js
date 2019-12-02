@@ -37,9 +37,14 @@ const Dashboardjs = ({
       ) : (
         <Fragment>
           <p>No Profile setup yet. Create profile.</p>
-          <Link to="/create-profile" className="btn btn-secondary">
+          <div>
+            {/* had to change from link to button and wrap in a tag to get style and function */}
+            <a href="/create-profile">
+          <button type="button"  className="btn btn-secondary doSomething">
             Create Profile
-          </Link>
+          </button>
+            </a>
+          </div>
         </Fragment>
       )}
     </Fragment>

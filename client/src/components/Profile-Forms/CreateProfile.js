@@ -28,18 +28,17 @@ const CreateProfile = ({ createProfile, history }) => {
   return (
     <div>
       <Nav />
-      <div className="main row"> 
-      <div className="div1 col">
+      <div className="mainCreate row"> 
+      <div className="div1 col createCol">
         <div className="wrapper">
     <Fragment >
       <div className="iAmACreator">
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large createText">Create Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user"></i> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user"></i> Tell us some information
       </p>
       <small>* = required field</small>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="formCreate" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={e => onChange(e)}>
             <option value="0">* Collector Status?</option>
@@ -52,7 +51,7 @@ const CreateProfile = ({ createProfile, history }) => {
         </div>
         <div className="form-group">
           <input
-            className="input"
+            className="input2"
             type="text"
             placeholder="Location (Optional)"
             name="location"
@@ -65,7 +64,7 @@ const CreateProfile = ({ createProfile, history }) => {
         </div>
         <div className="form-group">
           <input
-            className="input"
+            className="input2"
             type="text"
             placeholder="* Interests"
             name="interests"
@@ -73,12 +72,12 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated values (eg. Magic Cards,Marvel
-            Comics,Dice,Coins)
+            Please use comma separated items (eg. Cards, Comics, Vinyl)
           </small>
         </div>
         <div className="form-group">
           <textarea
+          className="textAreaCreate"
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
@@ -119,19 +118,21 @@ const CreateProfile = ({ createProfile, history }) => {
           <input className="input" type="text" placeholder="Instagram URL" name="instagram" />
         </div> */}
 
-        {/* this is a submit button as input */}
+        {/* changed from link to button for styling  */}
+        <div className="bottomDivCreate">
         <input type="submit" className="btn btn-secondary my-1" />
-        <Link className="btn btn-secondary my-1" to="/dashboard">
+        <button className="btn btn-secondary my-1" to="/dashboard">
           Go Back
-        </Link>
+        </button>
+        </div>
       </form>
       </div>
     </Fragment>
     </div>
       </div>
    
-    <div className="div2 col">
-      <img src={"vinyl3RecordsRevenge.jpeg"} alt="" />
+    <div className="div2 col imgCol">
+      <img src={"../assets/images/vinyl5Vindicated.jpg"} alt="" className="imgCreate"/>
     </div>
     </div>
     <Footer />

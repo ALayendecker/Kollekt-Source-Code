@@ -51,13 +51,17 @@ const EditProfile = ({
   return (
     <div>
       <Nav />
+      <div className="mainEdit row"> 
+      <div className="div1 col editCol">
+        <div className="wrapper">
     <Fragment>
-      <h1 className="large text-primary">Edit Your Profile</h1>
+    <div className="iAmAnEditor">
+      <h1 className="large editText">Edit Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Add some changes to your profile
       </p>
       <small>* = required field</small>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="formEdit" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <select name="status" value={status} onChange={e => onChange(e)}>
             <option value="0">* Collector Status?</option>
@@ -70,7 +74,7 @@ const EditProfile = ({
         </div>
         <div className="form-group">
           <input
-            className="input"
+            className="input2"
             type="text"
             placeholder="Location (Optional)"
             name="location"
@@ -83,7 +87,7 @@ const EditProfile = ({
         </div>
         <div className="form-group">
           <input
-            className="input"
+            className="input2"
             type="text"
             placeholder="* Interests"
             name="interests"
@@ -91,12 +95,13 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Please use comma separated items (eg. Magic Cards, Marvel
-            Comics, Dice, Coins)
+            Please use comma separated items 
+            (eg. Cards, Comics, Vinyl)
           </small>
         </div>
         <div className="form-group">
           <textarea
+          className="textAreaEdit"
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
@@ -138,12 +143,21 @@ const EditProfile = ({
         </div> */}
 
         {/* this is a submit button as input */}
-        <input type="submit" className="btn btn-secondary my-1 input" />
+        <div className="bottomDivEdit">
+        <input type="submit" className="btn btn-secondary my-1" />
         <Link className="btn btn-secondary my-1" to="/dashboard">
           Go Back
         </Link>
+        </div>
       </form>
+      </div>
     </Fragment>
+    </div>
+    </div>
+    <div className="div2 col imgColEdit">
+      <img src={"../assets/images/actionFigures.jpg"} alt="" className="imgEdit"/>
+    </div>
+    </div>
     <Footer />
     </div>
   );
