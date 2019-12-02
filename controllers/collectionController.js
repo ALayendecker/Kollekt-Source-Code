@@ -97,6 +97,12 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // }
   remove: function(req, res) {
+    Profile.updateOne(
+      { collections: req.params.id },
+      { $pull: { collections: req.params.id } }
+    )
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
     db.Item.deleteMany({ collectionId: req.params.id })
       .then(
         db.Collection.deleteOne({ _id: req.params.id })

@@ -33,8 +33,8 @@ class Public extends Component {
                   <Card
                     {...collection}
                     linkInfo={{
-                      pathname: "/collectiondetails",
-                      state: { collectionId: collection._id }
+                      pathname: "/collectiondetails/" + collection._id
+                      // state: { collectionId: collection._id }
                     }}
                   />
                 </div>
