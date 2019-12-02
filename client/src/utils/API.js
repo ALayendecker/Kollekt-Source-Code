@@ -21,6 +21,9 @@ export default {
   getAllCollections: function() {
     return axios.get("/api/collections/all");
   },
+  getAllCollectionsFromProfile: function(id) {
+    return axios.get("/api/collections/byprofile/" + id);
+  },
   deleteCollection: function(id) {
     return axios.delete("api/collections/delete/" + id);
   },
