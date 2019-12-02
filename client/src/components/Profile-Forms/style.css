@@ -2,6 +2,28 @@
     background-color: rgb(64, 96, 128) !important;
 }
 
-.createProfile {
+.main {
     background-color: rgb(83, 82, 82);
 }
+
+.div1 {
+    padding-top: 70px;
+    margin: 0;
+    text-align: center;
+    color: black;
+  }
+
+  .wrapper {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  .iAmACreator {
+      color: white;
+        max-width: 600px;
+        /* padding: 15px 35px 45px; */
+        margin: 0 auto;
+        background-color:rgb(83, 82, 82);
+        border: 1px solid white;
+    
+  }

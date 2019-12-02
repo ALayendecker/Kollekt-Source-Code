@@ -28,9 +28,11 @@ const CreateProfile = ({ createProfile, history }) => {
   return (
     <div>
       <Nav />
-      <div className="createProfile"> 
-    <Fragment>
-      <div className="container">
+      <div className="main row"> 
+      <div className="div1 col">
+        <div className="wrapper">
+    <Fragment >
+      <div className="iAmACreator">
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
@@ -125,6 +127,12 @@ const CreateProfile = ({ createProfile, history }) => {
       </form>
       </div>
     </Fragment>
+    </div>
+      </div>
+   
+    <div className="div2 col">
+      <img src={"vinyl3RecordsRevenge.jpeg"} alt="" />
+    </div>
     </div>
     <Footer />
     </div>
