@@ -4,72 +4,72 @@ have fun fixing it future self.
     XOXO- tired Kala from saturday night */
 
 .profile {
-display: flex;
-justify-content: center;
-/* text-align: center; */
-color: white;
-background-color: rgb(49, 49, 49) !important;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+  color: white;
+  background-color: rgb(49, 49, 49) !important;
   border: 1px solid black;
   border-radius: 4px;
   margin-top: 10px;
   margin-bottom: 20px;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
-box-shadow: 0 10px 6px -6px #777;
-min-width: 900px;
-max-width: 900px;
-/* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
+  box-shadow: 0 10px 6px -6px #777;
+  min-width: 900px;
+  max-width: 900px;
+  /* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
 }
 
 ul {
-    list-style-type: none;
-  }
+  list-style-type: none;
+}
 
 /* .profileItem {
     
 } */
 
 .profiles {
-    display: flex;
-    /* flex-direction: column; */
+  display: block;
+  /* flex-direction: column; */
   justify-content: center;
 
-    /* align-content: center; */
-    /* justify-content: center; */
-    /* flex-wrap: wrap; */
-    border: .5px solid rgb(64, 96, 128);
-    max-height: 800px;
-    min-width: 1200px;
-    overflow-y: auto;
-    margin-bottom: 30px;
-    background: url("/assets/images/wine.jpeg") center center fixed;
+  /* align-content: center; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
+  border: 0.5px solid rgb(64, 96, 128);
+  max-height: 800px;
+  min-width: 1200px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+  background: url("/assets/images/wine.jpeg") center center fixed;
 }
 
 .interest {
-    background-color: white;
-    border: .5px solid rgb(64, 96, 128);
-    border-radius: 3px;
+  background-color: white;
+  border: 0.5px solid rgb(64, 96, 128);
+  border-radius: 3px;
 }
 /* .profilePage {
     background: url("/assets/images/cars.jpeg") no-repeat;
 } */
 
 .headerText {
-    font-size: 70px;
-    font-weight: bolder;
-    color: rgb(64, 96, 128);
+  font-size: 70px;
+  font-weight: bolder;
+  color: rgb(64, 96, 128);
 }
 
 .textInterest {
-color: rgb(64, 96, 128);
+  color: rgb(64, 96, 128);
 }
 
 .round-img {
- margin-right: 20px;
+  margin-right: 20px;
 }
 
 .profileP {
-    font-size: 30px;
-    font-weight: bolder !important;
-    color: rgb(64, 96, 128) !important;
+  font-size: 30px;
+  font-weight: bolder !important;
+  color: rgb(64, 96, 128) !important;
 }

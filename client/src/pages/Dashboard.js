@@ -2,6 +2,7 @@
 import Footer from "../components/Footer";
 import React, { Component } from "react";
 import Nav from "../components/Nav";
+import "./Dashboard.css";
 // import Card from "../components/Cards";
 // import Profile from "../components/Profile";
 import Dashboardjs from "../components/DashboardComp/Dashboardjs";
@@ -137,9 +138,9 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="dash-card-margin">
         <Nav />
-        <div className="main row ">
+        <div className="container main row ">
           <Profile />
           <Dashboardjs />
           {/* <Collections /> */}
