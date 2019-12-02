@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+// import React, { Fragment, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { getCurrentProfile } from "../../actions/profile";
@@ -6,21 +7,20 @@ import SetName from "./SetName";
 import SetType from "./SetType";
 import SetPrivate from "./SetPrivate";
 
-// import AddForm from "../AddForm";
-// import DropdownButton from "../DropdownButton";
+import Spinner from "../layout/Spinner";
+import Card from "../Cards";
 
 const CreateCollection = props => {
-  console.log(props);
+  // console.log(props);
   if (props.profile.profile) {
     console.log(props.profile.profile._id);
+    console.log(props.profile.profile.collections);
   }
-  return (
+
+  return props.profile.loading && props.profile.profile === null ? (
+    <Spinner />
+  ) : props.profile.profile ? (
     <div>
-      {/* <Fragment>
-        <div className="lead">
-          <p>User ID in CreateCollection is {user && user._id}</p>
-        </div>
-      </Fragment> */}
       <h1>Create a new Kollection</h1>
       <form className="form-inline">
         <SetName
@@ -28,7 +28,8 @@ const CreateCollection = props => {
           name={props.name}
         />
         <SetType
-          setCollectionType={props.setCollectionType}
+          text={"Select a Type"}
+          dropdownFunction={props.setCollectionType}
           type={props.type}
         />
         <p>Private</p>
@@ -42,6 +43,28 @@ const CreateCollection = props => {
           Create Kollection
         </button>
       </form>
+      {props.profile.profile.collections.length ? (
+        <div className="row">
+          {props.profile.profile.collections.map(collection => (
+            <div key={collection._id}>
+              <Card
+                {...collection}
+                deleteFunction={() => props.deleteCollection(collection._id)}
+                linkInfo={{
+                  pathname: "/collectiondetails",
+                  state: { collectionId: collection._id }
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No Kollections Yet</p>
+      )}
+    </div>
+  ) : (
+    <div>
+      <p>Create a profile to create Kollections!</p>
     </div>
   );
 };

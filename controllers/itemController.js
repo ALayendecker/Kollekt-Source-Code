@@ -42,9 +42,10 @@ module.exports = {
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // }
+  //using collectionId on remove to make sure it only deletes items from the right collection, just in case two items have the same id
   remove: function(req, res) {
     db.Collection.updateOne(
-      { items: req.params.itemId },
+      { items: req.params.itemId, _id: req.params.collectionId },
       { $pull: { items: req.params.itemId } }
     )
       .then(res => console.log(res))

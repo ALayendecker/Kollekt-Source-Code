@@ -1,7 +1,6 @@
 import React from "react";
 
 function InputField(props) {
-  return <input type="text"{...props} />;
+  return <input {...props} />;
 }
 export default InputField;
-

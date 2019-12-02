@@ -40,12 +40,7 @@ function App() {
           <Alert />
           <Switch>
             <Route exact path="/" component={Landing} />;
-            <Route
-              exact
-              path="/PublicCollection"
-              component={PublicCollection}
-            />
-            ;
+            <Route path="/PublicCollection/:id" component={PublicCollection} />
             <Route exact path="/Login" component={Login} />;
             <Route exact path="/Signup" component={SignUp} />;
             <Route exact path="/Profiles" component={Profiles} />;
@@ -60,12 +55,16 @@ function App() {
             />
             ;
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />;
-            <Route
+            <PrivateRoute
               exact
               path="/CollectionDetails"
               component={CollectionDetails}
             />
-            ;
+            <Route
+              exact
+              path="/CollectionDetails/:id"
+              component={CollectionDetails}
+            />
             <Route component={NoMatch} />
           </Switch>
         </Router>

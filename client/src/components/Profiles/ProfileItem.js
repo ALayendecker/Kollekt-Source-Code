@@ -5,7 +5,8 @@ import "./style.css";
 
 const ProfileItem = ({
   profile: {
-    user: { _id, username, avatar },
+    _id,
+    user: { username, avatar },
     status,
     location,
     interests
@@ -29,9 +30,9 @@ const ProfileItem = ({
           <p key={index}>{interests}</p>
         ))}
       </div>
-      <Link to={`/profile/user/${_id}`} className="btn btn-secondary">
-        View Collections
-      </Link>
+      <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">
+            View Collections
+          </Link>
     </div>
   );
 };
