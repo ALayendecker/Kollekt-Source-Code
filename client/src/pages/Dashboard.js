@@ -9,8 +9,6 @@ import Profile from "../components/Profile/index";
 import CreateCollection from "../components/CreateCollection/CreateCollection";
 import API from "../utils/API";
 
-
-
 class Dashboard extends Component {
   state = {
     name: "",
@@ -18,6 +16,25 @@ class Dashboard extends Component {
     searchAllCollectionsResult: [],
     isPrivate: true
   };
+
+  // collectionsToState = async text => {
+  //   await this.setState({ someState: text });
+  //   console.log("----hey----");
+  //   console.log(this.state.someState);
+  // };
+
+  // componentDidMount() {
+  //   this.searchAllUserCollections();
+  // }
+
+  // searchAllUserCollections = () => {
+  //   API.getAllUserCollections()
+  //     .then(res => {
+  //       console.log(res.data);
+  //       this.setState({ searchAllCollectionsResult: res.data });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -98,6 +115,7 @@ class Dashboard extends Component {
     API.createCollection(newCollection)
       .then(res => {
         console.log(res.data);
+        window.location.reload();
         // this.searchAllCollections(); //replace with a search for your collections
       })
       .catch(err => console.log(err));
@@ -105,6 +123,16 @@ class Dashboard extends Component {
 
   setCollectionType = text => {
     this.setState({ type: text });
+  };
+
+  deleteCollection = collectionId => {
+    API.deleteCollection(collectionId)
+      .then(res => {
+        console.log(res.data);
+        window.location.reload();
+        // this.searchAllCollections();
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -124,6 +152,7 @@ class Dashboard extends Component {
           setCollectionType={this.setCollectionType}
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit}
+          deleteCollection={this.deleteCollection}
         />
         <Footer />
       </div>
