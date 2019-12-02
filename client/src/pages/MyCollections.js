@@ -127,41 +127,44 @@ class Collection extends Component {
   render() {
     return (
       <div>
+        <Nav />
         <div>
           <h1>Create a new Kollection</h1>
           <div>
-          <form className="form-inline">
-            <input
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              name="name"
-              placeholder="Name you collection"
-              className="input"
-            />
-            <AddForm text={this.state.type || "Select a type"}>
-              <DropdownButton onClick={() => this.setCollectionType("Music")}>
-                Music
-              </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("Comics")}>
-                Comics
-              </DropdownButton>
-              <DropdownButton
-                onClick={() => this.setCollectionType("Currency")}
-              >
-                Currency
-              </DropdownButton>
-              <DropdownButton onClick={() => this.setCollectionType("Cards")}>
-                Cards
-              </DropdownButton>
-            </AddForm>
-            <p>Private</p>
-            <input
-              type="checkbox"
-              checked={this.state.isPrivate}
-              onChange={this.handleCheckboxChange}
-            />
-            <button onClick={this.handleFormSubmit}>Create Kollection</button>
-          </form>
+            <form className="form-inline">
+              <input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name you collection"
+                className="input"
+              />
+              <AddForm text={this.state.type || "Select a type"}>
+                <DropdownButton onClick={() => this.setCollectionType("Music")}>
+                  Music
+                </DropdownButton>
+                <DropdownButton
+                  onClick={() => this.setCollectionType("Comics")}
+                >
+                  Comics
+                </DropdownButton>
+                <DropdownButton
+                  onClick={() => this.setCollectionType("Currency")}
+                >
+                  Currency
+                </DropdownButton>
+                <DropdownButton onClick={() => this.setCollectionType("Cards")}>
+                  Cards
+                </DropdownButton>
+              </AddForm>
+              <p>Private</p>
+              <input
+                type="checkbox"
+                checked={this.state.isPrivate}
+                onChange={this.handleCheckboxChange}
+              />
+              <button onClick={this.handleFormSubmit}>Create Kollection</button>
+            </form>
           </div>
           <hr></hr>
           <br></br>
