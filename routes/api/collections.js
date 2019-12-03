@@ -7,7 +7,9 @@ router.route("/byprofile/:id").get(collectionController.findByProfile);
 router.route("/bytype/:type").get(collectionController.findByType);
 router.route("/onebytype/:type").get(collectionController.findOneByType);
 router.route("/create").post(collectionController.create);
-router.route("/delete/:id").delete(collectionController.remove);
+router
+  .route("/delete/:collectionId/:profileId")
+  .delete(collectionController.remove);
 router.route("/update/:id").put(collectionController.update);
 
 module.exports = router;

@@ -14,7 +14,7 @@ const ProfileItem = ({
 }) => {
   return (
     <div className="card" data-aos="fade-up">
-      <img className="card-img-top" src={avatar} />
+      <img className="card-img-top" src={avatar} alt={username} />
       <h4>{username}</h4>
 
       <p className="my-1">
@@ -31,8 +31,8 @@ const ProfileItem = ({
         ))}
       </div>
       <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">
-            View Collections
-          </Link>
+        View Collections
+      </Link>
     </div>
   );
 };

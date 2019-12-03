@@ -126,8 +126,8 @@ class Dashboard extends Component {
     this.setState({ type: text });
   };
 
-  deleteCollection = collectionId => {
-    API.deleteCollection(collectionId)
+  deleteCollection = (collectionId, profileId) => {
+    API.deleteCollection(collectionId, profileId)
       .then(res => {
         console.log(res.data);
         window.location.reload();

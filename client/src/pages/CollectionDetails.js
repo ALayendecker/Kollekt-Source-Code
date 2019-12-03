@@ -221,7 +221,7 @@ class CollectionDetails extends Component {
   };
 
   deleteCollection = () => {
-    API.deleteCollection(this.state.collection._id)
+    API.deleteCollection(this.state.collection._id, this.state.profileId)
       .then(res => {
         console.log(res.data);
         this.setState({ collection: false });
@@ -308,7 +308,6 @@ class CollectionDetails extends Component {
                   updateCollection={this.updateCollection}
                   cancelUpdate={() => this.cancelUpdate("collection")}
                   deleteCollection={this.deleteCollection}
-
                 />
                 <hr />
               </div>
