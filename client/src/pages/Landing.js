@@ -1,7 +1,6 @@
 // this page needs padding/margin at botton to serperate cards from footer
 // something is going on with the html page and placing odd spacing that had no element
 // need to reduce size of sides of .search-container
-// need h3 and p elements to center in flex-container
 // need p element to alight under h3 element when no cards display
 import React, { Component } from "react";
 import Card from "../components/Cards";

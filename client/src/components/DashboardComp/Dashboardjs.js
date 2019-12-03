@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import DashboardActions from "./DashboardActions";
+// import DashboardActions from "./DashboardActions";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 import "./style.css";
 
@@ -27,32 +27,38 @@ const Dashboardjs = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary"> Profile</h1>
-      <div className="lead">
+      {/* <div className="lead"> */}
+      <div>
         <h3>Welcome {user && user.username}</h3>
-        {user && <img src={user.avatar} alt={user.username} />}
+        </div>
+       <div>{user && <img src={user.avatar} alt={user.username} />}</div>
         {profile !== null && (
           <div>
-            <p>Status: {profile.status}</p>
-            <p>Location: {profile.location}</p>
-            <p>Collector of: {profile.interests}</p>
-          </div>
+            <p className="dashboardProfileP">Status: {profile.status}</p>
+            <p className="dashboardProfileP">Location: {profile.location}</p>
+            <p className="dashboardProfileP">Collector of: {profile.interests}</p> 
+            </div>
         )}
-        {/* <p>{location}</p> */}
-        {/* <p>{interests}</p> */}
-      </div>
+      {/* </div> */}
       {profile !== null ? (
         <Fragment>
-          <div>
-            <DashboardActions />
-            <div className="my-2">
+          <div className="my-2 needInlineButtons">
+            {/* took out dashboard actions to get buttons in line */}
+            {/* <DashboardActions /> */}
+            {/* <a href="/edit-profile"> */}
+            <Link to="/edit-profile" className="btn btn-secondary">
+        {/* <i className="fas fa-user-circle text-primary"></i>  */}
+        Edit Profile
+      </Link>
+      {/* </a> */}
+            {/* <div className="my-2"> */}
               <button
-                className="btn btn-danger dlt-button"
+                className="btn btn-secondary"
                 onClick={() => deleteAccount()}
               >
                 Delete My Account
               </button>
-            </div>
+            {/* </div> */}
           </div>
         </Fragment>
       ) : (

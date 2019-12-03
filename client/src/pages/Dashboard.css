@@ -29,10 +29,8 @@
   margin-bottom: 25px;
 }
 
-.masthead {
-  background: url("/assets/images/vinyl-headphones.jpg") no-repeat;
-  background-position-y: -200px;
-  /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
+.masthead3 {
+  background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg");
   height: 65vh;
   min-height: 400px;
   background-size: cover;
@@ -40,14 +38,16 @@
   margin-bottom: 30px;
 }
 
-.search-container {
+.search-container3 {
+  display: block;
   width: 500px;
-  background: rgba(207, 207, 207, 0.6);
+  background: rgba(207, 207, 207, 0.8);
   color: black;
   border-radius: 1em;
   text-align: center;
   margin: auto;
-  padding: 25px;
+  /* margin-top: 20px; */
+  /* padding: 25px; */
 }
 
 /* had to set min and max height for black background to render w/ and w/o search */
@@ -56,12 +56,6 @@
   max-height: 100%;
   color: white;
   background-color: rgb(43, 43, 43);
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .landingcollection {
@@ -82,15 +76,15 @@
   margin-top: 0px;
 }
 
-.container {
+/* .container {
   justify-content: center;
   margin: 0 auto;
-}
+} */
 
-.row {
+/* .row {
   justify-content: center;
   max-width: 100%;
-}
+} */
 
 .form-inline {
   justify-content: center;
