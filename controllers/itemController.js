@@ -50,7 +50,11 @@ module.exports = {
     )
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    db.Item.deleteOne({ _id: req.params.itemId })
+    //using collectionId on remove to make sure it only deletes items from the right collection, just in case two items have the same id
+    db.Item.deleteOne({
+      _id: req.params.itemId,
+      collectionId: req.params.collectionId
+    })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

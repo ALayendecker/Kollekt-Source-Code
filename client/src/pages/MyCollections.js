@@ -118,8 +118,9 @@ class Collection extends Component {
     this.setState({ type: text });
   };
 
-  deleteCollection = collectionId => {
-    API.deleteCollection(collectionId)
+  //doing it the "unsafe" way from here
+  deleteCollection = (collectionId, profileId) => {
+    API.deleteCollection(collectionId, profileId)
       .then(res => {
         console.log(res.data);
         this.searchAllCollections();
@@ -164,7 +165,13 @@ class Collection extends Component {
                 <div key={collection._id} data-aos="fade-up">
                   <Card
                     {...collection}
-                    deleteFunction={() => this.deleteCollection(collection._id)}
+                    // doing it the "unsafe" way from here
+                    deleteFunction={() =>
+                      this.deleteCollection(
+                        collection._id,
+                        collection.profileId
+                      )
+                    }
                     linkInfo={{
                       pathname: "/collectiondetails",
                       state: { collectionId: collection._id }

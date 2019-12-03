@@ -26,22 +26,21 @@ class Public extends Component {
       <div>
         <Nav />
         {this.state.collections ? (
-          this.state.collections.length > 0 ? (
+          this.state.collections.length ? (
             <div className="row">
               {this.state.collections.map(collection => (
-                <div key={collection._id}>
-                  <Card
-                    {...collection}
-                    linkInfo={{
-                      pathname: "/collectiondetails/" + collection._id
-                      // state: { collectionId: collection._id }
-                    }}
-                  />
-                </div>
+                <Card
+                  key={collection._id}
+                  {...collection}
+                  linkInfo={{
+                    pathname: "/collectiondetails/" + collection._id
+                    // state: { collectionId: collection._id }
+                  }}
+                />
               ))}
             </div>
           ) : (
-            <p>No Kollections here</p>
+            <p>No collections here</p>
           )
         ) : (
           <Spinner />

@@ -37,7 +37,8 @@ const CreateCollection = props => {
           handleCheckboxChange={props.handleCheckboxChange}
           isPrivate={props.isPrivate}
         />
-        <button className="btn btn-secondary"
+        <button
+          className="btn btn-secondary"
           onClick={e => props.handleFormSubmit(e, props.profile.profile._id)}
         >
           Create Collection
@@ -46,16 +47,23 @@ const CreateCollection = props => {
       {props.profile.profile.collections.length ? (
         <div className="row">
           {props.profile.profile.collections.map(collection => (
-            <div key={collection._id}>
-              <Card
-                {...collection}
-                deleteFunction={() => props.deleteCollection(collection._id)}
-                linkInfo={{
-                  pathname: "/collectiondetails",
-                  state: { collectionId: collection._id }
-                }}
-              />
-            </div>
+            <Card
+              key={collection._id}
+              {...collection}
+              deleteFunction={() =>
+                props.deleteCollection(
+                  collection._id,
+                  props.profile.profile._id
+                )
+              }
+              linkInfo={{
+                pathname: "/collectiondetails",
+                state: {
+                  collectionId: collection._id,
+                  profileId: props.profile.profile._id
+                }
+              }}
+            />
           ))}
         </div>
       ) : (

@@ -96,16 +96,23 @@ module.exports = {
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // }
+  //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
   remove: function(req, res) {
     Profile.updateOne(
-      { collections: req.params.id },
-      { $pull: { collections: req.params.id } }
+      { collections: req.params.collectionId, _id: req.params.profileId },
+      { $pull: { collections: req.params.collectionId } }
     )
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    db.Item.deleteMany({ collectionId: req.params.id })
+    //maybe items should have profile id as well to make sure only items from the right profile get deleted
+    //could do a find for collection id and only delete if I get only one
+    db.Item.deleteMany({ collectionId: req.params.collectionId })
       .then(
-        db.Collection.deleteOne({ _id: req.params.id })
+        //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
+        db.Collection.deleteOne({
+          _id: req.params.collectionId,
+          profileId: req.params.profileId
+        })
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err))
       )
