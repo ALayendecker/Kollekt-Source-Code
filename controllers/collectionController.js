@@ -1,18 +1,11 @@
 const db = require("../models");
-const Profile = require("../models/Profile");
+// const Profile = require("../models/Profile");
 //edit the functions as we go
 module.exports = {
   findByType: function(req, res) {
     console.log("findByType with req.params.type = " + req.params.type);
     db.Collection.find({ type: req.params.type, isPrivate: false })
       .select({ name: 1, type: 1, image: 1 })
-      .then(dbCollection => res.json(dbCollection))
-      .catch(err => res.status(422).json(err));
-  },
-  findByProfile: function(req, res) {
-    console.log("findByProfile with req.params.id = " + req.params.id);
-    db.Collection.find({ profileId: req.params.id, isPrivate: false })
-      // .select({ name: 1, type: 1, image: 1 })
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },
@@ -69,7 +62,7 @@ module.exports = {
   create: function(req, res) {
     db.Collection.create(req.body)
       .then(function(dbCollection) {
-        return Profile.findOneAndUpdate(
+        return db.Profile.findOneAndUpdate(
           { _id: req.body.profileId },
           { $push: { collections: dbCollection._id } },
           { new: true }
@@ -98,27 +91,36 @@ module.exports = {
   // }
   //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
   remove: function(req, res) {
-    Profile.updateOne(
+    db.Profile.updateOne(
       { collections: req.params.collectionId, _id: req.params.profileId },
       { $pull: { collections: req.params.collectionId } }
     )
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    //maybe items should have profile id as well to make sure only items from the right profile get deleted
-    //could do a find for collection id and only delete if I get only one
-    db.Item.deleteMany({ collectionId: req.params.collectionId })
-      .then(
-        //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
-        db.Collection.deleteOne({
-          _id: req.params.collectionId,
-          profileId: req.params.profileId
-        })
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err))
-      )
-      .catch(err => res.status(422).json(err));
+    //delete collections and items only if there is only one with a matching id, just in case two collections have the same id
+    db.Collection.find({ _id: req.params.collectionId }).then(res => {
+      if (res.length === 1) {
+        //do the thing
+        db.Item.deleteMany({ collectionId: req.params.collectionId })
+          .then(
+            //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
+            //redundant with the previous check for only one collection
+            db.Collection.deleteOne({
+              _id: req.params.collectionId,
+              profileId: req.params.profileId
+            })
+              .then(dbModel => res.json(dbModel))
+              .catch(err => res.status(422).json(err))
+          )
+          .catch(err => res.status(422).json(err));
+      } else {
+        res.status(403).json({
+          msg:
+            "Internal error: multiple collections have the same id. Collections and Items cannot be deleted for safety reasons"
+        });
+      }
+    });
   },
-  // db.Collection.deleteMany({ Item: req.user.id })
   update: function(req, res) {
     console.log(req.body);
     console.log(req.params);

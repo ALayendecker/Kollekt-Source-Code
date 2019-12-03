@@ -1,6 +1,11 @@
 import axios from "axios";
 //this might host all API functions. Might need to be separated later
 export default {
+  //Profile
+  testQuery: function(id) {
+    console.log("testQuery id = " + id);
+    return axios.get("/api/profile/" + id);
+  },
   //Collection
   createCollection: function(newCollection) {
     return axios.post("api/collections/create", newCollection);
@@ -20,9 +25,6 @@ export default {
   },
   getAllCollections: function() {
     return axios.get("/api/collections/all");
-  },
-  getAllCollectionsFromProfile: function(id) {
-    return axios.get("/api/collections/byprofile/" + id);
   },
   deleteCollection: function(collectionId, profileId) {
     return axios.delete(

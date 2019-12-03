@@ -31,8 +31,8 @@ const Dashboardjs = ({
       <div>
         <h3>Welcome {user && user.username}</h3>
         </div>
-       <div>{user && <img src={user.avatar} alt={user.username} />}</div>
-        {profile !== null && (
+       <div>{user && <img src={user.avatar} alt={user.username} />}
+        {profile && (
           <div>
             <p className="dashboardProfileP">Status: {profile.status}</p>
             <p className="dashboardProfileP">Location: {profile.location}</p>

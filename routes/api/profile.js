@@ -4,6 +4,8 @@ const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const Post = require("../../models/Post");
+const Collection = require("../../models/Collection");
+const Item = require("../../models/Item");
 
 const { check, validationResult } = require("express-validator");
 //route     Get api/profile
@@ -133,6 +135,27 @@ router.get("/user/:user_id", async (req, res) => {
 // access private
 router.delete("/", auth, async (req, res) => {
   try {
+    // remove all collections from the profile to be deleted and their items
+    await Profile.find({ user: req.user.id })
+      .select({ collections: 1 })
+      .then(res =>
+        res[0].collections.forEach(collectionId => {
+          //delete collections and items only if there is only one with a matching id, just in case two collections have the same id
+          //no responses and catches from here, just at the end
+          Collection.find({ _id: collectionId })
+            .select("_id")
+            .then(res => {
+              if (res.length === 1) {
+                Item.deleteMany({ collectionId: collectionId }).then(res =>
+                  Collection.deleteOne({
+                    _id: collectionId
+                  })
+                );
+              }
+            });
+        })
+      );
+
     // remove users posts
     await Post.deleteMany({ user: req.user.id });
 
@@ -145,6 +168,29 @@ router.delete("/", auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
+  }
+});
+
+router.get("/:id", async function(req, res) {
+  console.log("hit profile.js");
+  try {
+    const profile = await Profile.findOne({
+      _id: req.params.id
+    })
+      .populate("user", ["username", "avatar"])
+      .populate({
+        path: "collections",
+        match: { isPrivate: false },
+        select: { name: 1, type: 1, image: 1 }
+      });
+
+    if (!profile) {
+      return res.status(400).json({ msg: "There is no profile for this user" });
+    }
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error");
   }
 });
 
