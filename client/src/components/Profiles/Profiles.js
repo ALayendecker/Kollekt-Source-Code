@@ -6,6 +6,7 @@ import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
 import "./style.css";
 import Nav from "../Nav";
+import Footer from "../Footer";
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
           )}
         </Fragment>
       </div>
+      <Footer />
     </div>
   );
 };

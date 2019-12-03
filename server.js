@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3001;
+
 const app = express();
 const path = require("path");
 
@@ -16,10 +16,6 @@ app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-app.use(routes);
 
 // Define API routes here
 app.use(routes);
@@ -28,7 +24,7 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 
-if (process.env.Node_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
@@ -42,7 +38,7 @@ if (process.env.Node_ENV === "production") {
 //   console.log("hit 3001");
 //   res.send("API Running");
 // });
-
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}!`);
 });

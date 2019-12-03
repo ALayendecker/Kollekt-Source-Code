@@ -139,11 +139,16 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dash-card-margin">
-        <Nav />
-        <div className="container main row ">
-          <Profile />
-          <Dashboardjs />
-          {/* <Collections /> */}
+      <Nav />
+      <div className="masthead3"> 
+      <div className="search-container3">
+          {/* Profile isnt actually being used */}
+        {/* <Profile /> */}
+        {/* <div className="search-container3"> */}
+        <Dashboardjs />
+        {/* </div> */}
+        </div>
+        {/* <Collections /> */}
         </div>
         <CreateCollection
           name={this.state.name}

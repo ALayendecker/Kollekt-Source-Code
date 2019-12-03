@@ -27,14 +27,21 @@ have fun fixing it future self.
   /* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
 }
 
-
 /* .profileItem {
     
 } */
 
 .profiles {
+  display: block;
+  /* flex-direction: column; */
   justify-content: center;
+  /* align-content: center; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
   border: 0.5px solid rgb(64, 96, 128);
+  max-height: 800px;
+  min-width: 1200px;
+  overflow-y: auto;
   margin-bottom: 30px;
   background: url("/assets/images/wine.jpeg") center center fixed;
 }
@@ -74,10 +81,11 @@ have fun fixing it future self.
   text-align: center;
 }
 
-.row {
+/* being called several places and needed to be commented out */
+/* .row {
   text-align: center;
   margin-bottom: 20px;
-}
+} */
 
 .rowlog {
   margin-left: 20px;
@@ -91,5 +99,25 @@ have fun fixing it future self.
   max-width: 302px;
   max-height: 302px;
   object-fit: cover;
+}
 
+.masthead2 {
+  background: url("https://www.punchbowl.com/gridfs/fs/4e7fe83d1a349e097100014d-1317005375")
+    no-repeat;
+  /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
+  height: 45vh;
+  min-height: 400px;
+  background-size: cover;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.search-container2 {
+  width: auto;
+  background: rgba(207, 207, 207, 0.6);
+  color: black;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+  padding: 35px;
 }
