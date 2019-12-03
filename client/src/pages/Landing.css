@@ -14,27 +14,28 @@ body {
 }
 
 .masthead {
-  background: url("/assets/images/vinyl-headphones.jpg") no-repeat;
-
+  background: url("/assets/images/fullMetalHeadphones.jpg") no-repeat;
+  background-position-y: -220px;
   /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
-  height: 45vh;
+  height: 60vh;
   min-height: 400px;
   background-size: cover;
   color: white;
   margin-bottom: 30px;
 }
 
-.masthead2 {
+/* this should only be called in style.css for profiles */
+/* .masthead2 {
   background: url("https://www.punchbowl.com/gridfs/fs/4e7fe83d1a349e097100014d-1317005375")
     no-repeat;
 
-  /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
+  background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg");
   height: 45vh;
   min-height: 400px;
   background-size: cover;
   color: white;
   margin-bottom: 30px;
-}
+} */
 
 .search-container {
   width: auto;
@@ -46,7 +47,8 @@ body {
   padding: 25px;
 }
 
-.search-container2 {
+/* this should be only called in style.css for profiles component */
+/* .search-container2 {
   width: auto;
   background: rgba(207, 207, 207, 0.6);
   color: black;
@@ -54,7 +56,7 @@ body {
   text-align: center;
   margin: auto;
   padding: 35px;
-}
+} */
 
 /* had to set min and max height for black background to render w/ and w/o search */
 .main-container {
@@ -62,12 +64,6 @@ body {
   max-height: 100%;
   color: white;
   background-color: rgb(43, 43, 43);
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .font-weight-light2 {
