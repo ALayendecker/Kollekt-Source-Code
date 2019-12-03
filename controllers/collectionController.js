@@ -1,18 +1,11 @@
 const db = require("../models");
-const Profile = require("../models/Profile");
+// const Profile = require("../models/Profile");
 //edit the functions as we go
 module.exports = {
   findByType: function(req, res) {
     console.log("findByType with req.params.type = " + req.params.type);
     db.Collection.find({ type: req.params.type, isPrivate: false })
       .select({ name: 1, type: 1, image: 1 })
-      .then(dbCollection => res.json(dbCollection))
-      .catch(err => res.status(422).json(err));
-  },
-  findByProfile: function(req, res) {
-    console.log("findByProfile with req.params.id = " + req.params.id);
-    db.Collection.find({ profileId: req.params.id, isPrivate: false })
-      // .select({ name: 1, type: 1, image: 1 })
       .then(dbCollection => res.json(dbCollection))
       .catch(err => res.status(422).json(err));
   },
@@ -69,7 +62,7 @@ module.exports = {
   create: function(req, res) {
     db.Collection.create(req.body)
       .then(function(dbCollection) {
-        return Profile.findOneAndUpdate(
+        return db.Profile.findOneAndUpdate(
           { _id: req.body.profileId },
           { $push: { collections: dbCollection._id } },
           { new: true }
@@ -98,7 +91,7 @@ module.exports = {
   // }
   //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
   remove: function(req, res) {
-    Profile.updateOne(
+    db.Profile.updateOne(
       { collections: req.params.collectionId, _id: req.params.profileId },
       { $pull: { collections: req.params.collectionId } }
     )

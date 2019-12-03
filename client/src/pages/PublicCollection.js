@@ -14,9 +14,12 @@ class Public extends Component {
   };
 
   searchCollectionByProfileId = id => {
-    API.getAllCollectionsFromProfile(id)
+    // API.getPublicProfileById(id);
+    // API.getAllCollectionsFromProfile(id);
+    API.testQuery(id)
       .then(res => {
-        this.setState({ collections: res.data });
+        console.log(res.data);
+        this.setState({ profile: res.data });
       })
       .catch(err => console.log(err));
   };
@@ -25,23 +28,37 @@ class Public extends Component {
     return (
       <div>
         <Nav />
-        {this.state.collections ? (
-          this.state.collections.length ? (
+        {this.state.profile ? (
+          <div className="container main ">
             <div className="row">
-              {this.state.collections.map(collection => (
-                <Card
-                  key={collection._id}
-                  {...collection}
-                  linkInfo={{
-                    pathname: "/collectiondetails/" + collection._id
-                    // state: { collectionId: collection._id }
-                  }}
+              <div className="lead">
+                <h3>{this.state.profile.user.username}</h3>
+                <img
+                  src={this.state.profile.user.avatar}
+                  alt={this.state.profile.user.username}
                 />
-              ))}
+                <p>Status: {this.state.profile.status}</p>
+                <p>Location: {this.state.profile.location}</p>
+                <p>Collector of: {this.state.profile.interests}</p>
+              </div>
             </div>
-          ) : (
-            <p>No collections here</p>
-          )
+            {this.state.profile.collections.length ? (
+              <div className="row">
+                {this.state.profile.collections.map(collection => (
+                  <Card
+                    key={collection._id}
+                    {...collection}
+                    linkInfo={{
+                      pathname: "/collectiondetails/" + collection._id
+                      // state: { collectionId: collection._id }
+                    }}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p>No collections here</p>
+            )}
+          </div>
         ) : (
           <Spinner />
         )}

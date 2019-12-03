@@ -148,4 +148,29 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
+// router.route("/:id").get(profileController.findById);
+
+router.get("/:id", async function(req, res) {
+  console.log("hit profile.js");
+  try {
+    const profile = await Profile.findOne({
+      _id: req.params.id
+    })
+      .populate("user", ["username", "avatar"])
+      .populate({
+        path: "collections",
+        match: { isPrivate: false },
+        select: { name: 1, type: 1, image: 1 }
+      });
+
+    if (!profile) {
+      return res.status(400).json({ msg: "There is no profile for this user" });
+    }
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sever Error");
+  }
+});
+
 module.exports = router;

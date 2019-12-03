@@ -31,7 +31,7 @@ const Dashboardjs = ({
       <div className="lead">
         <h3>Welcome {user && user.username}</h3>
         {user && <img src={user.avatar} alt={user.username} />}
-        {profile !== null && (
+        {profile && (
           <div>
             <p>Status: {profile.status}</p>
             <p>Location: {profile.location}</p>
@@ -43,16 +43,14 @@ const Dashboardjs = ({
       </div>
       {profile !== null ? (
         <Fragment>
-          <div>
-            <DashboardActions />
-            <div className="my-2">
-              <button
-                className="btn btn-danger dlt-button"
-                onClick={() => deleteAccount()}
-              >
-                Delete My Account
-              </button>
-            </div>
+          <DashboardActions />
+          <div className="my-2">
+            <button
+              className="btn btn-danger dlt-button"
+              onClick={() => deleteAccount()}
+            >
+              Delete My Account
+            </button>
           </div>
         </Fragment>
       ) : (
