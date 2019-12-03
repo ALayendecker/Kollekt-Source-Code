@@ -97,21 +97,30 @@ module.exports = {
     )
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    //maybe items should have profile id as well to make sure only items from the right profile get deleted
-    //could do a find for collection id and only delete if I get only one
-    db.Item.deleteMany({ collectionId: req.params.collectionId })
-      .then(
-        //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
-        db.Collection.deleteOne({
-          _id: req.params.collectionId,
-          profileId: req.params.profileId
-        })
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err))
-      )
-      .catch(err => res.status(422).json(err));
+    //delete collections and items only if there is only one with a matching id, just in case two collections have the same id
+    db.Collection.find({ _id: req.params.collectionId }).then(res => {
+      if (res.length === 1) {
+        //do the thing
+        db.Item.deleteMany({ collectionId: req.params.collectionId })
+          .then(
+            //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
+            //redundant with the previous check for only one collection
+            db.Collection.deleteOne({
+              _id: req.params.collectionId,
+              profileId: req.params.profileId
+            })
+              .then(dbModel => res.json(dbModel))
+              .catch(err => res.status(422).json(err))
+          )
+          .catch(err => res.status(422).json(err));
+      } else {
+        res.status(403).json({
+          msg:
+            "Internal error: multiple collections have the same id. Collections and Items cannot be deleted for safety reasons"
+        });
+      }
+    });
   },
-  // db.Collection.deleteMany({ Item: req.user.id })
   update: function(req, res) {
     console.log(req.body);
     console.log(req.params);

@@ -4,6 +4,8 @@ const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const Post = require("../../models/Post");
+const Collection = require("../../models/Collection");
+const Item = require("../../models/Item");
 
 const { check, validationResult } = require("express-validator");
 //route     Get api/profile
@@ -133,15 +135,58 @@ router.get("/user/:user_id", async (req, res) => {
 // access private
 router.delete("/", auth, async (req, res) => {
   try {
-    // remove users posts
-    await Post.deleteMany({ user: req.user.id });
+    await Profile.find({ user: req.user.id })
+      .select({ collections: 1 })
+      .then(res => {
+        console.log(res);
+        console.log("---");
+        console.log(res[0].collections);
+        console.log("---");
+        res[0].collections.forEach(collectionId => {
+          console.log(collectionId);
+          console.log("---");
 
-    //Remove profile
-    await Profile.findOneAndRemove({ user: req.user.id });
-    // remove user
-    await User.findOneAndRemove({ _id: req.user.id });
+          //delete collections and items only if there is only one with a matching id, just in case two collections have the same id
+          Collection.find({ _id: collectionId })
+            .select("_id")
+            .then(res => {
+              console.log(res);
+              if (res.length === 1) {
+                console.log("yay");
+                console.log(collectionId);
+                //   //do the thing
+                Item.deleteMany({ collectionId: collectionId }).then(
+                  res => console.log(collectionId)
+                  //       // //using profileId on remove to make sure it only deletes collections from the right profile, just in case two collections have the same id
+                  //       // //redundant with the previous check for only one collection
+                  // Collection.deleteOne({
+                  //   _id: collectionId
+                  //   //       //   ////////////////////// profileId: profileId/////needs fixing
+                  // })
+                  //   .then(dbModel => res.json(dbModel))
+                  //   .catch(err => res.status(422).json(err))
+                );
+                // .catch(err => res.status(422).json(err));
+                // } else {
+                //   res.status(403).json({
+                //     msg:
+                //       "Internal error: multiple collections have the same id. Collections and Items cannot be deleted for safety reasons"
+                //   });
+              }
+            })
+            .catch(err => res.status(422).json(err));
+        });
+      });
 
-    res.json({ msg: "User removed" });
+    // // remove users posts
+    // await Post.deleteMany({ user: req.user.id });
+
+    // //Remove profile
+    // await Profile.findOneAndRemove({ user: req.user.id });
+    // // remove user
+    // await User.findOneAndRemove({ _id: req.user.id });
+
+    // res.json({ msg: "User removed" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
