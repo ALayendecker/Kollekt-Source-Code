@@ -81,10 +81,11 @@ have fun fixing it future self.
   text-align: center;
 }
 
-.row {
+/* being called several places and needed to be commented out */
+/* .row {
   text-align: center;
   margin-bottom: 20px;
-}
+} */
 
 .rowlog {
   margin-left: 20px;
