@@ -27,14 +27,21 @@ have fun fixing it future self.
   /* background: url("/vinyl3RecordsRevenge.jpeg") no-repeat; */
 }
 
-
 /* .profileItem {
     
 } */
 
 .profiles {
+  display: block;
+  /* flex-direction: column; */
   justify-content: center;
+  /* align-content: center; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
   border: 0.5px solid rgb(64, 96, 128);
+  max-height: 800px;
+  min-width: 1200px;
+  overflow-y: auto;
   margin-bottom: 30px;
   background: url("/assets/images/wine.jpeg") center center fixed;
 }
@@ -74,10 +81,11 @@ have fun fixing it future self.
   text-align: center;
 }
 
-.row {
+/* being called several places and needed to be commented out */
+/* .row {
   text-align: center;
   margin-bottom: 20px;
-}
+} */
 
 .rowlog {
   margin-left: 20px;
@@ -91,5 +99,4 @@ have fun fixing it future self.
   max-width: 302px;
   max-height: 302px;
   object-fit: cover;
-
 }
