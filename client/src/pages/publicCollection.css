@@ -9,9 +9,9 @@
 }
 
 .prof-row {
-  background-image: url("/assets/images/vinyl-headphones.jpg");
-  height: 50vh;
-  min-height: 300px;
+  background-image: url("/assets/images/books.jpeg");
+  height: 65vh;
+  min-height: 400px;
   background-size: cover;
   /* color: white; */
   margin-bottom: 30px;

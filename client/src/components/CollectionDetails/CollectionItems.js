@@ -5,7 +5,7 @@ import InputField from "../InputField";
 function CollectionItems(props) {
   return props.collection.items.length ? (
     props.collection.items.map((item, index) => (
-      <div className="form-inline itemBox text-center" key={item._id}>
+      <div className="row itemBox" key={item._id}>
         {props.collection.itemFields.map((fields, innerIndex) =>
           //if this item was selected to be edited, show the values in input fields
           props.editItem.id === item._id ? (
@@ -25,15 +25,24 @@ function CollectionItems(props) {
           ) : // if this item was not selected to be edited, show the field values as normal
           // if it has the name image, display it as an image with the database value as the source, or the collection image if the item has none
           fields.name === "image" ? (
-            <img
-              key={innerIndex}
-              height="50px"
-              src={item.image || props.collection.image}
-              alt="item thumbnail"
-            ></img>
+            <div style={props.setWidth()}>
+              <img
+                style={{
+                  margin: "12px 0",
+                  maxHeight: "50px"
+                }}
+                key={innerIndex}
+                src={item.image || props.collection.image}
+                alt="item thumbnail"
+              ></img>
+            </div>
           ) : (
             // if it has the type date, moment fixes the format
-            <p className="items-content" key={innerIndex}>
+            <p
+            className="collectionItemField"
+            style={props.setWidth()}
+            key={innerIndex}
+          >
               {fields.type === "date"
                 ? moment(item[fields.name]).format("MM-DD-YYYY")
                 : item[fields.name]}

@@ -270,6 +270,17 @@ class CollectionDetails extends Component {
       }
     }));
   };
+  setWidth = () => {
+    const baseNumber = this.state.collection.itemFields.length;
+    const baseWidth = Math.floor(100 / baseNumber);
+    console.log(baseWidth + "%");
+    return {
+      width: baseWidth + "%",
+      minWidth: "80px"
+      // marginLeft: 0,
+      // marginRight: 0
+    };
+  };
 
   render() {
     return (
@@ -280,7 +291,7 @@ class CollectionDetails extends Component {
           <div key={this.state.collection._id} className="maincontainer">
             <br></br>
             <img
-              className="collectionPic"
+              className="card-img-top"
               src={this.state.collection.image}
               alt={this.state.collection.name}
             />
@@ -328,13 +339,15 @@ class CollectionDetails extends Component {
             <h5>Items in your collection:</h5>
             <br />
             {/* header for the item list that sorts on click */}
-            <div className="row itemBox justify-content-center space-evenly">
+            <div className="row itemBox">
               {this.state.collection.itemFields.map((fields, index) => (
                 <p
-                  className="items-header"
-                  key={index}
-                  onClick={e => this.onSort(e, fields.name)}
-                >
+                className="collectionItemField"
+                style={this.setWidth()}
+                // width="200px"
+                key={index}
+                onClick={e => this.onSort(e, fields.name)}
+              >
                   {fields.displayName}
                 </p>
               ))}
@@ -354,6 +367,7 @@ class CollectionDetails extends Component {
               cancelUpdate={() => this.cancelUpdate("item")}
               deleteItem={this.deleteItem}
               editCollection={this.state.editCollection}
+              setWidth={this.setWidth}
             />
           </div>
         )}
@@ -370,9 +384,7 @@ class CollectionDetails extends Component {
             </button>
           </Link>
         ) : (
-          <Link to="/">
-            <button className="back btn btn-secondary">Back to Landing</button>
-          </Link>
+            <button onClick={() => window.history.back()}className="back btn btn-secondary">Back to Landing</button>
         )}
         <Footer />
       </div>
