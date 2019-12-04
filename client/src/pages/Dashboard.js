@@ -101,6 +101,17 @@ class Dashboard extends Component {
         ];
         image = "/assets/images/cards.jpg";
         break;
+        case "Other":
+        itemFields = [
+          { name: "image", type: "text", displayName: "Image" },
+          { name: "name", type: "text", displayName: "Name" },
+          { name: "category", type: "text", displayName: "Category" },
+          { name: "description", type: "text", displayName: "Description" },
+          { name: "date", type: "date", displayName: "Date" },
+          { name: "quantity", type: "number", displayName: "Quantity" }
+        ];
+        image = "/assets/images/vinyl.jpg";
+        break;
       default:
         return;
     }

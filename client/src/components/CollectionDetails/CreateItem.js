@@ -5,7 +5,7 @@ function CreateItem(props) {
   return (
     <div>
       <h5>Add to this collection:</h5>
-      <form className="form-inline">
+      <form className="form-inline row">
         {/* show the fields to add a new item based on the collection */}
         {props.itemFields.map((fields, index) => (
           <div key={index} className="divider">

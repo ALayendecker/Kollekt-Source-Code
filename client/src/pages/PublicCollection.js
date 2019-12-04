@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Nav from "../components/Nav";
 import API from "../utils/API";
 import Card from "../components/Cards";
@@ -33,6 +33,8 @@ class Public extends Component {
         <Nav />
 
         {this.state.profile ? (
+          <Fragment>
+
           <div className="container pubmain">
             <div className="row">
               <div className="prof-box mt-5 mb-3">
@@ -41,7 +43,7 @@ class Public extends Component {
                   <img
                     src={this.state.profile.user.avatar}
                     alt={this.state.profile.user.username}
-                  />
+                    />
                   <p className="profc-p">Status: {this.state.profile.status}</p>
                   <p className="profc-p">
                     Location: {this.state.profile.location}
@@ -52,34 +54,35 @@ class Public extends Component {
                 </div>
               </div>
             </div>
+            </div>
             {this.state.profile.collections.length ? (
-              <div className="row collection-row justify-content-center">
+              <div className="pt-4 container row collection-row justify-content-center">
                 {this.state.profile.collections.map(collection => (
+                  <div className="col-md-4">
                   <Card
-                    key={collection._id}
-                    {...collection}
-                    linkInfo={{
-                      pathname: "/collectiondetails/" + collection._id
-                      // state: { collectionId: collection._id }
-                    }}
+                  key={collection._id}
+                  {...collection}
+                  linkInfo={{
+                    pathname: "/collectiondetails/" + collection._id
+                    // state: { collectionId: collection._id }
+                  }}
                   />
-                ))}
+                  </div>
+                  ))}
               </div>
             ) : (
-              <div>
+              <div className="pt-4 container">
                 <div className="justify-content-center">
                   <p className="no-collections">No collections here</p>
                   <div className="col">
-                    <Link to="/profiles">
-                      <button className="back btn btn-secondary btncenter">
+                      <button onClick={()=>window.history.back()} className="back btn btn-secondary btncenter">
                         Back to Collectors
                       </button>
-                    </Link>
                   </div>
                 </div>
               </div>
             )}
-          </div>
+            </Fragment>
         ) : (
           <Spinner />
         )}
