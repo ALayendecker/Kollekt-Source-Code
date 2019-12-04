@@ -27,7 +27,7 @@ const ProfileItem = ({
 
       <div className="textInterest">
         {interests.slice(0, 3).map((interests, index) => (
-          <p key={index}>{interests}</p>
+          <p key={index}> {interests} </p>
         ))}
       </div>
       <Link to={`/PublicCollection/${_id}`} className="btn btn-secondary">

@@ -20,7 +20,7 @@ function CollectionItems(props) {
               name={fields.name}
               placeholder={fields.displayName}
               type={fields.type}
-              className="inputField"
+              className="inputField itemInputEdit"
             />
           ) : // if this item was not selected to be edited, show the field values as normal
           // if it has the name image, display it as an image with the database value as the source, or the collection image if the item has none
@@ -33,7 +33,7 @@ function CollectionItems(props) {
             ></img>
           ) : (
             // if it has the type date, moment fixes the format
-            <p key={innerIndex}>
+            <p className="items-content" key={innerIndex}>
               {fields.type === "date"
                 ? moment(item[fields.name]).format("MM-DD-YYYY")
                 : item[fields.name]}

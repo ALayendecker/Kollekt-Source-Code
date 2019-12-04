@@ -17,7 +17,7 @@
   margin: 0;
   /* border: none; */
   border: solid 1px #ccc;
-  border-radius: 10px !important;
+  border-radius: 6px !important;
 }
 
 .card {
@@ -40,7 +40,7 @@
 
 .search-container3 {
   display: block;
-  width: 500px;
+  max-width: 500px;
   background: rgba(207, 207, 207, 0.8);
   color: black;
   border-radius: 1em;
@@ -72,9 +72,10 @@
   margin-bottom: 0px;
 }
 
-.dlt-button {
+/* checktoseeifthing */
+/* .dlt-button {
   margin-top: 0px;
-}
+} */
 
 /* .container {
   justify-content: center;
@@ -92,4 +93,8 @@
 
 h1 {
   text-align: center;
+}
+
+.no-collections {
+  margin-bottom: 30px;
 }

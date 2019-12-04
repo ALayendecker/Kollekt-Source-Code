@@ -24,7 +24,7 @@ function Card(props) {
             className="btn btn-danger btn-sm"
             onClick={props.deleteFunction}
           >
-            Delete Kollection
+            Delete Collection
           </button>
         )}
       </div>

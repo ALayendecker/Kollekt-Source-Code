@@ -24,8 +24,8 @@ class Login extends Component {
       <div>
         <Nav />
         <div className="main row ">
-          <div className="div1 col">
-            <img src={"starwars_1.jpg"} alt="Logo" />
+          <div className="div1 col-4 ">
+            <img className="login-image" src={"starwars_1.jpg"} alt="Logo" />
           </div>
           <LoginForm />
         </div>

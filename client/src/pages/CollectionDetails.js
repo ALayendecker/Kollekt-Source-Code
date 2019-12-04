@@ -287,7 +287,7 @@ class CollectionDetails extends Component {
             <br></br>
             <br></br>
             <h6>
-              COLLECTION NAME:
+              <strong> COLLECTION NAME: </strong>
               <span style={{ fontWeight: "bolder", fontSize: 25 }}>
                 {this.state.collection.name}
               </span>
@@ -328,9 +328,13 @@ class CollectionDetails extends Component {
             <h5>Items in your collection:</h5>
             <br />
             {/* header for the item list that sorts on click */}
-            <div className="row itemBox">
+            <div className="row itemBox justify-content-center space-evenly">
               {this.state.collection.itemFields.map((fields, index) => (
-                <p key={index} onClick={e => this.onSort(e, fields.name)}>
+                <p
+                  className="items-header"
+                  key={index}
+                  onClick={e => this.onSort(e, fields.name)}
+                >
                   {fields.displayName}
                 </p>
               ))}

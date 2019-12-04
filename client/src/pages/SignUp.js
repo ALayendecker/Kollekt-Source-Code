@@ -22,7 +22,7 @@ class SignUp extends Component {
       <div>
         <Nav />
         <div className="main row rowlog ">
-          <div className="div1 col rowneg">
+          <div className="div1 col-4 rowneg">
             <img src={"vinyl3RecordsRevenge.jpeg"} alt="" />
           </div>
           <SignUpForm />

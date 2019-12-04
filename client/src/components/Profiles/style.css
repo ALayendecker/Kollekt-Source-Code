@@ -43,7 +43,7 @@ have fun fixing it future self.
   min-width: 1200px;
   overflow-y: auto;
   margin-bottom: 30px;
-  background: url("/assets/images/wine.jpeg") center center fixed;
+  /* background: url("/assets/images/wine.jpeg") center center fixed; */
 }
 
 .interest {
@@ -79,16 +79,19 @@ have fun fixing it future self.
 .profilecontainer2 {
   margin: auto;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 /* being called several places and needed to be commented out */
-/* .row {
+.row {
   text-align: center;
   margin-bottom: 20px;
-} */
+}
 
 .rowlog {
+  justify-content: center !important;
   margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 .rowneg {
@@ -102,8 +105,7 @@ have fun fixing it future self.
 }
 
 .masthead2 {
-  background: url("https://www.punchbowl.com/gridfs/fs/4e7fe83d1a349e097100014d-1317005375")
-    no-repeat;
+  background: url("/assets/images/haywine.jpeg") no-repeat;
   /* background: url("https://cdn.aarp.net/content/dam/aarp/entertainment/music/2018/02/1140-swedish-clean-your-record-collection-02.imgcache.revc25e47d51060d89f4f39a70b158f10aa.jpg"); */
   height: 45vh;
   min-height: 400px;

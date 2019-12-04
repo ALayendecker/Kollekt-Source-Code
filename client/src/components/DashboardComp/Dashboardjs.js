@@ -30,15 +30,15 @@ const Dashboardjs = ({
       {/* <div className="lead"> */}
       <div>
         <h3>Welcome {user && user.username}</h3>
+      </div>
+      <div>{user && <img src={user.avatar} alt={user.username} />}</div>
+      {profile && (
+        <div>
+          <p className="dashboardProfileP">Status: {profile.status}</p>
+          <p className="dashboardProfileP">Location: {profile.location}</p>
+          <p className="dashboardProfileP">Collector of: {profile.interests}</p>
         </div>
-       <div>{user && <img src={user.avatar} alt={user.username} />}
-        {profile && (
-          <div>
-            <p className="dashboardProfileP">Status: {profile.status}</p>
-            <p className="dashboardProfileP">Location: {profile.location}</p>
-            <p className="dashboardProfileP">Collector of: {profile.interests}</p> 
-            </div>
-        )}
+      )}
       {/* </div> */}
       {profile !== null ? (
         <Fragment>
@@ -47,17 +47,17 @@ const Dashboardjs = ({
             {/* <DashboardActions /> */}
             {/* <a href="/edit-profile"> */}
             <Link to="/edit-profile" className="btn btn-secondary">
-        {/* <i className="fas fa-user-circle text-primary"></i>  */}
-        Edit Profile
-      </Link>
-      {/* </a> */}
+              {/* <i className="fas fa-user-circle text-primary"></i>  */}
+              Edit Profile
+            </Link>
+            {/* </a> */}
             {/* <div className="my-2"> */}
-              <button
-                className="btn btn-secondary"
-                onClick={() => deleteAccount()}
-              >
-                Delete My Account
-              </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => deleteAccount()}
+            >
+              Delete My Account
+            </button>
             {/* </div> */}
           </div>
         </Fragment>
