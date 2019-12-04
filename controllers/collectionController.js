@@ -110,11 +110,11 @@ module.exports = {
               profileId: req.params.profileId
             })
               .then(dbModel => res.json(dbModel))
-              .catch(err => res.status(422).json(err))
+              .catch(err => res.json(err))
           )
-          .catch(err => res.status(422).json(err));
+          .catch(err => res.json(err));
       } else {
-        res.status(403).json({
+        res.json({
           msg:
             "Internal error: multiple collections have the same id. Collections and Items cannot be deleted for safety reasons"
         });

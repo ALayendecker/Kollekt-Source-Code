@@ -31,7 +31,7 @@ const EditProfile = ({
     });
   }, [
     loading,
-    getCurrentProfile,
+    getCurrentProfile
     // profile.bio,
     // profile.location,
     // profile.status,
@@ -43,6 +43,9 @@ const EditProfile = ({
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history, true);
+    setTimeout(() => {
+      window.location.replace("/dashboard");
+    }, 2500);
   };
 
   const onChange = e =>
@@ -51,66 +54,77 @@ const EditProfile = ({
   return (
     <div>
       <Nav />
-      <div className="mainEdit row"> 
-      <div className="div1 col editCol">
-        <div className="wrapper">
-    <Fragment>
-    <div className="iAmAnEditor">
-      <h1 className="large editText">Edit Your Profile</h1>
-      <p className="lead">
-        <i className="fas fa-user"></i> Add some changes to your profile
-      </p>
-      <small>* = required field</small>
-      <form className="formEdit" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
-          <select name="status" value={status} onChange={e => onChange(e)}>
-            <option value="0">* Collector Status?</option>
-            <option value="Trinket Collector">Collector of Trinkets</option>
-            <option value="Hobbiest">Hobbiest</option>
-            <option value="Enthusiast">Enthusiast</option>
-            <option value="Master Collector">Master Collector</option>
-          </select>
-          <small className="form-text">What kind of collector are you?</small>
-        </div>
-        <div className="form-group">
-          <input
-            className="input2"
-            type="text"
-            placeholder="Location (Optional)"
-            name="location"
-            value={location}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">
-            City & state suggested (eg. Boston, MA)
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            className="input2"
-            type="text"
-            placeholder="* Interests"
-            name="interests"
-            value={interests}
-            onChange={e => onChange(e)}
-          />
-          <small className="form-text">
-            Please use comma separated items 
-            (eg. Cards, Comics, Vinyl)
-          </small>
-        </div>
-        <div className="form-group">
-          <textarea
-          className="textAreaEdit"
-            placeholder="A short bio of yourself"
-            name="bio"
-            value={bio}
-            onChange={e => onChange(e)}
-          ></textarea>
-          <small className="form-text">Tell us a little about yourself</small>
-        </div>
+      <div className="mainEdit row">
+        <div className="div1 col editCol">
+          <div className="wrapper">
+            <Fragment>
+              <div className="iAmAnEditor">
+                <h1 className="large editText">Edit Your Profile</h1>
+                <p className="lead">
+                  <i className="fas fa-user"></i> Add some changes to your
+                  profile
+                </p>
+                <small>* = required field</small>
+                <form className="formEdit" onSubmit={e => onSubmit(e)}>
+                  <div className="form-group">
+                    <select
+                      name="status"
+                      value={status}
+                      onChange={e => onChange(e)}
+                    >
+                      <option value="0">* Collector Status?</option>
+                      <option value="Trinket Collector">
+                        Collector of Trinkets
+                      </option>
+                      <option value="Hobbiest">Hobbiest</option>
+                      <option value="Enthusiast">Enthusiast</option>
+                      <option value="Master Collector">Master Collector</option>
+                    </select>
+                    <small className="form-text">
+                      What kind of collector are you?
+                    </small>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input2"
+                      type="text"
+                      placeholder="Location (Optional)"
+                      name="location"
+                      value={location}
+                      onChange={e => onChange(e)}
+                    />
+                    <small className="form-text">
+                      City & state suggested (eg. Boston, MA)
+                    </small>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="input2"
+                      type="text"
+                      placeholder="* Interests"
+                      name="interests"
+                      value={interests}
+                      onChange={e => onChange(e)}
+                    />
+                    <small className="form-text">
+                      Please use comma separated items (eg. Cards, Comics,
+                      Vinyl)
+                    </small>
+                  </div>
+                  <div className="form-group">
+                    <textarea
+                      className="textAreaEdit"
+                      placeholder="A short bio of yourself"
+                      name="bio"
+                      value={bio}
+                      onChange={e => onChange(e)}
+                    ></textarea>
+                    <small className="form-text">
+                      Tell us a little about yourself
+                    </small>
+                  </div>
 
-        {/* <div className="my-2">
+                  {/* <div className="my-2">
           <button type="button" className="btn btn-light">
             Add Social Network Links
           </button>
@@ -142,23 +156,27 @@ const EditProfile = ({
           <input className="input" type="text" placeholder="Instagram URL" name="instagram" />
         </div> */}
 
-        {/* this is a submit button as input */}
-        <div className="bottomDivEdit">
-        <input type="submit" className="btn btn-secondary my-1" />
-        <Link className="btn btn-secondary my-1" to="/dashboard">
-          Go Back
-        </Link>
+                  {/* this is a submit button as input */}
+                  <div className="bottomDivEdit">
+                    <input type="submit" className="btn btn-secondary my-1" />
+                    <Link className="btn btn-secondary my-1" to="/dashboard">
+                      Go Back
+                    </Link>
+                  </div>
+                </form>
+              </div>
+            </Fragment>
+          </div>
         </div>
-      </form>
+        <div className="div2 col imgColEdit">
+          <img
+            src={"../assets/images/actionFigures.jpg"}
+            alt=""
+            className="imgEdit"
+          />
+        </div>
       </div>
-    </Fragment>
-    </div>
-    </div>
-    <div className="div2 col imgColEdit">
-      <img src={"../assets/images/actionFigures.jpg"} alt="" className="imgEdit"/>
-    </div>
-    </div>
-    <Footer />
+      <Footer />
     </div>
   );
 };

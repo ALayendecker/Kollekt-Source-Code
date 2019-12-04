@@ -3,6 +3,9 @@ import Nav from "../components/Nav";
 import API from "../utils/API";
 import Card from "../components/Cards";
 import Spinner from "../components/layout/Spinner";
+import "./publicCollection.css";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 class Public extends Component {
   state = {
@@ -26,24 +29,31 @@ class Public extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container prof-row">
         <Nav />
+
         {this.state.profile ? (
-          <div className="container main ">
+          <div className="container pubmain">
             <div className="row">
-              <div className="lead">
-                <h3>{this.state.profile.user.username}</h3>
-                <img
-                  src={this.state.profile.user.avatar}
-                  alt={this.state.profile.user.username}
-                />
-                <p>Status: {this.state.profile.status}</p>
-                <p>Location: {this.state.profile.location}</p>
-                <p>Collector of: {this.state.profile.interests}</p>
+              <div className="prof-box mt-5 mb-3">
+                <div className="lead">
+                  <h3>{this.state.profile.user.username}</h3>
+                  <img
+                    src={this.state.profile.user.avatar}
+                    alt={this.state.profile.user.username}
+                  />
+                  <p className="profc-p">Status: {this.state.profile.status}</p>
+                  <p className="profc-p">
+                    Location: {this.state.profile.location}
+                  </p>
+                  <p className="profc-p">
+                    Collector of: {this.state.profile.interests}
+                  </p>
+                </div>
               </div>
             </div>
             {this.state.profile.collections.length ? (
-              <div className="row">
+              <div className="row collection-row justify-content-center">
                 {this.state.profile.collections.map(collection => (
                   <Card
                     key={collection._id}
@@ -56,12 +66,24 @@ class Public extends Component {
                 ))}
               </div>
             ) : (
-              <p>No collections here</p>
+              <div>
+                <div className="justify-content-center">
+                  <p className="no-collections">No collections here</p>
+                  <div className="col">
+                    <Link to="/profiles">
+                      <button className="back btn btn-secondary btncenter">
+                        Back to Collectors
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         ) : (
           <Spinner />
         )}
+        <Footer />
       </div>
     );
   }

@@ -45,7 +45,7 @@ const CreateCollection = props => {
         </button>
       </form>
       {props.profile.profile.collections.length ? (
-        <div className="row">
+        <div className="row justify-content-center">
           {props.profile.profile.collections.map(collection => (
             <Card
               key={collection._id}
@@ -67,7 +67,7 @@ const CreateCollection = props => {
           ))}
         </div>
       ) : (
-        <p>No Collections Yet</p>
+        <p className="no-collections">No Collections Yet</p>
       )}
     </div>
   ) : (

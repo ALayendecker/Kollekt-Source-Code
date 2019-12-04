@@ -59,9 +59,7 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (interests) {
-      profileFields.interests = interests
-        .split(",")
-        .map(interest => interest.trim());
+      profileFields.interests = interests.split(",").map(interest => interest);
     }
     // // build social groups for collections
     // // these would need to be added to model if wanted just for possible icebox

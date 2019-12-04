@@ -133,7 +133,7 @@ class Collection extends Component {
       <div>
         <Nav />
         <div>
-          <h1>Create a new Kollection</h1>
+          <h1>Create a new Collection</h1>
           <div>
             <form className="form-inline">
               <input
@@ -154,7 +154,7 @@ class Collection extends Component {
                 checked={this.state.isPrivate}
                 onChange={this.handleCheckboxChange}
               />
-              <button onClick={this.handleFormSubmit}>Create Kollection</button>
+              <button onClick={this.handleFormSubmit}>Create Collection</button>
             </form>
           </div>
           <hr></hr>

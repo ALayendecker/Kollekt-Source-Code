@@ -1,0 +1,38 @@
+.prof-box {
+  display: block;
+  width: 500px;
+  background: rgba(207, 207, 207, 0.8);
+  color: black;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+}
+
+.prof-row {
+  background-image: url("/assets/images/vinyl-headphones.jpg");
+  height: 50vh;
+  min-height: 300px;
+  background-size: cover;
+  /* color: white; */
+  margin-bottom: 30px;
+  min-width: 700px;
+}
+
+.pubmain {
+  opacity: 1;
+}
+
+.no-collections {
+  color: black;
+}
+
+.profc-p {
+  margin: 0px;
+}
+
+.main-container {
+}
+
+.btncenter {
+  text-align: center;
+}
