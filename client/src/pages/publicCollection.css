@@ -36,3 +36,7 @@
 .btncenter {
   text-align: center;
 }
+
+.collection-row {
+  margin: auto;
+}
