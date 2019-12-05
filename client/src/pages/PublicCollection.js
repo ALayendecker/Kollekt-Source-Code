@@ -34,55 +34,59 @@ class Public extends Component {
 
         {this.state.profile ? (
           <Fragment>
-
-          <div className="container pubmain">
-            <div className="row">
-              <div className="prof-box mt-5 mb-3">
-                <div className="lead">
-                  <h3>{this.state.profile.user.username}</h3>
-                  <img
-                    src={this.state.profile.user.avatar}
-                    alt={this.state.profile.user.username}
+            <div className="container pubmain">
+              <div className="row">
+                <div className="prof-box mt-3 mb-3">
+                  <div className="lead">
+                    <h3>{this.state.profile.user.username}</h3>
+                    <img
+                      src={this.state.profile.user.avatar}
+                      alt={this.state.profile.user.username}
                     />
-                  <p className="profc-p">Status: {this.state.profile.status}</p>
-                  <p className="profc-p">
-                    Location: {this.state.profile.location}
-                  </p>
-                  <p className="profc-p">
-                    Collector of: {this.state.profile.interests}
-                  </p>
+                    <p className="profc-p">
+                      Status: {this.state.profile.status}
+                    </p>
+                    <p className="profc-p">
+                      Location: {this.state.profile.location}
+                    </p>
+                    <p className="profc-p">
+                      Collector of: {this.state.profile.interests}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
             {this.state.profile.collections.length ? (
               <div className="pt-4 container row collection-row justify-content-center">
                 {this.state.profile.collections.map(collection => (
                   <div className="col-md-4">
-                  <Card
-                  key={collection._id}
-                  {...collection}
-                  linkInfo={{
-                    pathname: "/collectiondetails/" + collection._id
-                    // state: { collectionId: collection._id }
-                  }}
-                  />
+                    <Card
+                      key={collection._id}
+                      {...collection}
+                      linkInfo={{
+                        pathname: "/collectiondetails/" + collection._id
+                        // state: { collectionId: collection._id }
+                      }}
+                    />
                   </div>
-                  ))}
+                ))}
               </div>
             ) : (
               <div className="pt-4 container">
                 <div className="justify-content-center">
                   <p className="no-collections">No collections here</p>
                   <div className="col">
-                      <button onClick={()=>window.history.back()} className="back btn btn-secondary btncenter">
-                        Back to Collectors
-                      </button>
+                    <button
+                      onClick={() => window.history.back()}
+                      className="back btn btn-secondary btncenter"
+                    >
+                      Back to Collectors
+                    </button>
                   </div>
                 </div>
               </div>
             )}
-            </Fragment>
+          </Fragment>
         ) : (
           <Spinner />
         )}

@@ -101,7 +101,7 @@ class Dashboard extends Component {
         ];
         image = "/assets/images/cards.jpg";
         break;
-        case "Other":
+      case "Other":
         itemFields = [
           { name: "image", type: "text", displayName: "Image" },
           { name: "name", type: "text", displayName: "Name" },
@@ -139,11 +139,10 @@ class Dashboard extends Component {
 
   deleteCollection = (collectionId, profileId) => {
     API.deleteCollection(collectionId, profileId)
-      .then(res => {
-        console.log(res.data);
-        window.location.reload();
+      .then(
+        window.location.reload()
         // this.searchAllCollections();
-      })
+      )
       .catch(err => console.log(err));
   };
 
