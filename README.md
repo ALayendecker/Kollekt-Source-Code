@@ -10,7 +10,9 @@
 <p align="center">
   <h1 align="center">Kollekt</h1>
     <a href="https://github.com/Alayendecker/Kollekt-Source-Code"><strong>Documentation and Repo Link</strong></a>
+    <p>
     <a href="https://kollekt-1.herokuapp.com/"><strong>Deployment</strong></a>
+    </p>
     <br />
 </p>
 
