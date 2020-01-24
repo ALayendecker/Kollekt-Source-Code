@@ -8,11 +8,10 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h3 align="center">Kollekt</h3>
+  <h1 align="center">Kollekt</h1>
     <a href="https://github.com/Alayendecker/Kollekt-Source-Code"><strong>Documentation and Repo Link</strong></a>
+    <a href="https://kollekt-1.herokuapp.com/"><strong>Deployment</strong></a>
     <br />
-    
-  </p>
 </p>
 
 <!-- TABLE OF CONTENTS -->
