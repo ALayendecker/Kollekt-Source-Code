@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <h3 align="center">Kollekt</h3>
-    <a href="https://github.com/Alayendecker/Kollekt"><strong>Documentation and Repo Link</strong></a>
+    <a href="https://github.com/Alayendecker/Kollekt-Source-Code"><strong>Documentation and Repo Link</strong></a>
     <br />
     
   </p>
@@ -64,7 +64,7 @@ Uses React, AtlasDB with Mongoose, Express, Node.JS, Bootstrap, and JWT with Bcr
 1. Clone the repo
 
 ```sh
-git clone https:://github.com/Alayendecker/Kollekt.git
+git clone https:://github.com/Alayendecker/Kollekt-Source-Code.git
 ```
 
 2. Install NPM packages
@@ -88,16 +88,16 @@ npm install
 
 Developer for Kollekt ALayendecker, LVerane, speechgirl1505, remingtonjosh
 
-Project Link: [https://github.com/Alayendecker/Kollekt](https://github.com/Alayendecker/Kollekt)
+Project Link: [https://github.com/Alayendecker/Kollekt-Source-Code](https://github.com/Alayendecker/Kollekt)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Alayendecker/Kollekt.svg?style=flat-square
-[contributors-url]: https://github.com/Alayendecker/Kollekt/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Alayendecker/Kollekt.svg?style=flat-square
-[forks-url]: https://github.com/Alayendecker/Kollekt/network/members
-[stars-shield]: https://img.shields.io/github/stars/Alayendecker/Kollekt.svg?style=flat-square
-[stars-url]: https://github.com/Alayendecker/Kollekt/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Alayendecker/Kollekt.svg?style=flat-square
-[issues-url]: https://github.com/Alayendecker/Kollekt/issues
+[contributors-shield]: https://img.shields.io/github/contributors/Alayendecker/Kollekt-Source-Code.svg?style=flat-square
+[contributors-url]: https://github.com/Alayendecker/Kollekt-Source-Code/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Alayendecker/Kollekt-Source-Code.svg?style=flat-square
+[forks-url]: https://github.com/Alayendecker/Kollekt-Source-Code/network/members
+[stars-shield]: https://img.shields.io/github/stars/Alayendecker/Kollekt-Source-Code.svg?style=flat-square
+[stars-url]: https://github.com/Alayendecker/Kollekt-Source-Code/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Alayendecker/Kollekt-Source-Code.svg?style=flat-square
+[issues-url]: https://github.com/Alayendecker/Kollekt-Source-Code/issues
