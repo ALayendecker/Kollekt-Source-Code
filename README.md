@@ -34,6 +34,17 @@
 ## About The Project
 
 ### Built With
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+- [Mongoose](https://mongoosejs.com/docs/)
+
+- [Bootstrap](https://getbootstrap.com/)
+
+- [Express](https://expressjs.com/)
+
+- [JWT](https://jwt.io/)
+
+- [BCrypt](https://www.npmjs.com/package/bcrypt)
 
 - [Node](https://nodejs.org/en/)
 
@@ -42,6 +53,7 @@
 <!-- Organization -->
 
 ## Organization
+Uses React, AtlasDB with Mongoose, Express, Node.JS, Bootstrap, and JWT with Bcrypt for authentication.
 
 <!-- GETTING STARTED -->
 
