@@ -5,7 +5,7 @@ import Card from "../components/Cards";
 import Spinner from "../components/layout/Spinner";
 import "./publicCollection.css";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class Public extends Component {
   state = {

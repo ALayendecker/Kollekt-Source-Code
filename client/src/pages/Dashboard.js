@@ -6,7 +6,7 @@ import "./Dashboard.css";
 // import Card from "../components/Cards";
 // import Profile from "../components/Profile";
 import Dashboardjs from "../components/DashboardComp/Dashboardjs";
-import Profile from "../components/Profile/index";
+// import Profile from "../components/Profile/index";
 import CreateCollection from "../components/CreateCollection/CreateCollection";
 import API from "../utils/API";
 
